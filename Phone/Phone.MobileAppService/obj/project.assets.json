@@ -4808,6 +4808,9 @@
         "runtime": {
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
+      },
+      "Xamarin.GooglePlayServices/27.0.0": {
+        "type": "package"
       }
     }
   },
@@ -12769,13 +12772,25 @@
         "windowsazure.storage.8.1.4.nupkg.sha512",
         "windowsazure.storage.nuspec"
       ]
+    },
+    "Xamarin.GooglePlayServices/27.0.0": {
+      "sha512": "kkHVDyS38SpmFxPxzPsIaEmQtoRjJcDgZLtY+gpyxXevBbLzS9mvEy/h7ztLLWaLcdKSaXf6UzSnJS1KrOLJJg==",
+      "type": "package",
+      "path": "xamarin.googleplayservices/27.0.0",
+      "files": [
+        ".signature.p7s",
+        "readme.txt",
+        "xamarin.googleplayservices.27.0.0.nupkg.sha512",
+        "xamarin.googleplayservices.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "Microsoft.AspNetCore.All >= 2.0.8",
       "Microsoft.NETCore.App >= 2.0.0",
-      "Swashbuckle.AspNetCore >= 2.4.0"
+      "Swashbuckle.AspNetCore >= 2.4.0",
+      "Xamarin.GooglePlayServices >= 27.0.0"
     ]
   },
   "packageFolders": {
@@ -12831,6 +12846,10 @@
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[2.4.0, )"
+          },
+          "Xamarin.GooglePlayServices": {
+            "target": "Package",
+            "version": "[27.0.0, )"
           }
         },
         "imports": [
