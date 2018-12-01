@@ -12,14 +12,27 @@ namespace Phone.Views
     public partial class NewItemPage : ContentPage
     {
         public Item Item { get; set; }
+        public clsNotificationX notificationx { get; set; }
 
+        //public NewItemPage()
+        //{
+        //    InitializeComponent();
+
+        //    Item = new Item
+        //    {
+        //        Text = "Item name",
+        //        Description = "This is an item description."
+        //    };
+
+        //    BindingContext = this;
+        //}
         public NewItemPage()
         {
             InitializeComponent();
 
-            Item = new Item
+            notificationx = new clsNotificationX
             {
-                Text = "Item name",
+                NotificationMessage  = "Item name",
                 Description = "This is an item description."
             };
 
@@ -28,7 +41,7 @@ namespace Phone.Views
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddItem", Item);
+            MessagingCenter.Send(this, "AddItem", notificationx);
             await Navigation.PopModalAsync();
         }
     }
