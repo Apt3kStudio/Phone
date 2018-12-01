@@ -13,7 +13,6 @@ namespace Phone.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
-        public IDataStore<clsNotificationX> DataStoreNTF => DependencyService.Get<IDataStore<clsNotificationX>>() ?? new MockDataStore();
 
         bool isBusy = false;
         public bool IsBusy
