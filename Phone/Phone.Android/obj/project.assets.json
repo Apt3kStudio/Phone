@@ -349,6 +349,9 @@
           "build/netstandard2.0/Xamarin.Forms.props": {},
           "build/netstandard2.0/Xamarin.Forms.targets": {}
         }
+      },
+      "Xamarin.GooglePlayServices/27.0.0": {
+        "type": "package"
       }
     }
   },
@@ -787,6 +790,17 @@
         "xamarin.forms.3.1.0.697729.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
+    },
+    "Xamarin.GooglePlayServices/27.0.0": {
+      "sha512": "kkHVDyS38SpmFxPxzPsIaEmQtoRjJcDgZLtY+gpyxXevBbLzS9mvEy/h7ztLLWaLcdKSaXf6UzSnJS1KrOLJJg==",
+      "type": "package",
+      "path": "xamarin.googleplayservices/27.0.0",
+      "files": [
+        ".signature.p7s",
+        "readme.txt",
+        "xamarin.googleplayservices.27.0.0.nupkg.sha512",
+        "xamarin.googleplayservices.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -797,7 +811,8 @@
       "Xamarin.Android.Support.v7.AppCompat >= 27.0.2.1",
       "Xamarin.Android.Support.v7.CardView >= 27.0.2.1",
       "Xamarin.Android.Support.v7.MediaRouter >= 27.0.2.1",
-      "Xamarin.Forms >= 3.1.0.697729"
+      "Xamarin.Forms >= 3.1.0.697729",
+      "Xamarin.GooglePlayServices >= 27.0.0"
     ]
   },
   "packageFolders": {
@@ -806,11 +821,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Diosc\\Documents\\Repos\\APT3KStudio\\Phone\\Phone\\Phone.Android\\Phone.Android.csproj",
+      "projectUniqueName": "C:\\Users\\Diosc\\Documents\\Repos\\APT3KStudio\\Phone\\Phone.Android\\Phone.Android.csproj",
       "projectName": "Phone.Android",
-      "projectPath": "C:\\Users\\Diosc\\Documents\\Repos\\APT3KStudio\\Phone\\Phone\\Phone.Android\\Phone.Android.csproj",
+      "projectPath": "C:\\Users\\Diosc\\Documents\\Repos\\APT3KStudio\\Phone\\Phone.Android\\Phone.Android.csproj",
       "packagesPath": "C:\\Users\\Diosc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Diosc\\Documents\\Repos\\APT3KStudio\\Phone\\Phone\\Phone.Android\\obj\\",
+      "outputPath": "C:\\Users\\Diosc\\Documents\\Repos\\APT3KStudio\\Phone\\Phone.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
@@ -860,6 +875,10 @@
           "Xamarin.Forms": {
             "target": "Package",
             "version": "[3.1.0.697729, )"
+          },
+          "Xamarin.GooglePlayServices": {
+            "target": "Package",
+            "version": "[27.0.0, )"
           }
         }
       }
