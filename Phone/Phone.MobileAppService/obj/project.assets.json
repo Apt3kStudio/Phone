@@ -12794,23 +12794,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Nelson Vasquez\\.nuget\\packages\\": {},
+    "C:\\Users\\Diosc\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nelson Vasquez\\Documents\\Apartment3K\\Phone\\Phone.MobileAppService\\Phone.MobileAppService.csproj",
+      "projectUniqueName": "C:\\Users\\Diosc\\Documents\\Repos\\APT3KStudio\\Phone\\Phone.MobileAppService\\Phone.MobileAppService.csproj",
       "projectName": "Phone.MobileAppService",
-      "projectPath": "C:\\Users\\Nelson Vasquez\\Documents\\Apartment3K\\Phone\\Phone.MobileAppService\\Phone.MobileAppService.csproj",
-      "packagesPath": "C:\\Users\\Nelson Vasquez\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Nelson Vasquez\\Documents\\Apartment3K\\Phone\\Phone.MobileAppService\\obj\\",
+      "projectPath": "C:\\Users\\Diosc\\Documents\\Repos\\APT3KStudio\\Phone\\Phone.MobileAppService\\Phone.MobileAppService.csproj",
+      "packagesPath": "C:\\Users\\Diosc\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Diosc\\Documents\\Repos\\APT3KStudio\\Phone\\Phone.MobileAppService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Nelson Vasquez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Diosc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
