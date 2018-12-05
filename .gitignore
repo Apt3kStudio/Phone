@@ -2,6 +2,9 @@
 [Bb]in/
 [Oo]bj/
 
+# exclude everything
+obj/*
+
 # mstest test results
 TestResults
 
