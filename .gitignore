@@ -182,3 +182,4 @@ FakesAssemblies/
 *.userprefs
 
 .DS_Store
+.vs/Phone/v15/Server/sqlite3/storage.ide-shm
