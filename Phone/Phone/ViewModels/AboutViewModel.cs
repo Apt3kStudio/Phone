@@ -11,7 +11,7 @@ namespace Phone.ViewModels
         {
             Title = "About";
 
-            //OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://cttonz.com")));
+            //OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://cttonz.com")));dfhdhdtgdtg
             SendTowatch = new Command(() => Device.OpenUri(new Uri("https://ctoonz.com")));
         }
 
