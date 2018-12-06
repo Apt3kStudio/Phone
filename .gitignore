@@ -183,3 +183,12 @@ FakesAssemblies/
 
 .DS_Store
 .vs/Phone/v15/Server/sqlite3/storage.ide-shm
+.vs/Phone/Phone.IOS/obj/*
+.vs/Phone/Phone.Android/obj/*
+Phone/Phone.Android/bin/Debug/*
+Phone/Phone.Android/bin/Debug
+Phone/Phone.iOS/bin/iPhoneSimulator/Debug/*
+Phone/Phone.iOS/bin/iPhoneSimulator/Debug
+
+
+
