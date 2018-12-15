@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Phone.Services;
 using Phone.Views;
+using Phone.ViewModels;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Phone
@@ -13,6 +14,13 @@ namespace Phone
         public static string AzureBackendUrl = "http://localhost:5000";
         public static bool UseMockDataStore = true;
 
+        public static class ViewModelLocator
+        {
+            static SettingViewModel monkeysVM;
+
+            public static SettingViewModel MonkeysViewModel =>
+               monkeysVM ?? (monkeysVM = new SettingViewModel());
+        }
         public App()
         {
             InitializeComponent();
