@@ -11,14 +11,15 @@ namespace Phone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AlertPage : ContentPage
     {
-        public AlertModel Item { get; set; }
+        public AlertModel alert { get; set; }
 
         public AlertPage()
         {
             InitializeComponent();
 
-            Item = new AlertModel
+            alert = new AlertModel
             {
+                Id = UtilityHelper.getNewID().ToString(),
                 Name = "Alert name",
                 Message = "This is an alert description."
             };
@@ -28,7 +29,7 @@ namespace Phone.Views
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddAlert", Item);
+            MessagingCenter.Send(this, "AddAlert", alert);
             await Navigation.PopModalAsync();
         }
     }
