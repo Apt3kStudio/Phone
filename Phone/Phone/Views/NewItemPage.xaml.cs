@@ -9,18 +9,18 @@ using Phone.Models;
 namespace Phone.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewItemPage : ContentPage
+    public partial class AlertPage : ContentPage
     {
-        public Item Item { get; set; }
+        public AlertModel Item { get; set; }
 
-        public NewItemPage()
+        public AlertPage()
         {
             InitializeComponent();
 
-            Item = new Item
+            Item = new AlertModel
             {
-                Text = "Item name",
-                Description = "This is an item description."
+                Name = "Alert name",
+                Message = "This is an alert description."
             };
 
             BindingContext = this;
@@ -28,7 +28,7 @@ namespace Phone.Views
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddItem", Item);
+            MessagingCenter.Send(this, "AddAlert", Item);
             await Navigation.PopModalAsync();
         }
     }

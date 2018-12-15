@@ -6,10 +6,10 @@ namespace Phone.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public AlertModel Item { get; set; }
+        public ItemDetailViewModel(AlertModel item = null)
         {
-            Title = item?.Text;
+            Title = item?.Name;
             Item = item;
         }
     }

@@ -24,10 +24,10 @@ namespace Phone.Views
         {
             InitializeComponent();
 
-            var item = new Item
+            var item = new AlertModel
             {
-                Text = "Item 1",
-                Description = "This is an item description."
+                Name = "Item 1",
+                Message = "This is an item description."
             };
 
             viewModel = new ItemDetailViewModel(item);

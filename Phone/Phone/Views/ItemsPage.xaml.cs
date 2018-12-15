@@ -14,20 +14,20 @@ using Phone.ViewModels;
 namespace Phone.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemsPage : ContentPage
+    public partial class AlertsPage : ContentPage
     {
-        ItemsViewModel viewModel;
+        SettingViewModel viewModel;
 
-        public ItemsPage()
+        public AlertsPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = viewModel = new SettingViewModel();
     }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Item;
+            var item = args.SelectedItem as AlertModel;
             if (item == null)
                 return;
 
@@ -39,14 +39,14 @@ namespace Phone.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+            await Navigation.PushModalAsync(new NavigationPage(new AlertPage()));
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
+            if (viewModel.alerts.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
     }
