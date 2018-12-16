@@ -11,7 +11,7 @@
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
-                <views:AlertsPage />
+                <views:AlertListPage />
             </x:Arguments>
         </NavigationPage>
         

@@ -21,7 +21,7 @@ namespace Phone.ViewModels
             alerts = new ObservableCollection<AlertModel>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<AlertPage, AlertModel>(this, "AddAlert", async (obj, alert) =>
+            MessagingCenter.Subscribe<AlertFormPage, AlertModel>(this, "AddAlert", async (obj, alert) =>
             {
                 var newAlert = alert as AlertModel;
                 alerts.Add(newAlert);
