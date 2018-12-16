@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Phone.Views.Login">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#000000" Padding="20,0,20,0">
+
+            <Label Text ="Username"   
+                FontSize="Large"
+                TextColor="white"             
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand" />
+            <Entry Text=""
+                BackgroundColor="Black"
+                TextColor="White"   
+                PlaceholderColor="White"
+                Placeholder="Enter username"
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand" />
+            
+            <Label Text ="Password"
+                FontSize="Large"
+                TextColor="white"             
+                VerticalOptions="Center" 
+                YAlign="Start"
+                HorizontalOptions="CenterAndExpand"/>
+            <Entry Text=""
+                BackgroundColor="Black"
+                PlaceholderColor="White"
+                TextColor="White"             
+                Placeholder="Enter your password"
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
