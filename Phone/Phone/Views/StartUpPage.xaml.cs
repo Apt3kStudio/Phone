@@ -13,7 +13,7 @@ namespace Phone.Views
         public StartUpPage()
         {
             InitializeComponent();
-            DisplayAlert("This is an alert", "This is the alert Message", "This alert has been cancelled");
+           
             var platf = DeviceInfo.Platform;
             CrossLocalNotifications.Current.Show("Device Platform", platf.ToString());
 
