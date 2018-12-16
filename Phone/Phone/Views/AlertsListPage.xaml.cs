@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using Phone.Models;
 using Phone.Views;
 using Phone.ViewModels;
+using Plugin.LocalNotifications;
 
 namespace Phone.Views
 {
@@ -20,6 +21,7 @@ namespace Phone.Views
 
         public AlertListPage()
         {
+            CrossLocalNotifications.Current.Show("PhoneApp", "Running..");
             InitializeComponent();
             viewModel = new SettingViewModel();
             BindingContext = viewModel;
@@ -27,11 +29,11 @@ namespace Phone.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as AlertModel;
-            if (item == null)
+            var alert = args.SelectedItem as AlertModel;
+            if (alert == null)
                 return;
 
-            await Navigation.PushAsync(new AlertSummaryPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new AlertSummaryPage(new AlertDetailViewModel(alert)));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;

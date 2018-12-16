@@ -5,17 +5,21 @@ using Xamarin.Forms.Xaml;
 
 using Phone.Models;
 using Phone.ViewModels;
+using Plugin.LocalNotifications;
 
 namespace Phone.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AlertSummaryPage : ContentPage
     {
-        ItemDetailViewModel viewModel;
+        AlertDetailViewModel viewModel;
 
-        public AlertSummaryPage(ItemDetailViewModel viewModel)
+        public AlertSummaryPage(AlertDetailViewModel viewModel)
         {
             InitializeComponent();
+
+            CrossLocalNotifications.Current.Show("Range Alert", viewModel.alert.Message);
+
 
             BindingContext = this.viewModel = viewModel;
         }
@@ -31,7 +35,7 @@ namespace Phone.Views
                 Message = ""
             };
 
-            viewModel = new ItemDetailViewModel(alert);
+            viewModel = new AlertDetailViewModel(alert);
             BindingContext = viewModel;
         }
     }

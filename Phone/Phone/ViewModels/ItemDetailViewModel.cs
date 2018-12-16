@@ -4,13 +4,13 @@ using Phone.Models;
 
 namespace Phone.ViewModels
 {
-    public class ItemDetailViewModel : BaseViewModel
+    public class AlertDetailViewModel : BaseViewModel
     {
-        public AlertModel Item { get; set; }
-        public ItemDetailViewModel(AlertModel item = null)
+        public AlertModel alert { get; set; }
+        public AlertDetailViewModel(AlertModel alert = null)
         {
-            Title = item?.Name;
-            Item = item;
+            Title = alert?.Name;
+            this.alert = alert;
         }
     }
 }

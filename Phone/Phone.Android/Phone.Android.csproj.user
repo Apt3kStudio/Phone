@@ -5,5 +5,6 @@
     <DefaultDevice>my_device</DefaultDevice>
     <AndroidDesignerPreferredDevice>Nexus 6P</AndroidDesignerPreferredDevice>
     <AndroidDesignerPreferredTheme>Theme.DeviceDefault.NoActionBar.Fullscreen</AndroidDesignerPreferredTheme>
+    <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
 </Project>

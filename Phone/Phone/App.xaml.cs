@@ -23,7 +23,7 @@ namespace Phone
             else
                 DependencyService.Register<AzureDataStore>();
 
-            MainPage = new MainPage();
+            MainPage = new StartUpPage();
         }
 
         protected override void OnStart()

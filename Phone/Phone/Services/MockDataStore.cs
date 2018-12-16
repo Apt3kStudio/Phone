@@ -15,12 +15,12 @@ namespace Phone.Services
             items = new List<AlertModel>();
             var mockItems = new List<AlertModel>
             {
-                new AlertModel { Id = Guid.NewGuid().ToString(), Name = "First item", Message="This is an item description." },
-                new AlertModel { Id = Guid.NewGuid().ToString(), Name = "Second item", Message="This is an item description." },
-                new AlertModel { Id = Guid.NewGuid().ToString(), Name = "Third item", Message="This is an item description." },
-                new AlertModel { Id = Guid.NewGuid().ToString(), Name = "Fourth item", Message="This is an item description." },
-                new AlertModel { Id = Guid.NewGuid().ToString(), Name = "Fifth item", Message="This is an item description." },
-                new AlertModel { Id = Guid.NewGuid().ToString(), Name = "Sixth item", Message="This is an item description." },
+                new AlertModel { Id = Guid.NewGuid().ToString(), Name = "1-2 Feet", Message="Range Changed to 1-2 Feet." },
+                new AlertModel { Id = Guid.NewGuid().ToString(), Name = "2-3 Feet", Message="Range Changed to 2-3 Feet." },
+                new AlertModel { Id = Guid.NewGuid().ToString(), Name = "3-4 Feet", Message="Range Changed to 3-4 Feet." },
+                new AlertModel { Id = Guid.NewGuid().ToString(), Name = "4-5 Feet", Message="Range Changed to 4-5 Feet." },
+                new AlertModel { Id = Guid.NewGuid().ToString(), Name = "5-6 Feet", Message="Range Changed to 5-6 Feet." },
+                new AlertModel { Id = Guid.NewGuid().ToString(), Name = "6-7 Feet", Message="Range Changed to 6-7 Feet." },
             };
 
             foreach (var item in mockItems)
