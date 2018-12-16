@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Phone.Services;
 using Phone.Views;
+using Phone.ViewModels;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Phone
@@ -12,7 +13,7 @@ namespace Phone
         //TODO: Replace with *.azurewebsites.net url after deploying backend to Azure
         public static string AzureBackendUrl = "http://localhost:5000";
         public static bool UseMockDataStore = true;
-
+        
         public App()
         {
             InitializeComponent();
@@ -22,7 +23,8 @@ namespace Phone
             else
                 DependencyService.Register<AzureDataStore>();
 
-            MainPage = new MainPage();
+            //MainPage = new StartUpPage();
+            MainPage = new Login();
         }
 
         protected override void OnStart()

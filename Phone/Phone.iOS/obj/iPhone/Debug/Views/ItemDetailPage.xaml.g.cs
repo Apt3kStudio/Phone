@@ -13,8 +13,7 @@
 namespace Phone.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Nelson Vasquez\\Documents\\Apartment3K\\Phone\\Phone\\Views\\ItemDetailPage.xa" +
-        "ml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Diosc\\Documents\\Repos\\APT3KStudio\\Phone\\Phone\\Views\\ItemDetailPage.xaml")]
     public partial class ItemDetailPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

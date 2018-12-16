@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Paths>
   <Jars>
-    <Jar>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\1\jl\formsviewgroup.jar</Jar>
     <Jar>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\10\jl\bin\classes.jar</Jar>
     <Jar>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\11\jl\bin\classes.jar</Jar>
     <Jar>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\12\jl\bin\classes.jar</Jar>
@@ -22,30 +21,8 @@
     <Jar>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\8\jl\bin\classes.jar</Jar>
     <Jar>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\9\jl\bin\classes.jar</Jar>
   </Jars>
-  <ResolvedResourceDirectories>
-    <ResolvedResourceDirectory>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\8\jl\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\11\jl\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\13\jl\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\14\jl\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\15\jl\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\16\jl\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\17\jl\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\18\jl\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\20\jl\res</ResolvedResourceDirectory>
-  </ResolvedResourceDirectories>
-  <ResolvedAssetDirectories>
-    <ResolvedAssetDirectory>obj\\Debug\MonoAndroid81\lp\15\jl\assets</ResolvedAssetDirectory>
-  </ResolvedAssetDirectories>
+  <ResolvedResourceDirectories />
+  <ResolvedAssetDirectories />
   <ResolvedEnvironmentFiles />
-  <ResolvedResourceDirectoryStamps>
-    <ResolvedResourceDirectoryStamp>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\8.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\11.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\13.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\14.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\15.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\16.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\17.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\18.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone.Android\obj\Debug\MonoAndroid81\lp\20.stamp</ResolvedResourceDirectoryStamp>
-  </ResolvedResourceDirectoryStamps>
+  <ResolvedResourceDirectoryStamps />
 </Paths>
