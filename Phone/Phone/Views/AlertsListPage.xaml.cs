@@ -41,6 +41,7 @@ namespace Phone.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
+            await DisplayAlert("This is an alert", "This is the alert Message", "OK");
             await Navigation.PushModalAsync(new NavigationPage(new AlertFormPage()));
         }
 
