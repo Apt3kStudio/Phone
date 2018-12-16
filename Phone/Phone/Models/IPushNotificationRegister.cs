@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Phone.Models
 {
-    class IPushNotificationRegister
+    public interface IPushNotificationRegister
     {
+        void ExtractTokenAndRegister();
     }
 }
