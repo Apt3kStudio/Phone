@@ -16,5 +16,10 @@ namespace Phone.Views
         {
             InitializeComponent();
         }
+        async void BackToLogin(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new Login()));
+        }
     }
+    
 }
