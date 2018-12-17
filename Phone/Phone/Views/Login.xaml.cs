@@ -16,5 +16,10 @@ namespace Phone.Views
         {
             InitializeComponent();
         }
+        async void NavigateToRegistrationPage_Clicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("SignUp", "You will be redirected to the Registration form", "OK");
+            await Navigation.PushModalAsync(new NavigationPage(new Registration()));
+        }
     }
 }
