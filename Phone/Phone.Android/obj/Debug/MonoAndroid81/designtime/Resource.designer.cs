@@ -26,6 +26,7 @@ namespace Phone.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Plugin.LocalNotifications.Resource.Drawable.plugin_lc_smallicon = global::Phone.Droid.Resource.Drawable.plugin_lc_smallicon;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Phone.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -322,6 +323,9 @@ namespace Phone.Droid
 			// aapt resource value: 0x7F040047
 			public const int buttonPanelSideLayout = 2130968647;
 			
+			// aapt resource value: 0x1
+			public const int buttonSize = 1;
+			
 			// aapt resource value: 0x7F040048
 			public const int buttonStyle = 2130968648;
 			
@@ -357,6 +361,9 @@ namespace Phone.Droid
 			
 			// aapt resource value: 0x7F04004D
 			public const int checkedTextViewStyle = 2130968653;
+			
+			// aapt resource value: 0x1
+			public const int circleCrop = 1;
 			
 			// aapt resource value: 0x7F04004E
 			public const int closeIcon = 2130968654;
@@ -405,6 +412,9 @@ namespace Phone.Droid
 			
 			// aapt resource value: 0x7F04005D
 			public const int colorPrimaryDark = 2130968669;
+			
+			// aapt resource value: 0x1
+			public const int colorScheme = 1;
 			
 			// aapt resource value: 0x7F04005E
 			public const int colorSwitchThumbNormal = 2130968670;
@@ -645,6 +655,12 @@ namespace Phone.Droid
 			
 			// aapt resource value: 0x7F0400A6
 			public const int iconTintMode = 2130968742;
+			
+			// aapt resource value: 0x1
+			public const int imageAspectRatio = 1;
+			
+			// aapt resource value: 0x1
+			public const int imageAspectRatioAdjust = 1;
 			
 			// aapt resource value: 0x7F0400A8
 			public const int imageButtonStyle = 2130968744;
@@ -903,6 +919,9 @@ namespace Phone.Droid
 			
 			// aapt resource value: 0x7F0400F0
 			public const int rippleColor = 2130968816;
+			
+			// aapt resource value: 0x1
+			public const int scopeUris = 1;
 			
 			// aapt resource value: 0x7F0400F1
 			public const int scrimAnimationDuration = 2130968817;
@@ -1397,6 +1416,39 @@ namespace Phone.Droid
 			
 			// aapt resource value: 0x7F050004
 			public const int colorPrimaryDark = 2131034116;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_dark = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_dark_default = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_dark_disabled = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_dark_focused = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_dark_pressed = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_light = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_light_default = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_light_disabled = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_light_focused = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_light_pressed = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_tint = 1;
 			
 			// aapt resource value: 0x7F060027
 			public const int design_bottom_navigation_shadow_color = 2131099687;
@@ -2345,6 +2397,63 @@ namespace Phone.Droid
 			// aapt resource value: 0x7F090055
 			public const int avd_show_password = 2131296341;
 			
+			// aapt resource value: 0x1
+			public const int common_full_open_on_phone = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_icon_dark = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_icon_dark_focused = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_icon_dark_normal = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_icon_dark_normal_background = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_icon_disabled = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_icon_light = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_icon_light_focused = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_icon_light_normal = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_icon_light_normal_background = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_dark = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_dark_focused = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_dark_normal = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_dark_normal_background = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_disabled = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_light = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_light_focused = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_light_normal = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_signin_btn_text_light_normal_background = 1;
+			
 			// aapt resource value: 0x7F090056
 			public const int design_bottom_navigation_item_background = 2131296342;
 			
@@ -2362,6 +2471,12 @@ namespace Phone.Droid
 			
 			// aapt resource value: 0x7F09005B
 			public const int design_snackbar_background = 2131296347;
+			
+			// aapt resource value: 0x1
+			public const int googleg_disabled_color_18 = 1;
+			
+			// aapt resource value: 0x1
+			public const int googleg_standard_color_18 = 1;
 			
 			// aapt resource value: 0x7F090054
 			public const int ic_audiotrack_dark = 2131296340;
@@ -2993,6 +3108,9 @@ namespace Phone.Droid
 			// aapt resource value: 0x7F09000C
 			public const int notify_panel_notification_icon_bg = 2131296268;
 			
+			// aapt resource value: 0x7F010003
+			public const int plugin_lc_smallicon = 2130771971;
+			
 			// aapt resource value: 0x7F090069
 			public const int tooltip_frame_dark = 2131296361;
 			
@@ -3078,6 +3196,12 @@ namespace Phone.Droid
 			// aapt resource value: 0x7F0C0015
 			public const int add = 2131492885;
 			
+			// aapt resource value: 0x1
+			public const int adjust_height = 1;
+			
+			// aapt resource value: 0x1
+			public const int adjust_width = 1;
+			
 			// aapt resource value: 0x7F0C0016
 			public const int alertTitle = 2131492886;
 			
@@ -3122,6 +3246,9 @@ namespace Phone.Droid
 			
 			// aapt resource value: 0x7F0C0024
 			public const int customPanel = 2131492900;
+			
+			// aapt resource value: 0x1
+			public const int dark = 1;
 			
 			// aapt resource value: 0x7F0C0025
 			public const int decor_content_parent = 2131492901;
@@ -3180,6 +3307,9 @@ namespace Phone.Droid
 			// aapt resource value: 0x7F0C000B
 			public const int icon_group = 2131492875;
 			
+			// aapt resource value: 0x1
+			public const int icon_only = 1;
+			
 			// aapt resource value: 0x7F0C0038
 			public const int image = 2131492920;
 			
@@ -3197,6 +3327,9 @@ namespace Phone.Droid
 			
 			// aapt resource value: 0x7F0C003D
 			public const int left = 2131492925;
+			
+			// aapt resource value: 0x1
+			public const int light = 1;
 			
 			// aapt resource value: 0x7F0C000E
 			public const int line1 = 2131492878;
@@ -3435,6 +3568,9 @@ namespace Phone.Droid
 			// aapt resource value: 0x7F0C0072
 			public const int src_over = 2131492978;
 			
+			// aapt resource value: 0x1
+			public const int standard = 1;
+			
 			// aapt resource value: 0x7F0C0073
 			public const int start = 2131492979;
 			
@@ -3528,6 +3664,9 @@ namespace Phone.Droid
 			// aapt resource value: 0x7F0C007D
 			public const int volume_item_container = 2131492989;
 			
+			// aapt resource value: 0x1
+			public const int wide = 1;
+			
 			// aapt resource value: 0x7F0C0090
 			public const int wrap_content = 2131493008;
 			
@@ -3564,6 +3703,9 @@ namespace Phone.Droid
 			
 			// aapt resource value: 0x7F0D0007
 			public const int design_snackbar_text_max_lines = 2131558407;
+			
+			// aapt resource value: 0x1
+			public const int google_play_services_version = 1;
 			
 			// aapt resource value: 0x7F0D0008
 			public const int hide_password_duration = 2131558408;
@@ -3949,6 +4091,63 @@ namespace Phone.Droid
 			
 			// aapt resource value: 0x7F150020
 			public const int character_counter_pattern = 2132082720;
+			
+			// aapt resource value: 0x1
+			public const int common_google_play_services_enable_button = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_play_services_enable_text = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_play_services_enable_title = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_play_services_install_button = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_play_services_install_text = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_play_services_install_title = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_play_services_notification_channel_name = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_play_services_notification_ticker = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_play_services_unknown_issue = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_play_services_unsupported_text = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_play_services_update_button = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_play_services_update_text = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_play_services_update_title = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_play_services_updating_text = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_google_play_services_wear_update_text = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_open_on_phone = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_signin_button_text = 1;
+			
+			// aapt resource value: 0x1
+			public const int common_signin_button_text_long = 1;
+			
+			// aapt resource value: 0x1
+			public const int fcm_fallback_notification_channel_label = 1;
 			
 			// aapt resource value: 0x7F15001E
 			public const int mr_button_content_description = 2132082718;
@@ -6542,6 +6741,20 @@ namespace Phone.Droid
 			// aapt resource value: 0x1
 			public const int ListPopupWindow_android_dropDownVerticalOffset = 1;
 			
+			public static int[] LoadingImageView = new int[] {
+					1,
+					1,
+					1};
+			
+			// aapt resource value: 0x2
+			public const int LoadingImageView_circleCrop = 2;
+			
+			// aapt resource value: 0x1
+			public const int LoadingImageView_imageAspectRatio = 1;
+			
+			// aapt resource value: 0x7F070562
+			public const int LoadingImageView_imageAspectRatioAdjust = 2131166562;
+			
 			public static int[] MediaRouteButton = new int[] {
 					16843072,
 					16843071,
@@ -6917,6 +7130,20 @@ namespace Phone.Droid
 			
 			// aapt resource value: 0x16
 			public const int SearchView_voiceIcon = 22;
+			
+			public static int[] SignInButton = new int[] {
+					1,
+					1,
+					1};
+			
+			// aapt resource value: 0x7F070564
+			public const int SignInButton_buttonSize = 2131166564;
+			
+			// aapt resource value: 0x1
+			public const int SignInButton_colorScheme = 1;
+			
+			// aapt resource value: 0x2
+			public const int SignInButton_scopeUris = 2;
 			
 			public static int[] SnackbarLayout = new int[] {
 					16843039,

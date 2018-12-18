@@ -13,10 +13,11 @@
 namespace Phone.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Diosc\\Documents\\Repos\\APT3KStudio\\Phone\\Phone\\Views\\AboutPage.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Nelson Vasquez\\Documents\\Apartment3k\\Phone\\Phone\\Phone\\Views\\AboutPage.x" +
+        "aml")]
     public partial class AboutPage : global::Xamarin.Forms.ContentPage {
         
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(AboutPage));
         }
