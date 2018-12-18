@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Phone.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Setting : ContentPage
+    public partial class settingpage : ContentPage
     {
-        public Setting()
+        public settingpage()
         {
             InitializeComponent();
         }
