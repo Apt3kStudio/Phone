@@ -10,11 +10,16 @@ using Xamarin.Forms.Xaml;
 namespace Phone.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class settingpage : ContentPage
+    public partial class Registration : ContentPage
     {
-        public settingpage()
+        public Registration()
         {
             InitializeComponent();
         }
+        async void BackToLogin(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new Login()));
+        }
     }
+    
 }

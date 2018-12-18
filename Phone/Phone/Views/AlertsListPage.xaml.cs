@@ -44,6 +44,13 @@ namespace Phone.Views
             await DisplayAlert("This is an alert", "This is the alert Message", "OK");
             await Navigation.PushModalAsync(new NavigationPage(new AlertFormPage()));
         }
+        async void goToSettings(object sender, EventArgs e)
+        {
+          //  await DisplayAlert("This is an alert", "This is the alert Message", "OK");
+            await Navigation.PushModalAsync(new NavigationPage(new settingpage()));
+        }
+
+
 
         protected override void OnAppearing()
         {
