@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Phone.Views.Registration">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Padding="20" VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                  
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+
+                <Entry Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="UserName" HorizontalOptions="FillAndExpand"/>
+                <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Password"  HorizontalOptions="FillAndExpand"/>
+                <Entry Grid.Row="2" Grid.Column="0" Placeholder="NickName"  HorizontalOptions="FillAndExpand"/>
+                <Entry Grid.Row="2" Grid.Column="1" Placeholder="Phone"  HorizontalOptions="FillAndExpand"/>
+                <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalOptions="FillAndExpand" Text="Register" TextColor="White" BackgroundColor="#2c3e50"/>
+                <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalOptions="FillAndExpand" Clicked="BackToLogin" Text="I already have an account" TextColor="White" BackgroundColor="#2c3e50"/>
+
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
