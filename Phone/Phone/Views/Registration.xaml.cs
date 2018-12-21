@@ -20,9 +20,9 @@ namespace Phone.Views
             InitializeComponent();
             RegisterVM = new RegisterViewModel()
             {
-                Email = "Admin@Admin.com",
-                Password = "Password@132",
-                ConfirmPassword = "Password@132"
+                Email = "",
+                Password = "",
+                ConfirmPassword = ""
             };
         
            // var s = RegisterVM.RegisterCommand.Execute(null);
