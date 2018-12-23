@@ -31,7 +31,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemsViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoginUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoginUserViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RegisterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>

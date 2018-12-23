@@ -10,6 +10,9 @@ namespace Phone.Services
 {
     class WebPortalApiServices
     {
+        private static string WebApiBaseURL = "http://192.168.1.168:45457/";
+
+
         internal async Task<bool> RegisterAsync(string email, string password, string confirmPassword)
         {
             var client = new HttpClient();
@@ -26,12 +29,12 @@ namespace Phone.Services
 
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-            var response = await client.PostAsync("http://192.168.1.168:45456/api/auth/registration", httpContent);
-
-
+            var response = await client.PostAsync(WebApiBaseURL +"api/auth/registration", httpContent);
 
             return response.IsSuccessStatusCode;
         }
+
+        //Todo we need to encode the json to create protection for the password. 
         internal async Task<bool> SigningIn(string email, string password)
         {
             var client = new HttpClient();
@@ -39,7 +42,7 @@ namespace Phone.Services
             {
                 Email = email,
                 Password = password
-            };
+            };                       
 
             var json = JsonConvert.SerializeObject(model);
 
@@ -47,11 +50,10 @@ namespace Phone.Services
 
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-            var response = await client.PostAsync("http://192.168.1.168:45456/api/auth/Login", httpContent);
-
-
+            var response = await client.PostAsync(WebApiBaseURL + "api/auth/Login", httpContent);
 
             return response.IsSuccessStatusCode;
         }
+       
     }
 }

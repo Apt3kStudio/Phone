@@ -1,4 +1,5 @@
 ﻿using Phone.Services;
+using Phone.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,6 +19,13 @@ namespace Phone.ViewModels
 
         public string Message { get; set; }
 
+
+        INavigation Navigation;
+
+        public RegisterViewModel(INavigation HomePageNav)
+        {
+            Navigation = HomePageNav;
+        }
         public ICommand  RegisterCommand
         {
             get
@@ -28,6 +36,7 @@ namespace Phone.ViewModels
                     if (isSuccess)
                     {
                         Message = "Registration Successfully!";
+                        await Navigation.PushModalAsync(new NavigationPage(new Login(Email)));
                     }
                     else
                     {

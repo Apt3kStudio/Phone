@@ -18,7 +18,7 @@ namespace Phone.Views
         public Registration()
         {
             InitializeComponent();
-            RegisterVM = new RegisterViewModel()
+            RegisterVM = new RegisterViewModel(Navigation)
             {
                 Email = "",
                 Password = "",
