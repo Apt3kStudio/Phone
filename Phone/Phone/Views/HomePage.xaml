@@ -1,12 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<bnb:BottomBarPage
+    xmlns:bnb="clr-namespace:Phone.Utility"
+    xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Phone.Views.HomePage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="This is the Home page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+   
+    <ContentPage Title="Watch" Icon="round_watch_black_18dp.png" bnb:BottomBarPageExtensions.TabColor="DodgerBlue">
+       
+        <Label Text="Watch screen"/>
+    
+    </ContentPage>
+    <ContentPage Title="Alert" Icon="round_add_alert_black_18dp.png" 
+                 bnb:BottomBarPageExtensions.TabColor="#ee6002"
+                bnb:BottomBarPageExtensions.BadgeCount="6">
+
+        <Label Text="Alert Screen"/>
+   
+    </ContentPage>
+    <ContentPage Title="Notification" Icon="round_notifications_active_black_18dp.png"
+                bnb:BottomBarPageExtensions.BadgeCount="3"
+                bnb:BottomBarPageExtensions.TabColor="#5300e8">
+
+        <Label Text="Notification Screen"/>
+    
+    </ContentPage>
+    <ContentPage Title="Settings" Icon="round_settings_black_18dp.png" bnb:BottomBarPageExtensions.TabColor="#008b00">
+
+        <Label Text="Setting Screen"/>
+   
+    </ContentPage>
+    <ContentPage Title="LogOut" Icon="baseline_exit_to_app_black_18dp" bnb:BottomBarPageExtensions.TabColor="#DD2C00">
+        <Button Text="LogOut" Clicked="LogOut"></Button>       
+
+    </ContentPage>
+
+
+</bnb:BottomBarPage>

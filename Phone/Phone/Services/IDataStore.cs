@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 
 namespace Phone.Services
 {
-    public interface IDataStore<T>
+    public interface IDataStore<UserLoginSettings>
     {
-        Task<bool> AddItemAsync(T item);
-        Task<bool> UpdateItemAsync(T item);
+        Task<bool> AddItemAsync(UserLoginSettings item);
+        Task<bool> UpdateItemAsync(UserLoginSettings item);
         Task<bool> DeleteItemAsync(string id);
-        Task<T> GetItemAsync(string id);
-        Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
+        Task<UserLoginSettings> GetItemAsync(string id);
+        Task<IEnumerable<UserLoginSettings>> GetItemsAsync(bool forceRefresh = false);
     }
 }
