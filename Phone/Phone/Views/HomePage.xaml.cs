@@ -3,18 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Phone.Utility;
 
 namespace Phone.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePage : ContentPage
+    public partial class HomePage : BottomBarPage
     {
         public HomePage()
         {
             InitializeComponent();
         }
+        async void LogOut(object sender, EventArgs e)
+        {
+           
+            await SecureStorage.SetAsync("Email", ""); // remove the login flag from the application settings. 
+            Application.Current.MainPage = new Login();
+
+           // await Navigation.PushModalAsync(new NavigationPage(new Login()));
+        }       
     }
 }
