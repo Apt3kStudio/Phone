@@ -18,16 +18,25 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Account.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Distance.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\IPushNotificationRegister.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\IUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Registration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\settingM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UserLoginSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UtilityHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DeviceLocalDbService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MockDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MyFirebaseIIDService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\WebPortalApiServices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\BottomBarPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\BottomBarPageExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoginUserViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RegisterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
       <SubType>Code</SubType>
