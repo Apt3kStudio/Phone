@@ -48,6 +48,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button HorizontalOptions="FillAndExpand" Text="Vibration Test" Clicked="PushVibrate_Clicked" TextColor="White" BackgroundColor="#566a7d"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

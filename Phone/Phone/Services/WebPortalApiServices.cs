@@ -10,7 +10,7 @@ namespace Phone.Services
 {
     class WebPortalApiServices
     {
-        private static string WebApiBaseURL = "http://192.168.1.168:45455/";
+        private static string WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net/";
 
 
         internal async Task<bool> RegisterAsync(string email, string password, string confirmPassword)
