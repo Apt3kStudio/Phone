@@ -11,6 +11,7 @@ using Phone.Models;
 using Phone.Views;
 using Phone.ViewModels;
 using Plugin.LocalNotifications;
+using Xamarin.Essentials;
 
 namespace Phone.Views
 {
@@ -50,7 +51,37 @@ namespace Phone.Views
             await Navigation.PushModalAsync(new NavigationPage(new settingpage()));
         }
 
+       protected void PushVibrate_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Vibration.Vibrate();
+                var duration = TimeSpan.FromSeconds(1);
+                Vibration.Vibrate(duration);
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+            }
+            catch (Exception ex)
+            {
+            }
+        }
 
+        public void CancelVibration()
+        {
+            try
+            {
+                Vibration.Cancel();
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Feature not supported on device
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+            }
+        }
 
         protected override void OnAppearing()
         {

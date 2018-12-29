@@ -24,14 +24,36 @@
         <Label Text="Notification Screen"/>
     
     </ContentPage>
-    <ContentPage Title="Settings" Icon="round_settings_black_18dp.png" bnb:BottomBarPageExtensions.TabColor="#008b00">
-
+    <ContentPage Title="Settings" Icon="baseline_settings_black_18dp.png" bnb:BottomBarPageExtensions.TabColor="#008b00">
         <Label Text="Setting Screen"/>
-   
+    </ContentPage>
+    <ContentPage Title="TestPage" Icon="test_page_icon" bnb:BottomBarPageExtensions.TabColor="#DD2C00">
+        <Grid Padding="20" VerticalOptions="CenterAndExpand">
+            <!-- Region (Set Rows definitions) -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+            <!-- EndRegion -->
+            <!-- Region (Set Column definitions) -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+            <!-- EndRegion -->
+
+            <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="2"  HorizontalOptions="FillAndExpand" Text="Vib" Clicked="PushVibrate_Clicked" TextColor="White" BackgroundColor="#566a7d"/>
+            <Button Grid.Column="0" Grid.Row="1" HorizontalOptions="FillAndExpand" Text="Flash Ligh On" Clicked="Flash_On" TextColor="White" BackgroundColor="#566a7d"/>
+            <Button Grid.Column="1" Grid.Row="1" HorizontalOptions="FillAndExpand" Text="Flash Light Off" Clicked="Flash_Off" TextColor="White" BackgroundColor="#566a7d"/>
+
+        </Grid>
+        
     </ContentPage>
     <ContentPage Title="LogOut" Icon="baseline_exit_to_app_black_18dp" bnb:BottomBarPageExtensions.TabColor="#DD2C00">
-        <Button Text="LogOut" Clicked="LogOut"></Button>       
-
+        <Button Text="LogOut" Clicked="LogOut"></Button>
     </ContentPage>
 
 
