@@ -6,6 +6,7 @@ using Phone.Views;
 using Phone.ViewModels;
 using System.IO;
 using Xamarin.Essentials;
+using PushNotification.Plugin;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Phone
@@ -56,6 +57,9 @@ namespace Phone
         protected override void OnStart()
         {
             // Handle when your app starts
+            #region Registrate PushNotification
+            CrossPushNotification.Current.Register();
+            #endregion
         }
 
         protected override void OnSleep()
