@@ -6,7 +6,7 @@ using Phone.Views;
 using Phone.ViewModels;
 using System.IO;
 using Xamarin.Essentials;
-using PushNotification.Plugin;
+using Plugin.FirebasePushNotification;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Phone
@@ -26,22 +26,42 @@ namespace Phone
             if (UseMockDataStore)
                 DependencyService.Register<MockDataStore>();
             else
-                DependencyService.Register<AzureDataStore>();
+                DependencyService.Register<AzureDataStore>();           
 
-            //MainPage = new StartUpPage();
-          
             db = Database;
-          
+
+            MainPage = IsUseregistered();
+
+            CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
+            {
+                System.Diagnostics.Debug.WriteLine($"TOKEN:{p.Token}");
+            };
+            CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
+            {
+                System.Diagnostics.Debug.WriteLine("Received");
+            };
+            CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
+            {
+                System.Diagnostics.Debug.WriteLine("Opened");
+                foreach (var data in p.Data)
+                {
+                    System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
+                }
+            };
+        }
+
+        private Page IsUseregistered()
+        {
             if (LoginUserViewModel.IsUseregisteredAsync().Result)
             {
-                MainPage = new NavigationPage( new HomePage());
+                return new NavigationPage(new HomePage());
             }
             else
             {
-                MainPage = new Login();
+               return new Login();
             }
-         
         }
+
         public static DeviceLocalDbService Database
         {
             get {
@@ -57,9 +77,7 @@ namespace Phone
         protected override void OnStart()
         {
             // Handle when your app starts
-            #region Registrate PushNotification
-            CrossPushNotification.Current.Register();
-            #endregion
+      
         }
 
         protected override void OnSleep()
