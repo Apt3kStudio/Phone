@@ -7,6 +7,7 @@ using Phone.ViewModels;
 using System.IO;
 using Xamarin.Essentials;
 using Plugin.FirebasePushNotification;
+using Plugin.LocalNotifications;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Phone
@@ -38,7 +39,8 @@ namespace Phone
             };
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
             {
-                System.Diagnostics.Debug.WriteLine("Received");
+             //   CrossLocalNotifications.Current.Show(p.Data["title"].ToString(), p.Data["body"].ToString());
+               // System.Diagnostics.Debug.WriteLine("Received");
             };
             CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
             {

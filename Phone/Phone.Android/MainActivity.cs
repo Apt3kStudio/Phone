@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using Android.Content;
 using Plugin.FirebasePushNotification;
+using Firebase.Messaging;
 
 namespace Phone.Droid
 {
@@ -32,12 +33,10 @@ namespace Phone.Droid
 
             #region call firebase
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
+            FirebaseMessaging.Instance.SubscribeToTopic("admin");
             #endregion
 
-        }
-
-       
-
+        }   
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
