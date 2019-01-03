@@ -48,7 +48,7 @@
             <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="2"  HorizontalOptions="FillAndExpand" Text="Vib" Clicked="PushVibrate_Clicked" TextColor="White" BackgroundColor="#566a7d"/>
             <Button Grid.Column="0" Grid.Row="1" HorizontalOptions="FillAndExpand" Text="Flash Ligh On" Clicked="Flash_On" TextColor="White" BackgroundColor="#566a7d"/>
             <Button Grid.Column="1" Grid.Row="1" HorizontalOptions="FillAndExpand" Text="Flash Light Off" Clicked="Flash_Off" TextColor="White" BackgroundColor="#566a7d"/>
-
+            <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan ="2" HorizontalOptions="FillAndExpand" Text="Play Sound" Clicked="Play_Sound" TextColor="White" BackgroundColor="#566a7d"/>
         </Grid>
         
     </ContentPage>

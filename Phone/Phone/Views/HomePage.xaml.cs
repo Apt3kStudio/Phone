@@ -8,6 +8,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Phone.Utility;
 using Phone.ViewModels;
+using System.IO;
+using System.Resources;
+using System.Reflection;
 
 namespace Phone.Views
 {
@@ -42,7 +45,10 @@ namespace Phone.Views
             EventViewModel eventModel = new EventViewModel();
             await eventModel.FlashLighOffAsync();
         }
-
-
+        async void Play_Sound(object sender, EventArgs e)
+        {
+            EventViewModel eventModel = new EventViewModel();
+            await eventModel.PlaySound();
+        }
     }
 }
