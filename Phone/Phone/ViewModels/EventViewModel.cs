@@ -4,6 +4,10 @@ using System.Text;
 using Xamarin.Essentials;
 using Phone.Models;
 using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
+using System.Resources;
+
 namespace Phone.ViewModels
 {
     public class EventViewModel : IEventModel
@@ -88,6 +92,22 @@ namespace Phone.ViewModels
             {
                 // Unable to turn on/off flashlight
             }
+        }
+        public async Task PlaySound()
+        {
+            try
+            {
+                var assembly = typeof(App).GetTypeInfo().Assembly;
+                Stream audioStream = assembly.GetManifestResourceStream("Phone.Droid.Resources.fire_truck.wav");
+                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                player.Load(audioStream);
+                player.Play();
+            }
+            catch (Exception ex)
+            {
+                // Unable to turn on/off flashlight
+            }
+
         }
     }
 }
