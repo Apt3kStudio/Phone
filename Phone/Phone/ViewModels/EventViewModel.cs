@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Reflection;
 using System.Resources;
+using System.Net.Mail;
+using System.Net;
 
 namespace Phone.ViewModels
 {
@@ -16,6 +18,7 @@ namespace Phone.ViewModels
         public string EventName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string EventMessage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string EventDuration { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
 
         public string VibrateMe(int inDuration = 3)
     {
@@ -109,5 +112,74 @@ namespace Phone.ViewModels
             }
 
         }
+
+        public async Task SendEmail(string subject, string body, List<string> recipients)
+        {
+            try
+            {
+                var message = new EmailMessage
+                {
+                    Subject = subject,
+                    Body = body,
+                    To = recipients,
+                    //Cc = ccRecipients,
+                    //Bcc = bccRecipients
+                };
+                await Email.ComposeAsync(message);
+            }
+            catch (FeatureNotSupportedException fbsEx)
+            {
+                // Email is not supported on this device
+            }
+            catch (Exception ex)
+            {
+                // Some other exception occurred
+            }
+        }
+
+        public async Task SendEmailViaSMTP(string subject, string body, List<string> recipients)
+        {
+            try
+            {
+                var mail = new MailMessage();
+                var smtpServer = new SmtpClient("smtp.gmail.com", 587);
+                mail.From = new MailAddress("developer@apt3k.com");
+                foreach (var recipient in recipients)
+                {
+                    mail.To.Add(recipient);
+                }
+                mail.Subject = subject;
+                mail.Body = body;
+                smtpServer.Credentials = new NetworkCredential("developer@apt3k.com", "Dmc10040");
+                smtpServer.UseDefaultCredentials = false;
+                smtpServer.EnableSsl = true;
+                smtpServer.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+
+            }
+        }
+
+        public async Task SendSms(string messageText, List<string> recipients)
+        {
+            try
+            {
+                var message = new SmsMessage(messageText, recipients);
+                await Sms.ComposeAsync(message);
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Sms is not supported on this device.
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+            }
+
+
+        }
+
     }
 }
