@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Phone.Services
 {
@@ -52,8 +54,11 @@ namespace Phone.Services
 
             var response = await client.PostAsync(WebApiBaseURL + "api/auth/Login", httpContent);
 
+
+
             return response.IsSuccessStatusCode;
         }
        
     }
 }
+

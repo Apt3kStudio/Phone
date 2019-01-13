@@ -9,6 +9,9 @@ using Xamarin.Forms.Xaml;
 using Phone.Utility;
 using Phone.ViewModels;
 using Plugin.LocalNotifications;
+using System.IO;
+using System.Reflection;
+using Phone.Models;
 
 namespace Phone.Views
 {
@@ -18,7 +21,10 @@ namespace Phone.Views
         public HomePage()
         {
             InitializeComponent();
-            CrossLocalNotifications.Current.Show("title", "body");
+            // CrossLocalNotifications.Current.Show("title", "body");
+
+            ApplicationSetting apps = new ApplicationSetting();
+            apps.GetJWT(apps.tokenString);  
         }
         async void LogOut(object sender, EventArgs e)
         {
