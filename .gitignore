@@ -193,8 +193,6 @@ Phone/Phone.iOS/bin/iPhoneSimulator/Debug/*
 Phone/Phone.iOS/bin/iPhoneSimulator/Debug
 
 
-
-Phone/Phone.Android/Phone.Android.csproj
 .vs/Phone/v15/Server/sqlite3/storage.ide-wal
 .vs/Phone/v15/Server/sqlite3/storage.ide
 .vs/Phone/DesignTimeBuild/.dtbcache
