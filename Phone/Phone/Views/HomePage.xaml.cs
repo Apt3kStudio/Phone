@@ -29,7 +29,7 @@ namespace Phone.Views
 
             // await Navigation.PushModalAsync(new NavigationPage(new Login()));
         }
-        void PushVibrate_Clicked(object sender, EventArgs e)
+       public void PushVibrate_Clicked(object sender, EventArgs e)
         {
             EventViewModel eventModel = new EventViewModel();
             eventModel.VibrateMe(20);

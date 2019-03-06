@@ -16,6 +16,7 @@ namespace Phone.Droid
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         public static Context AppContext { get; private set; }
+        Communicator cmm;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -29,14 +30,43 @@ namespace Phone.Droid
             #region Registering Xamarin Essentials on android;
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             #endregion
+            
             LoadApplication(new App());
 
             #region call firebase
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
             FirebaseMessaging.Instance.SubscribeToTopic("admin");
             #endregion
+            #region watch => phone communication
+            cmm = new Communicator(this);
+          
+            cmm.SendMessage("FromPhone"+ DateTime.Now.ToString("T"));
+            cmm.DataReceived += Cmm_DataReceived;
+            //cmm.DataReceived
 
-        }   
+
+            #endregion
+
+        }
+
+        private void Cmm_DataReceived(Android.Gms.Wearable.DataMap obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            cmm.Resume();
+        }
+
+        protected override void OnPause()
+        {
+            cmm.Pause();
+
+            base.OnPause();
+        }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
