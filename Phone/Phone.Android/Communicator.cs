@@ -14,10 +14,11 @@ using Android.Runtime;
 using Phone.Views;
 using Phone.ViewModels;
 using Xamarin.Forms;
+using Java.Lang;
 
 namespace Phone.Droid
 {
-    public class Communicator : Java.Lang.Object, IMessageApiMessageListener, IDataApiDataListener
+    public class Communicator : Java.Lang.Object, IMessageApiMessageListener, IDataApiDataListener, IChannelApiChannelListener,ICapabilityApiCapabilityListener
     {
         readonly GoogleApiClient client;
         const string path = "/communicator";
@@ -25,7 +26,8 @@ namespace Phone.Droid
         // Initializing GoogleApiClient
         public Communicator(Context context)
         {
-            client = new GoogleApiClient.Builder(context).AddApi(WearableClass.API).Build();
+            client = new GoogleApiClient.Builder(context)                
+                .AddApi(WearableClass.API).Build();
         }
 
         // Connecting client when we want it (usually on Activity.OnResume)
@@ -36,6 +38,7 @@ namespace Phone.Droid
                 client.Connect();
                 WearableClass.MessageApi.AddListener(client, this);
                 WearableClass.DataApi.AddListener(client, this);
+                //WearableClass.NodeApi.AddListenerAsync(client,this);
             }
         }
 
@@ -44,9 +47,9 @@ namespace Phone.Droid
         {
             if (client != null && client.IsConnected)
             {
-                client.Disconnect();
-                WearableClass.MessageApi.RemoveListener(client, this);
-                WearableClass.DataApi.RemoveListener(client, this);
+                //client.Disconnect();
+                //WearableClass.MessageApi.RemoveListener(client, this);
+                //WearableClass.DataApi.RemoveListener(client, this);
             }
         }
 
@@ -81,7 +84,7 @@ namespace Phone.Droid
                     var success = result.JavaCast<IDataApiDataItemResult>().Status.IsSuccess ? "Ok." : "Failed!";
                     Log.Info("my_log", "Communicator: Sending data map " + dataMap + "... " + success);
                 }
-                catch (Exception ex)
+                catch (System.Exception ex)
                 {
 
                     throw;
@@ -154,14 +157,78 @@ namespace Phone.Droid
         }
 
         // Events for incoming message or update data
-        public event Action<string> MessageReceived = delegate { };
-        public event Action<DataMap> DataReceived = delegate { };
+        public event Action<string> MessageReceived = delegate 
+        {
+
+        };
+        public event Action<DataMap> DataReceived = delegate 
+        {
+
+        };
 
         IList<INode> Nodes()
         {
 
             var result = WearableClass.NodeApi.GetConnectedNodes(client).Await();
             return result.JavaCast<INodeApiGetConnectedNodesResult>().Nodes;
+        }
+
+        public void OnResult(Java.Lang.Object result)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICollection<string> NodeIds
+        {
+            get
+            {
+                var results = new HashSet<string>();
+                var nodes =
+                    Android.Gms.Wearable.WearableClass.NodeApi.GetConnectedNodes(client)
+                        .Await()
+                        .JavaCast<Android.Gms.Wearable.INodeApiGetConnectedNodesResult>();
+
+                foreach (var node in nodes.Nodes)
+                {
+                    results.Add(node.Id);
+                }
+                return results;
+            }
+        }
+        //public override void OnPeerConnected(INode p0)
+        //{
+        //    //((NotificationManager)GetSystemService(NotificationService))
+        //    //    .Cancel(FORGOT_PHONE_NOTIFICATION_ID);
+        //}
+
+        public void OnChannelClosed(IChannel channel, int closeReason, int appSpecificErrorCode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnChannelOpened(IChannel channel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnInputClosed(IChannel channel, int closeReason, int appSpecificErrorCode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnOutputClosed(IChannel channel, int closeReason, int appSpecificErrorCode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnPeerDisconnected(INode peer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnCapabilityChanged(ICapabilityInfo capabilityInfo)
+        {
+            throw new NotImplementedException();
         }
     }
 }

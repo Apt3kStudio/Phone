@@ -46,7 +46,7 @@ namespace Phone.Droid
 
 
             #endregion
-
+            StartService(new Intent(this,Class));
         }
 
         private void Cmm_DataReceived(Android.Gms.Wearable.DataMap obj)

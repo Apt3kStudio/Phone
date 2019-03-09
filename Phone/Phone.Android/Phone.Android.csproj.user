@@ -5,6 +5,6 @@
     <DefaultDevice>my_device</DefaultDevice>
     <AndroidDesignerPreferredDevice>Nexus 6P</AndroidDesignerPreferredDevice>
     <AndroidDesignerPreferredTheme>Theme.DeviceDefault</AndroidDesignerPreferredTheme>
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
 </Project>
