@@ -21,11 +21,11 @@ namespace Phone.ViewModels
 
 
         public string VibrateMe(int inDuration = 3)
-    {
-            string isVibrate ="";
+        {
+            string isVibrate = "";
             try
             {
-                
+
                 Vibration.Vibrate();
                 var duration = TimeSpan.FromSeconds(inDuration);
                 Vibration.Vibrate(duration);
@@ -79,7 +79,7 @@ namespace Phone.ViewModels
         public async Task FlashLighOffAsync()
         {
             try
-            { 
+            {
                 // Turn Off
                 await Flashlight.TurnOffAsync();
             }
@@ -96,13 +96,14 @@ namespace Phone.ViewModels
                 // Unable to turn on/off flashlight
             }
         }
-        public async Task PlaySound()
+        public async Task PlaySound(int volume)
         {
             try
             {
                 var assembly = typeof(App).GetTypeInfo().Assembly;
                 Stream audioStream = assembly.GetManifestResourceStream("Phone.Droid.Resources.fire_truck.wav");
                 var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                player.Volume = volume;
                 player.Load(audioStream);
                 player.Play();
             }
@@ -180,6 +181,64 @@ namespace Phone.ViewModels
 
 
         }
+        public async Task TriggerFeatureAsync(string trigger ="")
+        {
+            if(string.IsNullOrEmpty(trigger))
+                trigger = getOption().Result;
+            switch (trigger)
+            {
+                case "option1":
+                    VibrateMe(20);
+                    await PlaySound(10);
+                    await FlashPattern();
+                    break;
+                case "option2":
+                    await FlashPattern();
+                    VibrateMe(2);
+                    await Task.Delay(500);
+                    VibrateMe(2);
+                    await Task.Delay(500);
+                    VibrateMe(2);
+                    await Task.Delay(500);
+                    VibrateMe(2);
+                    await Task.Delay(500);
+                    VibrateMe(2);
+                    await Task.Delay(500);
+                    VibrateMe(2);
+                    await Task.Delay(500);
+                    break;
+                case "option3":
+                    await PlaySound(10);
+                    break;
+            }
+        }
 
+        private async Task FlashPattern()
+        {
+            for (var i = 0; i < 10; i++)
+            {
+                await FlashLighOnAsync();
+                await Task.Delay(5);
+                await FlashLighOffAsync();
+            }
+            for (var i = 0; i < 10; i++)
+            {
+                await FlashLighOnAsync();
+                await Task.Delay(2);
+                await FlashLighOffAsync();
+                await Task.Delay(3);
+            }
+            for (var i = 0; i < 10; i++)
+            {
+                await FlashLighOnAsync();
+                await Task.Delay(2);
+                await FlashLighOffAsync();
+                await Task.Delay(2);
+            }
+        }
+        public async Task setOption(string option){
+            await SecureStorage.SetAsync("option", option); 
+        }
+        public async Task<string> getOption() => await SecureStorage.GetAsync("option");
     }
 }

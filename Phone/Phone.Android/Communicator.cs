@@ -18,7 +18,7 @@ using Java.Lang;
 
 namespace Phone.Droid
 {
-    public class Communicator : Java.Lang.Object, IMessageApiMessageListener, IDataApiDataListener, IChannelApiChannelListener,ICapabilityApiCapabilityListener
+    public class Communicator : Java.Lang.Object, IMessageApiMessageListener, IDataApiDataListener, IChannelApiChannelListener,ICapabilityApiCapabilityListener,INodeApiNodeListener
     {
         readonly GoogleApiClient client;
         const string path = "/communicator";
@@ -28,6 +28,7 @@ namespace Phone.Droid
         {
             client = new GoogleApiClient.Builder(context)                
                 .AddApi(WearableClass.API).Build();
+                WearableClass.NodeApi.AddListener(client, this);
         }
 
         // Connecting client when we want it (usually on Activity.OnResume)
@@ -99,49 +100,17 @@ namespace Phone.Droid
             var message = System.Text.Encoding.Default.GetString(messageEvent.GetData());
             Log.Info("my_log", "Communicator: Message received \"" + message + "\"");
             EventViewModel eventModel = new EventViewModel();
-            Device.BeginInvokeOnMainThread(async () =>            {
-                await TriggerFeatureAsync(message, eventModel);
-            });
 
+            if (message == "option")
+            {
+                Device.BeginInvokeOnMainThread(async () => {
+                    await eventModel.TriggerFeatureAsync();
+                });
+            }
             MessageReceived(message);
         }
 
-        private static async Task TriggerFeatureAsync(string message, EventViewModel eventModel)
-        {
-            switch (message)
-            {
-                case "vib":
-
-                    eventModel.VibrateMe(20);
-                    break;
-                case "flash":
-                    for (var i = 0; i < 10; i++)
-                    {
-                        await eventModel.FlashLighOnAsync();
-                        await Task.Delay(10);
-                        await eventModel.FlashLighOffAsync();
-                    }
-                    for (var i = 0; i < 10; i++)
-                    {
-                        await eventModel.FlashLighOnAsync();
-                        await Task.Delay(5);
-                        await eventModel.FlashLighOffAsync();
-                        await Task.Delay(5);
-                    }
-                    for (var i = 0; i < 10; i++)
-                    {
-                        await eventModel.FlashLighOnAsync();
-                        await Task.Delay(4);
-                        await eventModel.FlashLighOffAsync();
-                        await Task.Delay(4);
-                    }
-
-                    break;
-                case "alarm":
-                    await eventModel.PlaySound();
-                    break;
-            }
-        }
+       
 
         // Implementing IDataApiDataListener interface
         // On data changed we want invoke event
@@ -223,12 +192,25 @@ namespace Phone.Droid
 
         public void OnPeerDisconnected(INode peer)
         {
-            throw new NotImplementedException();
+            EventViewModel eventModel = new EventViewModel();
+            Device.BeginInvokeOnMainThread(async () => {
+             //   await TriggerFeatureAsync("vib", eventModel);
+                await eventModel.TriggerFeatureAsync();
+            });
         }
 
         public void OnCapabilityChanged(ICapabilityInfo capabilityInfo)
         {
-            throw new NotImplementedException();
+           
+        }
+
+        public void OnPeerConnected(INode peer)
+        {
+            EventViewModel eventModel = new EventViewModel();
+            Device.BeginInvokeOnMainThread(async () => {
+              //  await TriggerFeatureAsync("vib", eventModel);
+                await eventModel.TriggerFeatureAsync();
+            });
         }
     }
 }

@@ -29,7 +29,29 @@ namespace Phone.Views
 
             // await Navigation.PushModalAsync(new NavigationPage(new Login()));
         }
-       public void PushVibrate_Clicked(object sender, EventArgs e)
+        async void saveOption1(object sender, EventArgs e)
+        {
+            EventViewModel eventModel = new EventViewModel();
+            await eventModel.setOption("option1");
+            //var option = eventModel.getOption().Result;
+            await eventModel.TriggerFeatureAsync();
+        }
+        async void saveOption2(object sender, EventArgs e)
+        {
+            EventViewModel eventModel = new EventViewModel();
+            await eventModel.setOption("option2");
+           // var option = eventModel.getOption().Result;
+            await eventModel.TriggerFeatureAsync();
+        }
+        async void saveOption3(object sender, EventArgs e)
+        {
+            EventViewModel eventModel = new EventViewModel();
+            await eventModel.setOption("option3");
+            //var option = eventModel.getOption().Result;
+            await eventModel.TriggerFeatureAsync();
+        }
+
+        public void PushVibrate_Clicked(object sender, EventArgs e)
         {
             EventViewModel eventModel = new EventViewModel();
             eventModel.VibrateMe(20);
@@ -48,7 +70,7 @@ namespace Phone.Views
         async void Play_Sound(object sender, EventArgs e)
         {
             EventViewModel eventModel = new EventViewModel();
-            await eventModel.PlaySound();
+            await eventModel.PlaySound(10);
         }
         async void Send_Email(object sender, EventArgs e)
         {
