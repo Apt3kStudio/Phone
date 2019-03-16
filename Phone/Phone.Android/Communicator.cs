@@ -100,7 +100,13 @@ namespace Phone.Droid
             var message = System.Text.Encoding.Default.GetString(messageEvent.GetData());
             Log.Info("my_log", "Communicator: Message received \"" + message + "\"");
             EventViewModel eventModel = new EventViewModel();
-
+            if (message.Contains("option") && message.ToString().ToCharArray().Length > ("option").Length)
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await eventModel.setOption(message);
+                });
+            }
             if (message == "option")
             {
                 Device.BeginInvokeOnMainThread(async () => {

@@ -189,7 +189,7 @@ namespace Phone.ViewModels
             {
                 case "option1":
                     VibrateMe(20);
-                    await PlaySound(10);
+                   // await PlaySound(10);
                     await FlashPattern();
                     break;
                 case "option2":
@@ -208,7 +208,12 @@ namespace Phone.ViewModels
                     await Task.Delay(500);
                     break;
                 case "option3":
-                    await PlaySound(10);
+                    //await PlaySound(10);
+                    VibrateMe(2);
+                    await Task.Delay(500);
+                    VibrateMe(2);
+                    await Task.Delay(500);
+                    VibrateMe(2);
                     break;
             }
         }
