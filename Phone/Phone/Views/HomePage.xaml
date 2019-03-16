@@ -51,6 +51,9 @@
             <Button Grid.Column="0" Grid.Row="2" HorizontalOptions="FillAndExpand" Text="Play Sound" Clicked="Play_Sound" TextColor="White" BackgroundColor="#566a7d"/>
             <Button Grid.Column="1" Grid.Row="2" HorizontalOptions="FillAndExpand" Text="Send Email" Clicked="Send_Email" TextColor="White" BackgroundColor="#566a7d"/>
             <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Send SMS" Clicked="Send_SMS" TextColor="White" BackgroundColor="#566a7d"/>
+            <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Save Option1" Clicked="saveOption1" TextColor="White" BackgroundColor="#566a7d"/>
+            <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Save Option2" Clicked="saveOption2" TextColor="White" BackgroundColor="#566a7d"/>
+            <Button Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Save Option3" Clicked="saveOption3" TextColor="White" BackgroundColor="#566a7d"/>
         </Grid>
         
     </ContentPage>
