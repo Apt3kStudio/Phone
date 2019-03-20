@@ -29,6 +29,7 @@ namespace Phone.Droid
             client = new GoogleApiClient.Builder(context)                
                 .AddApi(WearableClass.API).Build();
                 WearableClass.NodeApi.AddListener(client, this);
+         //   WearableClass.CapabilityApi.AddCapabilityListener(client,ICapabilityApiCapabilityListener, "");
         }
 
         // Connecting client when we want it (usually on Activity.OnResume)
@@ -218,10 +219,9 @@ namespace Phone.Droid
                 await eventModel.TriggerFeatureAsync();
             });
         }
-        public override void OnDataChanged(DataEventBuffer dataEvents)
-        {
+      
 
-        }
+
 
 }
 }
