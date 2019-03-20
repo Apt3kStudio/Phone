@@ -209,10 +209,15 @@ namespace Phone.ViewModels
                     break;
                 case "option3":
                     //await PlaySound(10);
+                    VibrateMe(1);
+                    await Task.Delay(50);
                     VibrateMe(2);
-                    await Task.Delay(500);
+                    await Task.Delay(100);
+                    VibrateMe(1);
+                    VibrateMe(1);
+                    await Task.Delay(150);
                     VibrateMe(2);
-                    await Task.Delay(500);
+                    await Task.Delay(60);
                     VibrateMe(2);
                     break;
             }

@@ -218,5 +218,10 @@ namespace Phone.Droid
                 await eventModel.TriggerFeatureAsync();
             });
         }
-    }
+        public override void OnDataChanged(DataEventBuffer dataEvents)
+        {
+
+        }
+
+}
 }

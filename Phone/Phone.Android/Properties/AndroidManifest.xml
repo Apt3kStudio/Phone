@@ -12,10 +12,11 @@
 				<action android:name="com.google.android.gms.wearable.DATA_CHANGED" />
 				<action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED" />
 				<action android:name="com.google.android.gms.wearable.CHANNEL_EVENT" />
-				<action android:name="com.google.android.gms.wearable.CAPABILITY_CHANGED" />
 				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
 				<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-				<!--<data android:scheme="wear" android:host="*"  android:path="/com.companyname.Phone.my_capability" />-->
+        <action android:name="com.google.android.gms.wearable.CAPABILITY_CHANGED" />
+        <data android:scheme="wear"  android:host="*" android:pathPrefix="/com.companyname.Phone.my_capability" />
+        <data android:scheme="wear"  android:host="*" android:pathPrefix="/my_capability" />
 				<category android:name="${applicationId}" />
 			</intent-filter>
 		</service>
