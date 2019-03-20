@@ -9,7 +9,9 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Phone.ViewModels;
 using Plugin.FirebasePushNotification;
+
 
 namespace Phone.Droid
 {
@@ -46,7 +48,12 @@ namespace Phone.Droid
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
             {
 
+                EventViewModel evm = new EventViewModel();
 
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => {
+                  await evm.setOption("option1");
+                    await evm.TriggerFeatureAsync();
+                });
             };
 
 

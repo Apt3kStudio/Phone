@@ -47,6 +47,12 @@ namespace Phone
                 System.Diagnostics.Debug.WriteLine("Opened");
                 foreach (var data in p.Data)
                 {
+                    EventViewModel evm = new EventViewModel();
+                    
+                    Device.BeginInvokeOnMainThread(async () => {
+                        evm.setOption("option1");
+                        await evm.TriggerFeatureAsync();
+                    });
                     System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
                 }
             };
