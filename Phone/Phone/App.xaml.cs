@@ -8,6 +8,7 @@ using System.IO;
 using Xamarin.Essentials;
 using Plugin.FirebasePushNotification;
 using Plugin.LocalNotifications;
+using Android.Content;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Phone
@@ -18,10 +19,11 @@ namespace Phone
         public static string AzureBackendUrl = "http://localhost:5000";
         public static bool UseMockDataStore = true;
         static DeviceLocalDbService db;
-
+        private Context _context;
         
-        public App()
+        public App(Context context)
         {
+            _context = context;
             InitializeComponent();
 
             if (UseMockDataStore)
@@ -56,11 +58,11 @@ namespace Phone
         {
             if (LoginUserViewModel.IsUseregisteredAsync().Result)
             {
-                return new NavigationPage(new HomePage());
+                return new NavigationPage(new HomePage(_context));
             }
             else
             {
-               return new Login();
+               return new Login(_context);
             }
         }
 

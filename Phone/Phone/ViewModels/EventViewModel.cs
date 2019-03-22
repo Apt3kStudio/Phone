@@ -9,6 +9,8 @@ using System.Reflection;
 using System.Resources;
 using System.Net.Mail;
 using System.Net;
+using Phone.Droid;
+using Android.Content;
 
 namespace Phone.ViewModels
 {
@@ -20,7 +22,20 @@ namespace Phone.ViewModels
         public string EventDuration { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 
-        public string VibrateMe(int inDuration = 3)
+        Communicator cm;
+        public EventViewModel()
+        {
+            
+        }
+        public EventViewModel(Context context)
+        {
+            cm = new Communicator(context);
+        }
+        public void VibrateWatch(int inDuration = 3)
+        {
+            cm.SendMessage("vibWatch");
+        }
+            public string VibrateMe(int inDuration = 3)
         {
             string isVibrate = "";
             try

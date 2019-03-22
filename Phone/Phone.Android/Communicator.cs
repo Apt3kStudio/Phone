@@ -21,7 +21,7 @@ namespace Phone.Droid
     public class Communicator : Java.Lang.Object, IMessageApiMessageListener, IDataApiDataListener, IChannelApiChannelListener,ICapabilityApiCapabilityListener,INodeApiNodeListener
     {
         readonly GoogleApiClient client;
-        const string path = "/communicator";
+        const string path = "/my_capability";
 
         // Initializing GoogleApiClient
         public Communicator(Context context)
@@ -108,7 +108,7 @@ namespace Phone.Droid
                     await eventModel.setOption(message);
                 });
             }
-            if (message == "option")
+            if (message.Contains("option"))
             {
                 Device.BeginInvokeOnMainThread(async () => {
                     await eventModel.TriggerFeatureAsync();
