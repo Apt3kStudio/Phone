@@ -8,17 +8,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("Phone.iOS.Views.NewItemPage.xaml", "Views/NewItemPage.xaml", typeof(global::Phone.Views.NewItemPage))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("Phone.iOS.Views.NewItemPage.xaml", "Views/NewItemPage.xaml", typeof(global::Phone.Views.AlertPage))]
 
 namespace Phone.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Nelson Vasquez\\Documents\\Apartment3K\\Phone\\Phone\\Views\\NewItemPage.xaml")]
-    public partial class NewItemPage : global::Xamarin.Forms.ContentPage {
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Diosc\\Documents\\Repos\\APT3KStudio\\Phone\\Phone\\Views\\NewItemPage.xaml")]
+    public partial class AlertPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(NewItemPage));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(AlertPage));
         }
     }
 }

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Phone.Views.Login">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White" Padding="20,0,20,0">
+            <Grid Padding="20" VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalOptions="FillAndExpand" Text="{Binding Message}" TextColor="White" BackgroundColor="#566a7d"/>
+
+                <Entry Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="UserName" Text="{Binding Email}" HorizontalOptions="FillAndExpand"/>
+                <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Password" IsPassword="True"  Text="{Binding Password}"  HorizontalOptions="FillAndExpand"/>
+                <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalOptions="FillAndExpand" Text="Login" Clicked="goToStartUpPage" TextColor="White" BackgroundColor="#2c3e50"/>
+                <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalOptions="FillAndExpand" Text="SignUp" Clicked="NavigateToRegistrationPage_Clicked" TextColor="White" BackgroundColor="#566a7d"/>
+
+            </Grid>
+
+           
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
