@@ -9,6 +9,8 @@ using System.Reflection;
 using System.Resources;
 using System.Net.Mail;
 using System.Net;
+using Phone.Droid;
+using Android.Content;
 
 namespace Phone.ViewModels
 {
@@ -20,7 +22,20 @@ namespace Phone.ViewModels
         public string EventDuration { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 
-        public string VibrateMe(int inDuration = 3)
+        Communicator cm;
+        public EventViewModel()
+        {
+            
+        }
+        public EventViewModel(Context context)
+        {
+            cm = new Communicator(context);
+        }
+        public void VibrateWatch(int inDuration = 3)
+        {
+            cm.SendMessage("vibWatch");
+        }
+            public string VibrateMe(int inDuration = 3)
         {
             string isVibrate = "";
             try
@@ -209,10 +224,15 @@ namespace Phone.ViewModels
                     break;
                 case "option3":
                     //await PlaySound(10);
+                    VibrateMe(1);
+                    await Task.Delay(50);
                     VibrateMe(2);
-                    await Task.Delay(500);
+                    await Task.Delay(100);
+                    VibrateMe(1);
+                    VibrateMe(1);
+                    await Task.Delay(150);
                     VibrateMe(2);
-                    await Task.Delay(500);
+                    await Task.Delay(60);
                     VibrateMe(2);
                     break;
             }

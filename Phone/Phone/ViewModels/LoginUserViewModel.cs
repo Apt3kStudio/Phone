@@ -1,4 +1,5 @@
-﻿using Phone.Models;
+﻿using Android.Content;
+using Phone.Models;
 using Phone.Services;
 using Phone.Views;
 using System;
@@ -13,6 +14,7 @@ namespace Phone.ViewModels
     public class LoginUserViewModel 
     {
        
+        private Context _context;
 
         private WebPortalApiServices _portalApiService = new WebPortalApiServices();
         private DeviceLocalDbService _DeviceDb = new DeviceLocalDbService();
@@ -24,8 +26,9 @@ namespace Phone.ViewModels
         public bool isAuthenticated { get; set; }
 
         INavigation Navigation;
-        public LoginUserViewModel(INavigation HomePageNav)
+        public LoginUserViewModel(INavigation HomePageNav, Context context)
         {
+            _context = context;
             Navigation = HomePageNav;
         }
         public static async System.Threading.Tasks.Task<bool> IsUseregisteredAsync()
@@ -51,7 +54,7 @@ namespace Phone.ViewModels
                         await SecureStorage.SetAsync("Email", Email);
                         Message = "Registration Successfully!";
                         
-                        await Navigation.PushModalAsync(new NavigationPage(new HomePage()));
+                        await Navigation.PushModalAsync(new NavigationPage(new HomePage(_context)));
                     }
                     else
                     {

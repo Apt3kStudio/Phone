@@ -21,7 +21,7 @@ namespace Phone.Droid
     public class Communicator : Java.Lang.Object, IMessageApiMessageListener, IDataApiDataListener, IChannelApiChannelListener,ICapabilityApiCapabilityListener,INodeApiNodeListener
     {
         readonly GoogleApiClient client;
-        const string path = "/communicator";
+        const string path = "/my_capability";
 
         // Initializing GoogleApiClient
         public Communicator(Context context)
@@ -29,6 +29,7 @@ namespace Phone.Droid
             client = new GoogleApiClient.Builder(context)                
                 .AddApi(WearableClass.API).Build();
                 WearableClass.NodeApi.AddListener(client, this);
+         //   WearableClass.CapabilityApi.AddCapabilityListener(client,ICapabilityApiCapabilityListener, "");
         }
 
         // Connecting client when we want it (usually on Activity.OnResume)
@@ -107,7 +108,7 @@ namespace Phone.Droid
                     await eventModel.setOption(message);
                 });
             }
-            if (message == "option")
+            if (message.Contains("option"))
             {
                 Device.BeginInvokeOnMainThread(async () => {
                     await eventModel.TriggerFeatureAsync();
@@ -218,5 +219,9 @@ namespace Phone.Droid
                 await eventModel.TriggerFeatureAsync();
             });
         }
-    }
+      
+
+
+
+}
 }

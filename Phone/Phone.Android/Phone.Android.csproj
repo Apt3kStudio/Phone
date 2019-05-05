@@ -123,6 +123,7 @@
     <Compile Include="Utils\PageController.cs" />
     <Compile Include="Utils\ReflectedProxy.cs" />
     <Compile Include="Utils\ResourceManagerEx.cs" />
+    <Compile Include="Views\Contextcontext.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_favorites.png" />

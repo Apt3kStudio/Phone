@@ -1,4 +1,5 @@
-﻿using Phone.Services;
+﻿using Android.Content;
+using Phone.Services;
 using Phone.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -18,20 +19,23 @@ namespace Phone.Views
         private WebPortalApiServices apiService = new WebPortalApiServices();
         public LoginUserViewModel UserVM { set; get; }
         public string ErrorMessage { get; set; }
-        public Login()
+        private Context _context;
+        public Login(Context context)
         {
+            _context = context;
             InitializeComponent();
-            UserVM = new LoginUserViewModel(Navigation) {
+            UserVM = new LoginUserViewModel(Navigation, _context) {
                  Email = "",
                  Password = ""
             };
             BindingContext = UserVM;
         }
 
-        public Login(string username)
+        public Login(string username, Context context)
         {
+            _context = context;
             InitializeComponent();
-            UserVM = new LoginUserViewModel(Navigation)
+            UserVM = new LoginUserViewModel(Navigation, _context)
             {
                 Email = username,
                 Password = ""
@@ -41,7 +45,7 @@ namespace Phone.Views
         async void NavigateToRegistrationPage_Clicked(object sender, EventArgs e)
         {
            // await DisplayAlert("SignUp", "You will be redirected to the Registration form", "OK");
-            await Navigation.PushModalAsync(new NavigationPage(new Registration()));
+            await Navigation.PushModalAsync(new NavigationPage(new Registration(_context)));
         }
         async void goToStartUpPage(object sender, EventArgs e)
         {

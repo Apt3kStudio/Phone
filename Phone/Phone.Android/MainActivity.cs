@@ -31,7 +31,7 @@ namespace Phone.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             #endregion
             
-            LoadApplication(new App());
+            LoadApplication(new App(this));
 
             #region call firebase
             FirebasePushNotificationManager.ProcessIntent(this, Intent);

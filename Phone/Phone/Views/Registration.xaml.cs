@@ -1,4 +1,5 @@
-﻿using Phone.ViewModels;
+﻿using Android.Content;
+using Phone.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,12 @@ namespace Phone.Views
     public partial class Registration : ContentPage
     {
         RegisterViewModel RegisterVM { get; set; }
-
-        public Registration()
+        private Context _context;
+        public Registration(Context context)
         {
+            _context = context;
             InitializeComponent();
-            RegisterVM = new RegisterViewModel(Navigation)
+            RegisterVM = new RegisterViewModel(Navigation, _context)
             {
                 Email = "",
                 Password = "",
@@ -31,7 +33,7 @@ namespace Phone.Views
 
         async void BackToLogin(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new Login()));
+            await Navigation.PushModalAsync(new NavigationPage(new Login(_context)));
         }
     }
     

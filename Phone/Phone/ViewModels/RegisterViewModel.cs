@@ -1,4 +1,5 @@
-﻿using Phone.Services;
+﻿using Android.Content;
+using Phone.Services;
 using Phone.Views;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Phone.ViewModels
    public class RegisterViewModel
     {
      private WebPortalApiServices _portalApiService = new WebPortalApiServices();
-
+        private Context _context;
         public string Email { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
@@ -22,8 +23,9 @@ namespace Phone.ViewModels
 
         INavigation Navigation;
 
-        public RegisterViewModel(INavigation HomePageNav)
+        public RegisterViewModel(INavigation HomePageNav, Context context)
         {
+            _context = context;
             Navigation = HomePageNav;
         }
         public ICommand  RegisterCommand
@@ -36,7 +38,7 @@ namespace Phone.ViewModels
                     if (isSuccess)
                     {
                         Message = "Registration Successfully!";
-                        await Navigation.PushModalAsync(new NavigationPage(new Login(Email)));
+                        await Navigation.PushModalAsync(new NavigationPage(new Login(Email,_context)));
                     }
                     else
                     {
