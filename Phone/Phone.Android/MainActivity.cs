@@ -12,7 +12,7 @@ using Firebase.Messaging;
 
 namespace Phone.Droid
 {
-    [Activity(Label = "SpideySense", Icon = "@drawable/Landing", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "SpideySense", Icon = "@drawable/Spide_Icon_WhiteBlue", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         public static Context AppContext { get; private set; }
@@ -35,6 +35,7 @@ namespace Phone.Droid
 
             #region call firebase
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
+            
             FirebaseMessaging.Instance.SubscribeToTopic("admin");
             #endregion
             #region watch => phone communication

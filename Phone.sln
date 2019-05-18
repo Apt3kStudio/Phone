@@ -7,7 +7,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Phone", "Phone\Phone\Phone.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phone.Android", "Phone\Phone.Android\Phone.Android.csproj", "{3530FF50-F3C8-4AAF-9D6A-3BFD3A8C9833}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpideySenseWatch", "SpideySenseWatch\SpideySenseWatch\SpideySenseWatch.csproj", "{2FB7E276-9E8E-487D-BB96-63B598FDCF83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpideySenseWatch", "SpideySenseWatch\SpideySenseWatch.csproj", "{2FB7E276-9E8E-487D-BB96-63B598FDCF83}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.Phone" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="010" android:versionName="1.0" package="com.Apt3k.SpideySenseMobileWear" android:installLocation="internalOnly">
 	<uses-sdk android:minSdkVersion="20" android:targetSdkVersion="27" />
 	<application android:label="Phone.Android" android:name="android.support.multidex.MultiDexApplication">
 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
@@ -7,15 +7,15 @@
 	<uses-permission android:name="android.permission.INTERNET" />
 	<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />
 	<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:enabled="true" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
-    <service android:name=".MyWearableListenerService" android:enabled="true" android:exported="true">
-      <intent-filter>
+		<service android:name=".MyWearableListenerService" android:enabled="true" android:exported="true">
+			<intent-filter>
 				<action android:name="com.google.android.gms.wearable.DATA_CHANGED" />
 				<action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED" />
 				<action android:name="com.google.android.gms.wearable.CHANNEL_EVENT" />
 				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
 				<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-        <action android:name="com.google.android.gms.wearable.CAPABILITY_CHANGED" />
-        <!--<data android:scheme="wear"  android:host="*" android:pathPrefix="/com.companyname.Phone.my_capability" />
+				<action android:name="com.google.android.gms.wearable.CAPABILITY_CHANGED" />
+				<!--<data android:scheme="wear"  android:host="*" android:pathPrefix="/com.companyname.Phone.my_capability" />
         <data android:scheme="wear"  android:host="*" android:pathPrefix="/my_capability" />-->
 				<category android:name="${applicationId}" />
 			</intent-filter>
