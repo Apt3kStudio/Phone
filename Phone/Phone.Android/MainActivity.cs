@@ -9,6 +9,8 @@ using Android.OS;
 using Android.Content;
 using Plugin.FirebasePushNotification;
 using Firebase.Messaging;
+using System.Threading.Tasks;
+using Firebase.Iid;
 
 namespace Phone.Droid
 {
@@ -35,8 +37,16 @@ namespace Phone.Droid
 
             #region call firebase
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
-            
+            Task.Run(() =>
+            {
+                // This may not be executed on the main thread.
+                FirebaseInstanceId.Instance.DeleteInstanceId();
+                Console.WriteLine("Forced token: " + FirebaseInstanceId.Instance.Token);
+            });
             FirebaseMessaging.Instance.SubscribeToTopic("admin");
+            var FirebaseID = Firebase.Iid.FirebaseInstanceId.Instance.Token;
+           
+
             #endregion
             #region watch => phone communication
             cmm = new Communicator(this);

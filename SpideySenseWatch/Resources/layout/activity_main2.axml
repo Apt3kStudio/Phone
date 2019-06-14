@@ -26,12 +26,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-		android:background="@android:color/black">
+		android:background="@drawable/regularbackground">
 
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            />
 
     </android.support.v4.widget.NestedScrollView>
 
@@ -39,7 +40,8 @@
         android:id="@+id/top_navigation_drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         app:navigation_style="single_page"/>
+         app:navigation_style="single_page"
+        android:background="@drawable/regularbackground"/>
 
     <android.support.wearable.view.drawer.WearableActionDrawer
         android:id="@+id/bottom_action_drawer"

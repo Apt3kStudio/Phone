@@ -52,6 +52,7 @@ namespace Phone
             {
                 System.Diagnostics.Debug.WriteLine($"TOKEN:{p.Token}");
                 Log.Info("TOKEN:", p.Token.ToString());
+               
             };
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
             {
