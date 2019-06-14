@@ -46,7 +46,7 @@ namespace Phone
             string FirebaseID = getAndStoreFBToken();
 
             System.Diagnostics.Debug.WriteLine($"TOKEN:{FirebaseID}");
-            Log.Info("TOKEN:", FirebaseID.ToString());
+            //Log.Info("TOKEN:", FirebaseID.ToString());
 
             CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
             {

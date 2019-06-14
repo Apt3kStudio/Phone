@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-		android:background="@android:color/white">
+		android:background="@android:color/blue">
 
         <FrameLayout
             android:id="@+id/fragment_container"
@@ -39,7 +39,7 @@
         android:id="@+id/top_navigation_drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-	/>
+         app:navigation_style="single_page"/>
 
     <android.support.wearable.view.drawer.WearableActionDrawer
         android:id="@+id/bottom_action_drawer"

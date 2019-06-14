@@ -221,7 +221,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </GoogleServicesJson>
     <None Include="Properties\AndroidManifest.xml" />
-    <GoogleServicesJson Include="FirebaseMessaging\google-services.json" />
     <None Include="Resources\AboutResources.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -308,6 +307,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="FirebaseMessaging\" />
     <Folder Include="Resources\drawable-hdpi\" />
     <Folder Include="Resources\drawable-mdpi\" />
     <Folder Include="Resources\drawable-xhdpi\" />
