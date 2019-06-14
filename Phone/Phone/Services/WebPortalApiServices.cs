@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using Xamarin.Essentials;
 
 namespace Phone.Services
 {
@@ -43,7 +44,8 @@ namespace Phone.Services
             var model = new Registration
             {
                 Email = email,
-                Password = password
+                Password = password,
+                FBToken = SecureStorage.GetAsync("FBToken").Result
             };                       
 
             var json = JsonConvert.SerializeObject(model);

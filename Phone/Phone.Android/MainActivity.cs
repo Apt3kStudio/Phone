@@ -9,10 +9,12 @@ using Android.OS;
 using Android.Content;
 using Plugin.FirebasePushNotification;
 using Firebase.Messaging;
+using System.Threading.Tasks;
+using Firebase.Iid;
 
 namespace Phone.Droid
 {
-    [Activity(Label = "Phone", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "SpideySense", Icon = "@drawable/Spide_Icon_WhiteBlue", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         public static Context AppContext { get; private set; }
@@ -35,7 +37,16 @@ namespace Phone.Droid
 
             #region call firebase
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
+            Task.Run(() =>
+            {
+                // This may not be executed on the main thread.
+                FirebaseInstanceId.Instance.DeleteInstanceId();
+                Console.WriteLine("Forced token: " + FirebaseInstanceId.Instance.Token);
+            });
             FirebaseMessaging.Instance.SubscribeToTopic("admin");
+            var FirebaseID = Firebase.Iid.FirebaseInstanceId.Instance.Token;
+           
+
             #endregion
             #region watch => phone communication
             cmm = new Communicator(this);

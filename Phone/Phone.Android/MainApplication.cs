@@ -55,6 +55,7 @@ namespace Phone.Droid
                     await evm.TriggerFeatureAsync();
                 });
             };
+            var FirebaseID = Firebase.Iid.FirebaseInstanceId.Instance.Token;
 
 
         }
