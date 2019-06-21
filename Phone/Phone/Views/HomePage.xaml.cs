@@ -12,6 +12,7 @@ using System.IO;
 using System.Resources;
 using System.Reflection;
 using Android.Content;
+using Phone.Services;
 
 namespace Phone.Views
 {
@@ -104,6 +105,13 @@ namespace Phone.Views
             recipients.Add("3472009415@tmomail.net");
 
             await eventModel.SendEmailViaSMTP("tesT", MessageText, recipients);
+        }
+        async Task ResetFCMTokenAsync(object sender, EventArgs e)
+        {
+          //  await FCMService.DeleteFCMTokenAsync();
+
+            WebPortalApiServices wapi = new WebPortalApiServices();
+            await wapi.SendFCMTokenAsync();
         }
     }
 }

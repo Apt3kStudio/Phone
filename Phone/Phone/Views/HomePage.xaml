@@ -6,27 +6,54 @@
              x:Class="Phone.Views.HomePage">
    
     <ContentPage Title="Watch" Icon="round_watch_black_18dp.png" bnb:BottomBarPageExtensions.TabColor="DodgerBlue">
+        
+
        
-        <Label Text="Watch screen"/>
-    
+        <Grid Padding="0" VerticalOptions="CenterAndExpand">
+             
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+
+
+            <Image Grid.Column="1" Grid.Row="0" Grid.ColumnSpan ="1"  Source="/YourNamespace;component/Resources/Spide_Icon_WhiteRed.png"/>
+            <Image Grid.Column="0" Grid.Row="2" Grid.ColumnSpan ="1"  Source="/YourNamespace;component/Resources/sound.png"/>
+            <Image Grid.Column="1" Grid.Row="2" Grid.ColumnSpan ="1"  Source="/YourNamespace;component/Resources/vibrate.png"/>
+            <Image Grid.Column="2" Grid.Row="2" Grid.ColumnSpan ="1"  Source="/YourNamespace;component/Resources/flash.png"/>
+            
+
+
+
+        </Grid>
+
     </ContentPage>
-    <ContentPage Title="Alert" Icon="round_add_alert_black_18dp.png" 
+    <!--<ContentPage Title="Alert" Icon="round_add_alert_black_18dp.png" 
                  bnb:BottomBarPageExtensions.TabColor="#ee6002"
                 bnb:BottomBarPageExtensions.BadgeCount="6">
 
         <Label Text="Alert Screen"/>
    
-    </ContentPage>
-    <ContentPage Title="Notification" Icon="round_notifications_active_black_18dp.png"
+    </ContentPage>-->
+    <!--<ContentPage Title="Notification" Icon="round_notifications_active_black_18dp.png"
                 bnb:BottomBarPageExtensions.BadgeCount="3"
                 bnb:BottomBarPageExtensions.TabColor="#5300e8">
 
         <Label Text="Notification Screen"/>
     
-    </ContentPage>
-    <ContentPage Title="Settings" Icon="baseline_settings_black_18dp.png" bnb:BottomBarPageExtensions.TabColor="#008b00">
+    </ContentPage>-->
+    <!--<ContentPage Title="Settings" Icon="baseline_settings_black_18dp.png" bnb:BottomBarPageExtensions.TabColor="#008b00">
         <Label Text="Setting Screen"/>
-    </ContentPage>
+    </ContentPage-->
     <ContentPage Title="TestPage" Icon="test_page_icon" bnb:BottomBarPageExtensions.TabColor="#DD2C00">
         <Grid Padding="20" VerticalOptions="CenterAndExpand">
             <!-- Region (Set Rows definitions) -->
@@ -55,6 +82,7 @@
             <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Save Option1" Clicked="saveOption1" TextColor="White" BackgroundColor="#566a7d"/>
             <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Save Option2" Clicked="saveOption2" TextColor="White" BackgroundColor="#566a7d"/>
             <Button Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Save Option3" Clicked="saveOption3" TextColor="White" BackgroundColor="#566a7d"/>
+            <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Reset FCM Token | store loc. Api" Clicked="ResetFCMTokenAsync" TextColor="White" BackgroundColor="#566a7d"/>
         </Grid>
         
     </ContentPage>

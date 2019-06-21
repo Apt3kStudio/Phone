@@ -33,70 +33,27 @@ namespace Phone
                 DependencyService.Register<MockDataStore>();
             else
                 DependencyService.Register<AzureDataStore>();
-
             db = Database;
-
+            Task.Run(async() =>
+            {
+                await FCMService.SaveFCMTokenAsync(FCMService.getFCMToken());
+                await FCMService.RegisterOnTokenRefreshAsync();
+            });            
+            FCMService.RegisterOnNotificationReceived();
+            FCMService.RegisterOnNotificationOpened();   
             MainPage = IsUseregistered();
-            setFierbaseAppResources();
-
-        }
-
-        private static void setFierbaseAppResources()
-        {
-            string FirebaseID = getAndStoreFBToken();
-
-            System.Diagnostics.Debug.WriteLine($"TOKEN:{FirebaseID}");
-            //Log.Info("TOKEN:", FirebaseID.ToString());
-
-            CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
-            {
-                System.Diagnostics.Debug.WriteLine($"TOKEN:{p.Token}");
-                Log.Info("TOKEN:", p.Token.ToString());
-               
-            };
-            CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
-            {
-                //   CrossLocalNotifications.Current.Show(p.Data["title"].ToString(), p.Data["body"].ToString());
-                // System.Diagnostics.Debug.WriteLine("Received");
-            };
-            CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
-            {
-                System.Diagnostics.Debug.WriteLine("Opened");
-
-                foreach (var data in p.Data)
-                {
-                    EventViewModel evm = new EventViewModel();
-
-                    Device.BeginInvokeOnMainThread(async () =>
-                    {
-                        _ = evm.setOption("option1");
-                        await evm.TriggerFeatureAsync();
-                    });
-                    System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
-                }
-            };
-        }
-
-        private static string getAndStoreFBToken()
-        {
-            var FirebaseID = FirebaseInstanceId.Instance.Token;
-            Task.Run(async () =>
-            {
-                await SecureStorage.SetAsync("FBToken", FirebaseID.ToString());
-            });
-            return FirebaseID;
-        }
+         } 
 
         private Page IsUseregistered()
         {
-            if (LoginUserViewModel.IsUseregisteredAsync().Result)
-            {
+           // if (LoginUserViewModel.IsUseregisteredAsync().Result)
+            //{
                 return new NavigationPage(new HomePage(_context));
-            }
-            else
-            {
-               return new Login(_context);
-            }
+           // }
+           // else
+           // {
+           //    return new Login(_context);
+            //}
         }
 
         public static DeviceLocalDbService Database
@@ -108,23 +65,6 @@ namespace Phone
                 }
                 return db;
             }            
-        }
-
-
-        protected override void OnStart()
-        {
-            // Handle when your app starts
-      
-        }
-
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
         }
     }
 }
