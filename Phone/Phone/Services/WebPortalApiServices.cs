@@ -8,13 +8,23 @@ using System.Threading.Tasks;
 using System.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Xamarin.Essentials;
+using System.IO;
 
 namespace Phone.Services
 {
     class WebPortalApiServices
     {
+
         private static string WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net/";
 
+        public WebPortalApiServices()
+        {            
+            #if DEBUG
+                WebApiBaseURL = "http://192.168.1.168:45455/";
+            #else
+                WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net/";
+            #endif
+        }
 
         internal async Task<bool> RegisterAsync(string email, string password, string confirmPassword)
         {
@@ -46,7 +56,41 @@ namespace Phone.Services
                 Email = email,
                 Password = password,
                 FBToken = SecureStorage.GetAsync("FBToken").Result
-            };                       
+            };    
+            var json = JsonConvert.SerializeObject(model);
+            HttpContent httpContent = new StringContent(json);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await client.PostAsync(WebApiBaseURL + "api/auth/Login", httpContent);
+            if (response.IsSuccessStatusCode)
+            {
+                Stream receiveStream = response.Content.ReadAsStreamAsync().Result;
+                StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
+                string theContent = readStream.ReadToEnd();
+                ReceiveFromAPI rfp = JsonConvert.DeserializeObject<ReceiveFromAPI>(theContent);
+                await Task.Run(() => 
+                {
+                    rfp.SaveJwtTokenAsync();                   
+                });
+                await Task.Run(async () =>
+                {
+                    bool isAmatch = rfp.ValidateFCMToken();
+                    if (!isAmatch)
+                    {
+                        await SendFCMTokenAsync();
+                    } 
+                });
+            }
+            return response.IsSuccessStatusCode;
+        }
+        internal async Task<bool> SendFCMTokenAsync()
+        {
+            var client = new HttpClient();
+            var model = new Registration
+            {
+                Email = SecureStorage.GetAsync("Email").Result,
+                Password = "dsdsds",
+                FBToken = SecureStorage.GetAsync("FBToken").Result
+            };
 
             var json = JsonConvert.SerializeObject(model);
 
@@ -54,13 +98,13 @@ namespace Phone.Services
 
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-            var response = await client.PostAsync(WebApiBaseURL + "api/auth/Login", httpContent);
+            var response = await client.PostAsync(WebApiBaseURL + "api/auth/ChangeFCMToken", httpContent);
 
 
 
             return response.IsSuccessStatusCode;
         }
-       
+
     }
 }
 

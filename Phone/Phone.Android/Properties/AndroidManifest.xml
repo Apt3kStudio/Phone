@@ -15,6 +15,7 @@
 				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
 				<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 				<action android:name="com.google.android.gms.wearable.CAPABILITY_CHANGED" />
+        <action android:name="com.google.firebase.MESSAGING_EVENT"/>
 				<!--<data android:scheme="wear"  android:host="*" android:pathPrefix="/com.companyname.Phone.my_capability" />
         <data android:scheme="wear"  android:host="*" android:pathPrefix="/my_capability" />-->
 				<category android:name="${applicationId}" />

@@ -37,12 +37,12 @@ namespace Phone.Droid
 
             #region call firebase
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
-            Task.Run(() =>
-            {
-                // This may not be executed on the main thread.
-                FirebaseInstanceId.Instance.DeleteInstanceId();
-                Console.WriteLine("Forced token: " + FirebaseInstanceId.Instance.Token);
-            });
+            //Task.Run(() =>
+            //{
+            //    // This may not be executed on the main thread.
+            //    FirebaseInstanceId.Instance.DeleteInstanceId();
+            //    Console.WriteLine("Forced token: " + FirebaseInstanceId.Instance.Token);
+            //});
             FirebaseMessaging.Instance.SubscribeToTopic("admin");
             var FirebaseID = Firebase.Iid.FirebaseInstanceId.Instance.Token;
            
