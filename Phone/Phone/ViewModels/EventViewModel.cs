@@ -238,7 +238,7 @@ namespace Phone.ViewModels
             }
         }
 
-        private async Task FlashPattern()
+        public async Task FlashPattern()
         {
             for (var i = 0; i < 10; i++)
             {

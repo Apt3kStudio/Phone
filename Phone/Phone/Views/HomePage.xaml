@@ -4,8 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Phone.Views.HomePage">
-   
-    <ContentPage Title="Watch" Icon="round_watch_black_18dp.png" bnb:BottomBarPageExtensions.TabColor="DodgerBlue">
+
+    <ContentPage Icon="Spide_Icon_WhiteBlue.png" bnb:BottomBarPageExtensions.TabColor="#ffffff">
         
 
        
@@ -27,10 +27,29 @@
 
 
             <Image Grid.Column="1" Grid.Row="0" Grid.ColumnSpan ="1"  Source="/YourNamespace;component/Resources/Spide_Icon_WhiteRed.png"/>
-            <Image Grid.Column="0" Grid.Row="2" Grid.ColumnSpan ="1"  Source="/YourNamespace;component/Resources/sound.png"/>
-            <Image Grid.Column="1" Grid.Row="2" Grid.ColumnSpan ="1"  Source="/YourNamespace;component/Resources/vibrate.png"/>
-            <Image Grid.Column="2" Grid.Row="2" Grid.ColumnSpan ="1"  Source="/YourNamespace;component/Resources/flash.png"/>
-            
+            <Image Grid.Column="0" Grid.Row="2" Grid.ColumnSpan ="1"  Source="/YourNamespace;component/Resources/sound.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnTapGestSoundIcon"
+                        NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+            </Image>
+            <Image Grid.Column="1" Grid.Row="2" Grid.ColumnSpan ="1"  Source="/YourNamespace;component/Resources/vibrate.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnTapGestVibrate"
+                        NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Image Grid.Column="2" Grid.Row="2" Grid.ColumnSpan ="1"  Source="/YourNamespace;component/Resources/flash.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnTapGestFlash"
+                        NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+
 
 
 
@@ -54,7 +73,7 @@
     <!--<ContentPage Title="Settings" Icon="baseline_settings_black_18dp.png" bnb:BottomBarPageExtensions.TabColor="#008b00">
         <Label Text="Setting Screen"/>
     </ContentPage-->
-    <ContentPage Title="TestPage" Icon="test_page_icon" bnb:BottomBarPageExtensions.TabColor="#DD2C00">
+    <ContentPage  Icon="test_page_icon" bnb:BottomBarPageExtensions.TabColor="#DD2C00">
         <Grid Padding="20" VerticalOptions="CenterAndExpand">
             <!-- Region (Set Rows definitions) -->
             <Grid.RowDefinitions>
@@ -86,7 +105,7 @@
         </Grid>
         
     </ContentPage>
-    <ContentPage Title="LogOut" Icon="baseline_exit_to_app_black_18dp" bnb:BottomBarPageExtensions.TabColor="#DD2C00">
+    <ContentPage  Icon="baseline_exit_to_app_black_18dp" bnb:BottomBarPageExtensions.TabColor="#ffffff">
         <Button Text="LogOut" Clicked="LogOut"></Button>
     </ContentPage>
 

@@ -12,6 +12,7 @@ using Android.Content;
 using Android.Util;
 using Firebase.Iid;
 using System.Threading.Tasks;
+using Phone.Models;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Phone
@@ -32,8 +33,7 @@ namespace Phone
             if (UseMockDataStore)
                 DependencyService.Register<MockDataStore>();
             else
-                DependencyService.Register<AzureDataStore>();
-            db = Database;
+                DependencyService.Register<AzureDataStore>();           
             Task.Run(async() =>
             {
                 await FCMService.SaveFCMTokenAsync(FCMService.getFCMToken());
@@ -41,30 +41,7 @@ namespace Phone
             });            
             FCMService.RegisterOnNotificationReceived();
             FCMService.RegisterOnNotificationOpened();   
-            MainPage = IsUseregistered();
+            MainPage = new Account(_context).IsUseregistered(false);
          } 
-
-        private Page IsUseregistered()
-        {
-           // if (LoginUserViewModel.IsUseregisteredAsync().Result)
-            //{
-                return new NavigationPage(new HomePage(_context));
-           // }
-           // else
-           // {
-           //    return new Login(_context);
-            //}
-        }
-
-        public static DeviceLocalDbService Database
-        {
-            get {
-                if (db == null)
-                {
-                    db = new DeviceLocalDbService(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ApplicationLoginSetting.db3"));
-                }
-                return db;
-            }            
-        }
     }
 }

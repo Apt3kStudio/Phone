@@ -20,7 +20,7 @@
                     <ColumnDefinition Width="5*" />
                 </Grid.ColumnDefinitions>
 
-                <Entry Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="UserName" Text="{Binding Email}" HorizontalOptions="FillAndExpand"/>
+                <Entry Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Email Address" Text="{Binding Email}" HorizontalOptions="FillAndExpand"/>
                 <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Password" Text="{Binding Password}"  HorizontalOptions="FillAndExpand"/>
                 <Entry Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="ConfirmPassword" Text="{Binding ConfirmPassword}"  HorizontalOptions="FillAndExpand"/>
                 
