@@ -21,8 +21,7 @@ namespace Phone
     {
         //TODO: Replace with *.azurewebsites.net url after deploying backend to Azure
         public static string AzureBackendUrl = "http://localhost:5000";
-        public static bool UseMockDataStore = true;
-        static DeviceLocalDbService db;
+        public static bool UseMockDataStore = true;       
         private Context _context;
         
         public App(Context context)

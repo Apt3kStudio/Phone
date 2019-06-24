@@ -9,7 +9,7 @@ using System.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Xamarin.Essentials;
 using System.IO;
-
+using Xamarin.Forms;
 namespace Phone.Services
 {
     class WebPortalApiServices
@@ -24,10 +24,16 @@ namespace Phone.Services
             #else
                 WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net/";
             #endif
+            WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net/";
         }
 
-        internal async Task<bool> RegisterAsync(string email, string password, string confirmPassword)
+        internal async Task<Message> RegisterAsync(string email, string password, string confirmPassword)
         {
+            if (!UtilityHelper.IsValidEmail(email))
+            {
+                return new Message("Email Not Valid", "Email Not Valid", false);
+               
+            }
             var client = new HttpClient();
             var model = new Registration
             {
@@ -44,7 +50,8 @@ namespace Phone.Services
 
             var response = await client.PostAsync(WebApiBaseURL +"api/auth/registration", httpContent);
 
-            return response.IsSuccessStatusCode;
+            
+            return new Message("Registration", "",response.IsSuccessStatusCode);
         }
 
         //Todo we need to encode the json to create protection for the password. 

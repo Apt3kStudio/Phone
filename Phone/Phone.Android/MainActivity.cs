@@ -22,9 +22,8 @@ namespace Phone.Droid
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-
             TabLayoutResource = Resource.Layout.Tabbar;
-            ToolbarResource = Resource.Layout.Toolbar;
+            //ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
@@ -32,11 +31,10 @@ namespace Phone.Droid
             #region Registering Xamarin Essentials on android;
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             #endregion
-            
+            FirebasePushNotificationManager.ProcessIntent(this, Intent);
             LoadApplication(new App(this));
 
-            #region call firebase
-            FirebasePushNotificationManager.ProcessIntent(this, Intent);
+            #region call firebase            
             //Task.Run(() =>
             //{
             //    // This may not be executed on the main thread.
@@ -44,8 +42,7 @@ namespace Phone.Droid
             //    Console.WriteLine("Forced token: " + FirebaseInstanceId.Instance.Token);
             //});
             FirebaseMessaging.Instance.SubscribeToTopic("admin");
-            var FirebaseID = Firebase.Iid.FirebaseInstanceId.Instance.Token;
-           
+            var FirebaseID = Firebase.Iid.FirebaseInstanceId.Instance.Token;           
 
             #endregion
             #region watch => phone communication
@@ -54,7 +51,6 @@ namespace Phone.Droid
             cmm.SendMessage("FromPhone"+ DateTime.Now.ToString("T"));
             cmm.DataReceived += Cmm_DataReceived;
             //cmm.DataReceived
-
 
             #endregion
             StartService(new Intent(this,Class));
