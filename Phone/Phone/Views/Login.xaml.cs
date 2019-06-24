@@ -25,8 +25,8 @@ namespace Phone.Views
             _context = context;
             InitializeComponent();
             UserVM = new LoginUserViewModel(Navigation, _context) {
-                 Email = "",
-                 Password = ""
+                 Email = "newuser@app.com",
+                 Password = "Password@123"
             };
             BindingContext = UserVM;
         }
@@ -44,7 +44,7 @@ namespace Phone.Views
         }
         async void NavigateToRegistrationPage_Clicked(object sender, EventArgs e)
         {
-           // await DisplayAlert("SignUp", "You will be redirected to the Registration form", "OK");
+            await DisplayAlert("SignUp", "You will be redirected to the Registration form", "OK");
             await Navigation.PushModalAsync(new NavigationPage(new Registration(_context)));
         }
         async void goToStartUpPage(object sender, EventArgs e)

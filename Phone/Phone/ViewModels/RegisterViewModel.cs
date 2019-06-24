@@ -1,4 +1,5 @@
 ﻿using Android.Content;
+using Android.Widget;
 using Phone.Services;
 using Phone.Views;
 using System;
@@ -34,15 +35,17 @@ namespace Phone.ViewModels
             {
                 return new Command(async() =>
                 {
-                    var isSuccess = await _portalApiService.RegisterAsync(Email, Password, ConfirmPassword);
-                    if (isSuccess)
+                    var message = await _portalApiService.RegisterAsync(Email, Password, ConfirmPassword);
+                    if (message.isSuccess)
                     {
-                        Message = "Registration Successfully!";
+                        message.MessageText = "Registration Successfully!";
+                        Toast.MakeText(_context, message.MessageText, ToastLength.Long).Show();
                         await Navigation.PushModalAsync(new NavigationPage(new Login(Email,_context)));
+
                     }
                     else
-                    {
-                        Message = "Try again.";
+                    {                       
+                        Toast.MakeText(_context, message.MessageText, ToastLength.Long).Show();
                     }
                 });
             }

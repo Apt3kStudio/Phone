@@ -12,6 +12,7 @@ using System.IO;
 using System.Resources;
 using System.Reflection;
 using Android.Content;
+using Phone.Services;
 
 namespace Phone.Views
 {
@@ -25,6 +26,31 @@ namespace Phone.Views
             _context = context;
             eventModel = new EventViewModel(context);
             InitializeComponent();
+        }
+        public void OnTapGestSoundIcon(object sender, EventArgs args)
+        {
+            Task.Run(async () =>
+            {
+                await eventModel.PlaySound(10);
+                await eventModel.setOption("option1");
+            });
+        }
+        public void OnTapGestVibrate(object sender, EventArgs args)
+        {           
+            eventModel.VibrateMe(5);
+            eventModel.VibrateWatch(5);
+            Task.Run(async () =>
+            {                
+                await eventModel.setOption("option2");
+            });
+        }
+        public void OnTapGestFlash(object sender, EventArgs args)
+        {
+            Task.Run(async () => 
+            {
+                await eventModel.FlashPattern();
+                await eventModel.setOption("option3");
+            });
         }
         async void LogOut(object sender, EventArgs e)
         {
@@ -104,6 +130,13 @@ namespace Phone.Views
             recipients.Add("3472009415@tmomail.net");
 
             await eventModel.SendEmailViaSMTP("tesT", MessageText, recipients);
+        }
+        async Task ResetFCMTokenAsync(object sender, EventArgs e)
+        {
+          //  await FCMService.DeleteFCMTokenAsync();
+
+            WebPortalApiServices wapi = new WebPortalApiServices();
+            await wapi.SendFCMTokenAsync();
         }
     }
 }
