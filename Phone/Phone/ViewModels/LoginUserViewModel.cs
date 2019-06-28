@@ -1,4 +1,5 @@
 ﻿using Android.Content;
+using Android.Widget;
 using Phone.Models;
 using Phone.Services;
 using Phone.Views;
@@ -17,7 +18,6 @@ namespace Phone.ViewModels
         private Context _context;
 
         private WebPortalApiServices _portalApiService = new WebPortalApiServices();
-        private DeviceLocalDbService _DeviceDb = new DeviceLocalDbService();
         public string Email { get; set; }
         public string Password { get; set; }
 
@@ -46,21 +46,19 @@ namespace Phone.ViewModels
             {
                 return new Command(async () =>
                 {
-                    var isSuccess = await _portalApiService.SigningIn(Email, Password);
-                    if (isSuccess)
+                    var message = await _portalApiService.SigningIn(Email, Password);
+                    if (message.isSuccess)
                     {
                         isAuthenticated = true;
-                        // await _DeviceDb.SaveItemAsync(new UserLoginSettings() { Email = Email, Password = Password, Token = "" });
+                        Toast.MakeText(_context, message.MessageText, ToastLength.Long).Show();
                         await SecureStorage.SetAsync("Email", Email);
-                        Message = "Registration Successfully!";
                         
                         await Navigation.PushModalAsync(new NavigationPage(new HomePage(_context)));
                     }
                     else
                     {
                         isAuthenticated = false;
-                        Message = "Try again.";
-
+                        Toast.MakeText(_context, message.MessageText, ToastLength.Long).Show();
                     }
                 });
             }

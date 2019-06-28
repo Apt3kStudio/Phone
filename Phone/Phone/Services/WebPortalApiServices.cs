@@ -51,12 +51,17 @@ namespace Phone.Services
             var response = await client.PostAsync(WebApiBaseURL +"api/auth/registration", httpContent);
 
             
-            return new Message("Registration", "",response.IsSuccessStatusCode);
+            return new Message("Registration", email + " is registered!",response.IsSuccessStatusCode);
         }
 
         //Todo we need to encode the json to create protection for the password. 
-        internal async Task<bool> SigningIn(string email, string password)
+        internal async Task<Message> SigningIn(string email, string password)
         {
+            if (!UtilityHelper.IsValidEmail(email))
+            {
+                return new Message("Email Not Valid", "Email Not Valid", false);
+
+            }
             var client = new HttpClient();
             var model = new Registration
             {
@@ -87,7 +92,7 @@ namespace Phone.Services
                     } 
                 });
             }
-            return response.IsSuccessStatusCode;
+            return new Message("Sign In", "Welcome "+ email + "!", response.IsSuccessStatusCode);
         }
         internal async Task<bool> SendFCMTokenAsync()
         {

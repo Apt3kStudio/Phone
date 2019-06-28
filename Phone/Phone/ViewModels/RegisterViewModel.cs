@@ -37,11 +37,9 @@ namespace Phone.ViewModels
                 {
                     var message = await _portalApiService.RegisterAsync(Email, Password, ConfirmPassword);
                     if (message.isSuccess)
-                    {
-                        message.MessageText = "Registration Successfully!";
+                    {                       
                         Toast.MakeText(_context, message.MessageText, ToastLength.Long).Show();
                         await Navigation.PushModalAsync(new NavigationPage(new Login(Email,_context)));
-
                     }
                     else
                     {                       
