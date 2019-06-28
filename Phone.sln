@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.28729.10
+VisualStudioVersion = 16.0.29009.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Phone", "Phone\Phone\Phone.shproj", "{CA3A2B53-7F8A-42CF-A088-0522E9482E56}"
 EndProject

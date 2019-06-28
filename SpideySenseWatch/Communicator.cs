@@ -32,17 +32,17 @@ namespace SpideySenseWatch
             try
             {
 
-            _context = context; 
-            client = new GoogleApiClient.Builder(context)
-            .AddApi(WearableClass.API)
-            .Build();
-            client.Connect();
+                _context = context;
+                client = new GoogleApiClient.Builder(context)
+                .AddApi(WearableClass.API)
+                .Build();
+                client.Connect();
 
             }
             catch (Exception)
             {
 
-             //   throw;
+                //   throw;
             }
 
 
@@ -60,8 +60,8 @@ namespace SpideySenseWatch
             {
                 client.Connect();
                 WearableClass.MessageApi.AddListener(client, this);
-                WearableClass.DataApi.AddListener(client, this);                
-                WearableClass.CapabilityApi.AddCapabilityListener(client,this, capabilityName);
+                WearableClass.DataApi.AddListener(client, this);
+                WearableClass.CapabilityApi.AddCapabilityListener(client, this, capabilityName);
             }
         }
 
@@ -89,7 +89,7 @@ namespace SpideySenseWatch
                     var result = WearableClass.MessageApi.SendMessage(client, node.Id, path, bytes).Await();
                     var success = result.JavaCast<IMessageApiSendMessageResult>().Status.IsSuccess ? "Ok." : "Failed!";
                     Log.Info("Spidey", "Communicator: Sending message " + message + "... " + success);
-                   // client.Disconnect();
+                    // client.Disconnect();
                 }
             });
         }
@@ -118,26 +118,36 @@ namespace SpideySenseWatch
 
         public void SetTriggerEvent(int index)
         {
+            long milliseconds = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+
             switch (index)
             {
                 case 0:
                     //First Action
                     SendMessage("option1");
+                    SendMessage(milliseconds.ToString() + '|' + "option1");
+
                     var v = CrossVibrate.Current;
                     v.Vibration(TimeSpan.FromSeconds(1)); // 1 second vibration
                     break;
                 case 1:
                     //First Action
                     SendMessage("option2");
+                    SendMessage(milliseconds.ToString() + '|' + "option2");
+
                     break;
                 case 2:
                     //First Action
                     SendMessage("option3");
+                    SendMessage(milliseconds.ToString() + '|' + "option3");
+
                     break;
                 case 3:
                     //First Action
                     SendMessage("settings");
-                    break;                   
+                    SendMessage(milliseconds.ToString() + '|' + "settings");
+
+                    break;
             }
         }
 
@@ -217,5 +227,6 @@ namespace SpideySenseWatch
         //}
 
 
-    } }
+    }
+}
 

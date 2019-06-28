@@ -40,7 +40,7 @@ namespace Phone
             });            
             FCMService.RegisterOnNotificationReceived();
             FCMService.RegisterOnNotificationOpened();   
-            MainPage = new Account(_context).IsUseregistered(false);
+            MainPage = new Account(_context).IsUseregistered(true);
          } 
     }
 }
