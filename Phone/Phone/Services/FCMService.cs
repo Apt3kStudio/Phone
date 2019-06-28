@@ -28,6 +28,16 @@ namespace Phone.Services
            await SaveFCMTokenAsync(getFCMToken());
             Console.WriteLine($"FCM-RegisterOnTokenRefresh()");
         }
+        internal static void InitializeComponents()
+        {
+                Task.Run(async () =>
+                {
+                    await SaveFCMTokenAsync(getFCMToken());
+                    await RegisterOnTokenRefreshAsync();
+                });
+                RegisterOnNotificationReceived();
+                RegisterOnNotificationOpened();        
+        }
         public static void RegisterOnNotificationReceived()
         {
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
