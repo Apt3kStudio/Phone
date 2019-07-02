@@ -13,45 +13,67 @@ namespace Phone.Services
 {
     class FCMService
     {           
-        public static string getFCMToken()
+        public static string GetFCMToken()
         {
-            Console.WriteLine($"FCM-Token {FirebaseInstanceId.Instance.Token}");
+            Log.Info("FCM-Token", FirebaseInstanceId.Instance.Token); 
             return FirebaseInstanceId.Instance.Token;  
-        }       
+        }
+        public static string GetSavedFCMToken()
+        {
+            var savedToken = SecureStorage.GetAsync("FBToken").Result;
+            if (savedToken == null)
+            {
+                savedToken = "";
+            }
+            Log.Info("FCM-GetSavedToken", savedToken);
+            return savedToken;
+        }
         public static async Task RegisterOnTokenRefreshAsync()
         {
+            Log.Info("FCM-Token", "FCM-RegisterOnTokenRefresh()");
             CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
             {
                 System.Diagnostics.Debug.WriteLine($"TOKEN:{p.Token}");
-                Console.WriteLine($"TOKEN-Refreshed:{p.Token.ToString()}");
+                Console.WriteLine($"*******************TOKEN-Refreshed:{p.Token.ToString()}");
+                Log.Info("***********************FCM-Token-Refreshed", p.Token.ToString());
+                CheckStoredToken(p.Token);
             };
-           await SaveFCMTokenAsync(getFCMToken());
-            Console.WriteLine($"FCM-RegisterOnTokenRefresh()");
+            await SaveFCMTokenAsync(GetFCMToken());
+                    
         }
         internal static void InitializeComponents()
-        {
-                Task.Run(async () =>
-                {
-                    await SaveFCMTokenAsync(getFCMToken());
-                    await RegisterOnTokenRefreshAsync();
-                });
-                RegisterOnNotificationReceived();
-                RegisterOnNotificationOpened();        
+        {               
+            RegisterOnNotificationReceived();
+            RegisterOnNotificationOpened();              
+            Log.Info("FCM", "InitializeComponents");
         }
         public static void RegisterOnNotificationReceived()
         {
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
             {
-
+               
+                foreach (var data in p.Data)
+                {
+                    if (data.Key == "Option")
+                    {
+                        EventViewModel evm = new EventViewModel();
+                        Device.BeginInvokeOnMainThread(async () =>
+                        {
+                            _ = evm.setOption(data.Value.ToString());
+                            await evm.TriggerFeatureAsync();
+                        });                       
+                    }
+                    Log.Info($"{data.Key}", $"{data.Value}");
+                    System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
+                }                
+                Log.Info("FCM-Fired", "CrossFirebasePushNotification.Current.OnNotificationReceived");
             };
-            Console.WriteLine($"FCM-RegisterOnNotificationReceived()");
+            Log.Info("FCM", "RegisterOnNotificationReceived");            
         }
         public static void RegisterOnNotificationOpened()
         {
             CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
             {
-                System.Diagnostics.Debug.WriteLine("Opened");
-
                 foreach (var data in p.Data)
                 {
                     EventViewModel evm = new EventViewModel();
@@ -63,25 +85,41 @@ namespace Phone.Services
                     });
                     System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
                 }
+                Log.Info("FCM-fired", "CrossFirebasePushNotification.Current.OnNotificationOpened");
             };
-            Console.WriteLine($"FCM-RegisterOnNotificationOpened()");
+            Log.Info("FCM", "RegisterOnNotificationOpened");
         }
         public static async Task SaveFCMTokenAsync(string Token)
         {           
-            await SecureStorage.SetAsync("FBToken", Token.ToString());           
-            Console.WriteLine($"FCM-SaveFCMToken() { Token.ToString()}");
+            await SecureStorage.SetAsync("FBToken", Token.ToString());                       
+            Log.Info("FCM", "SaveFCMTokenAsync");
         }
         public static async Task DeleteFCMTokenAsync()
         {
-            Console.WriteLine($"FCM-Old Token: {FirebaseInstanceId.Instance.Token}");
+            Log.Info("FCM", "DeleteFCMTokenAsync");
+            Log.Info("FCM-Old-Token:-:-:", FirebaseInstanceId.Instance.Token);            
             await Task.Run(() =>
             {
-                // This may not be executed on the main thread.               
+                Log.Info("FCM-Delete-Started", "");
                 FirebaseInstanceId.Instance.DeleteInstanceId();
-                
+                Log.Info("FCM-Delete-Finished", "");
+                Log.Info("FCM-New-Token:-:-:", FirebaseInstanceId.Instance.Token);
             });
-           await SaveFCMTokenAsync(getFCMToken());
-            Console.WriteLine("FCM-Forced New Token: " + FirebaseInstanceId.Instance.Token);
+            await SaveFCMTokenAsync(GetFCMToken());
+            Log.Info("FCM-New-Token:-:-:", FirebaseInstanceId.Instance.Token);          
+        }
+        public static void CheckStoredToken(string token)
+        {
+            if (GetSavedFCMToken() != token)
+            { 
+                Task.Run(async () => {
+                    await SaveFCMTokenAsync(token);
+                    WebPortalApiServices wps = new WebPortalApiServices();
+                    await wps.SendFCMTokenAsync();
+                    Log.Info("FCM-New-Token-Sent-To-Portal:-:-:", token);
+                });
+
+            }           
         }
     }
 }

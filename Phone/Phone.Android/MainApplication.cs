@@ -45,17 +45,17 @@ namespace Phone.Droid
             #endif
 
             //Handle notification when app is closed here
-            CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
-            {
+            //CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
+            //{
 
-                EventViewModel evm = new EventViewModel();
+            //    EventViewModel evm = new EventViewModel();
 
-                Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => {
-                  await evm.setOption("option1");
-                    await evm.TriggerFeatureAsync();
-                });
-            };
-            var FirebaseID = Firebase.Iid.FirebaseInstanceId.Instance.Token;
+            //    Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => {
+            //      await evm.setOption("option1");
+            //        await evm.TriggerFeatureAsync();
+            //    });
+            //};
+            //var FirebaseID = Firebase.Iid.FirebaseInstanceId.Instance.Token;
 
 
         }

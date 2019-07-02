@@ -31,7 +31,7 @@ namespace Phone.Views
         {
             Task.Run(async () =>
             {
-                await eventModel.PlaySound(10);
+                await eventModel.PlaySoundAsync(10);
                 await eventModel.setOption("option1");
             });
         }
@@ -104,7 +104,7 @@ namespace Phone.Views
         async void Play_Sound(object sender, EventArgs e)
         {
            
-            await eventModel.PlaySound(10);
+            await eventModel.PlaySoundAsync(10);
         }
         async void Send_Email(object sender, EventArgs e)
         {

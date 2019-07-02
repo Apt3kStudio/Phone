@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Android.Widget;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -17,6 +18,7 @@ namespace Phone.Models
             id = UtilityHelper.getNewID().ToString();
             isSuccess = _isSuccess;
         }
+     
 
     }
 }
