@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Firebase.Iid;
 using Phone.Services;
 using System.Threading;
+using Phone.Models;
 
 namespace Phone.Droid
 {
@@ -24,7 +25,7 @@ namespace Phone.Droid
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            TabLayoutResource = Resource.Layout.Tabbar;
+            //TabLayoutResource = Resource.Layout.Tabbar;
             //ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
@@ -35,52 +36,43 @@ namespace Phone.Droid
             #endregion
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
             LoadApplication(new App(this));
-
+           
             #region call firebase            
-            //Task.Run(() =>
-            //{
-            //    // This may not be executed on the main thread.
-            //    FirebaseInstanceId.Instance.DeleteInstanceId();
-            //    Console.WriteLine("Forced token: " + FirebaseInstanceId.Instance.Token);
-            //});
+
             FirebaseMessaging.Instance.SubscribeToTopic("admin");
-            var FirebaseID = Firebase.Iid.FirebaseInstanceId.Instance.Token;           
+            var FirebaseID = Firebase.Iid.FirebaseInstanceId.Instance.Token;
 
             #endregion
             #region watch => phone communication
-            cmm = new Communicator(this);
-          
-            cmm.SendMessage("FromPhone"+ DateTime.Now.ToString("T"));
-            cmm.DataReceived += Cmm_DataReceived;
+            new Task(() => {
+                cmm = new Communicator(this);          
+                cmm.SendMessage("FromPhone"+ DateTime.Now.ToString("T"));
+                cmm.DataReceived += DeviceReceived;
+
+            });
+            
             //cmm.DataReceived
 
             #endregion
             StartService(new Intent(this,Class));
-            // FCMService.CheckStoredToken(FirebaseInstanceId.Instance.Token.ToString());
-            MyFirebaseIIDService fff = new MyFirebaseIIDService();
-            fff.MessageReceived += (s)=> 
-            {
-
-            };
-
             
         }
-
-        private void Cmm_DataReceived(Android.Gms.Wearable.DataMap obj)
+        private void DeviceReceived(Android.Gms.Wearable.DataMap device)
         {
-            throw new NotImplementedException();
+
+           var TimeStamp = device.GetString("TimeStamp");
         }
 
         protected override void OnResume()
         {
             base.OnResume();
 
-            cmm.Resume();
+         //   cmm.Resume();
         }
 
         protected override void OnPause()
         {
-            cmm.Pause();
+           // cmm.Pause();
 
             base.OnPause();
         }

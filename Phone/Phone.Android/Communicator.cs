@@ -54,7 +54,7 @@ namespace Phone.Droid
                 //WearableClass.DataApi.RemoveListener(client, this);
             }
         }
-
+       
         // Sending message via MessageApi
         public void SendMessage(string message)
         {
@@ -170,12 +170,7 @@ namespace Phone.Droid
                 }
                 return results;
             }
-        }
-        //public override void OnPeerConnected(INode p0)
-        //{
-        //    //((NotificationManager)GetSystemService(NotificationService))
-        //    //    .Cancel(FORGOT_PHONE_NOTIFICATION_ID);
-        //}
+        }      
 
         public void OnChannelClosed(IChannel channel, int closeReason, int appSpecificErrorCode)
         {
@@ -210,7 +205,6 @@ namespace Phone.Droid
         {
            
         }
-
         public void OnPeerConnected(INode peer)
         {
             EventViewModel eventModel = new EventViewModel();
@@ -219,9 +213,5 @@ namespace Phone.Droid
                 await eventModel.TriggerFeatureAsync();
             });
         }
-      
-
-
-
 }
 }

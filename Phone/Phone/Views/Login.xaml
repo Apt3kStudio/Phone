@@ -3,26 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Phone.Views.Login">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White" Padding="20,0,20,0">
+        <StackLayout BackgroundColor="#0A2638" Padding="20,0,20,0">
             <Grid Padding="20" VerticalOptions="CenterAndExpand">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*" />
                     <ColumnDefinition Width="5*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalOptions="FillAndExpand" Text="{Binding Message}" TextColor="White" BackgroundColor="#566a7d"/>
 
-                <Entry Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Email Address" Text="{Binding Email}" HorizontalOptions="FillAndExpand"/>
-                <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Password" IsPassword="True"  Text="{Binding Password}"  HorizontalOptions="FillAndExpand"/>
-                <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalOptions="FillAndExpand" Text="Login" Clicked="goToStartUpPage" TextColor="White" BackgroundColor="#2c3e50"/>
-                <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalOptions="FillAndExpand" Text="SignUp" Clicked="NavigateToRegistrationPage_Clicked" TextColor="White" BackgroundColor="#566a7d"/>
+                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  Source="/YourNamespace;component/Resources/Spide_Icon_WhiteBlue" />                
+                
+                
+
+                <Entry Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="white"  Placeholder="Email Address" Text="{Binding Email}" HorizontalOptions="FillAndExpand"/>
+                <Entry Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="white" Placeholder="Password" IsPassword="True"  Text="{Binding Password}"  HorizontalOptions="FillAndExpand"/>
+                <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalOptions="FillAndExpand" Text="Login" Clicked="goToStartUpPage" TextColor="White" BackgroundColor="#2c3e50"/>
+                <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalOptions="FillAndExpand" Text="SignUp" Clicked="NavigateToRegistrationPage_Clicked" TextColor="White" BackgroundColor="#566a7d"/>
 
             </Grid>
 

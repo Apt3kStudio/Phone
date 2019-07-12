@@ -29,6 +29,7 @@ namespace Phone.Utility
         public void RaiseCurrentPageChanged()
         {
             OnCurrentPageChanged();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

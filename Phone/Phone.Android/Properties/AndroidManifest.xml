@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="012" android:versionName="1.0" package="com.Apt3k.SpideySenseMobileWear" android:installLocation="internalOnly">
-	<uses-sdk android:minSdkVersion="20" android:targetSdkVersion="27" />
+	<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="28" />
 	<application android:label="Phone.Android" android:name="android.support.multidex.MultiDexApplication">
 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 	</application>
@@ -15,9 +15,9 @@
 				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
 				<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 				<action android:name="com.google.android.gms.wearable.CAPABILITY_CHANGED" />
-        <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-				<!--<data android:scheme="wear"  android:host="*" android:pathPrefix="/com.companyname.Phone.my_capability" />
-        <data android:scheme="wear"  android:host="*" android:pathPrefix="/my_capability" />-->
+				<action android:name="com.google.firebase.MESSAGING_EVENT" />
+				<data android:scheme="wear"  android:host="*" android:pathPrefix="/com.companyname.Phone.my_capability" />
+        <data android:scheme="wear"  android:host="*" android:pathPrefix="/my_capability" />
 				<category android:name="${applicationId}" />
 			</intent-filter>
 		</service>

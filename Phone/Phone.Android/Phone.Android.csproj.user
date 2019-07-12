@@ -4,6 +4,7 @@
     <SelectedDevice>Motorola moto e5 play</SelectedDevice>
     <DefaultDevice>2nd</DefaultDevice>
     <AndroidDesignerPreferredDevice>Nexus 6P</AndroidDesignerPreferredDevice>
-    <ProjectView>ProjectFiles</ProjectView>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <AndroidDesignerPreferredTheme>Theme.DeviceDefault.Light.NoActionBar.Fullscreen</AndroidDesignerPreferredTheme>
   </PropertyGroup>
 </Project>

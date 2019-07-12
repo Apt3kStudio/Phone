@@ -24,8 +24,9 @@ namespace Phone
         {
             _context = context;
             InitializeComponent();
+          
             FCMService.InitializeComponents();
-            MainPage = new Account(_context).IsUseregistered(false);
+            MainPage = new Account(_context).IsUseregistered(true);
         }        
     }
 }

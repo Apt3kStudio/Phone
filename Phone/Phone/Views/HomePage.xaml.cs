@@ -21,11 +21,17 @@ namespace Phone.Views
     {
         private Context _context;
         private EventViewModel eventModel;
+        public string UserName { get; set; }
+        public string WelcomeMessage { get; set; }
         public HomePage(Context context)
         {
             _context = context;
             eventModel = new EventViewModel(context);
-            InitializeComponent();
+            InitializeComponent();            
+            WelcomeMessage = "Welcome, ";
+            UserName = SecureStorage.GetAsync("Email").Result + "!";
+            BindingContext = this;
+            
         }
         public void OnTapGestSoundIcon(object sender, EventArgs args)
         {

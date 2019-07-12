@@ -10,47 +10,36 @@ using Android.Util;
 namespace SpideySenseWatch
 {
     [Service]
-   //[IntentFilter(new string[] { "com.google.android.gms.wearable.BIND_LISTENER" })]
-    [IntentFilter(new string[] { "com.google.android.gms.wearable.CAPABILITY_CHANGED" })]
+    [IntentFilter(new string[] { "com.google.android.gms.wearable.BIND_LISTENER" })]
+    //[IntentFilter(new string[] { "com.google.android.gms.wearable.CAPABILITY_CHANGED" })]
     public class DisconnectListenerService : WearableListenerService, IResultCallback
     {
         readonly GoogleApiClient client;
         const string path = "/communicator";
         string capabilityName = "my_capability";
-        INode phoneNode;
-        // Initializing GoogleApiClient
+        public INode phoneNode;
+        const string TAG = "ExampleFindPhoneApp";
+        const int FORGOT_PHONE_NOTIFICATION_ID = 1;
         Context _context;
         public DisconnectListenerService()
         {
         }
-            public DisconnectListenerService(Context context)
+        public DisconnectListenerService(Context context)
         {
             _context = context;
             client = new GoogleApiClient.Builder(context)
-             .AddApi(WearableClass.API)
-             .Build();
+                .AddApi(WearableClass.API)
+                .Build();
             client.Connect();
-
             var capabilitiesTask = WearableClass.CapabilityApi.GetAllCapabilities(client, CapabilityApi.FilterReachable);
-
-
             var result = WearableClass.CapabilityApi.GetCapability(client, capabilityName, CapabilityApi.FilterReachable);
-
         }
-
-        const string TAG = "ExampleFindPhoneApp";
-
-            const int FORGOT_PHONE_NOTIFICATION_ID = 1;
-
-            public override void OnPeerDisconnected(INode p0)
-            {
-               
-            }
+        public override void OnPeerDisconnected(INode p0)
+        {               
+        }
         public override void OnCapabilityChanged(ICapabilityInfo capabilityInfo)
         {
-
         }
-
         public override void OnPeerConnected(INode p0)
         {
                 
@@ -64,9 +53,7 @@ namespace SpideySenseWatch
             WearableClass.CapabilityApi.GetCapability(
                     client, capabilityName,
                     CapabilityApi.FilterReachable).SetResultCallback(this);
-
         }
-
         private void updateConnectionCapability(ICapabilityInfo capabilityInfo)
         {
           var connectedNodes = capabilityInfo.Nodes;
@@ -103,14 +90,8 @@ namespace SpideySenseWatch
             else
             {
                 Log.Info("Spidey", "Communicator: Sending message ");
-            }
-
-            //WearableClass.MessageApi.SendMessage(client, phoneNode.Id,
-            //                                      SearchStationPath + ActionStatus.ToString(),
-            //                                      new byte[0]);
-        }
-      
- }
-
+            }          
+        }      
+    }
 }
 

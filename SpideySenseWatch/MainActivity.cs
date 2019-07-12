@@ -16,6 +16,7 @@ using Android.Support.Wearable.View.Drawer;
 using Xamarin.Essentials;
 using Android.Gms.Wearable;
 using Android.Gms.Common;
+using SpideySenseWatch.Models;
 
 namespace SpideySenseWatch
 {
@@ -34,6 +35,7 @@ namespace SpideySenseWatch
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.activity_main2);
 
+            
             #region NVD
             mWearableNavigationDrawer = (WearableNavigationDrawer)FindViewById(Resource.Id.top_navigation_drawer);
             //mWearableNavigationDrawer.SetAdapter(new NavigationAdapter(this, mWearableNavigationDrawer, mWearableActionDrawer));
@@ -41,6 +43,10 @@ namespace SpideySenseWatch
             #endregion
             SectionFragment f = new SectionFragment();
             objCommunicator = new Communicator(this);
+            Device device = new Device();
+            device.Initialize(objCommunicator);
+            device.AdvertiseMyself(true);
+
             objCommunicator.MessageReceived += delegate
             {
                 string isVibrate = "";
@@ -75,17 +81,17 @@ namespace SpideySenseWatch
             mWearableActionDrawer.MenuItemClick += (m, arg) =>
             {
                 mWearableActionDrawer.CloseDrawer();
-                switch (arg.Item.ItemId)
-                {
-                    case Resource.Id.action_edit:
-                        Toast.MakeText(this, Resource.String.action_edit_todo, ToastLength.Short).Show();
+                //switch (arg.Item.ItemId)
+               // {
+                    //case Resource.Id.action_edit:
+                       // Toast.MakeText(this, Resource.String.action_edit_todo, ToastLength.Short).Show();
                         //return true;
-                        break;
-                    case Resource.Id.action_share:
-                        Toast.MakeText(this, Resource.String.action_share_todo, ToastLength.Short).Show();
+                       // break;
+                   // case Resource.Id.action_share:
+                       // Toast.MakeText(this, Resource.String.action_share_todo, ToastLength.Short).Show();
                         // return true;
-                        break;
-                }
+                      //  break;
+               // }
 
                 // return false;
             };
@@ -93,16 +99,16 @@ namespace SpideySenseWatch
         }
         public bool OnMenuItemClick(IMenuItem menuItem)
         {
-            mWearableActionDrawer.CloseDrawer();
-            switch (menuItem.ItemId)
-            {
-                case Resource.Id.action_edit:
-                    Toast.MakeText(this, Resource.String.action_edit_todo, ToastLength.Short).Show();
-                    return true;
-                case Resource.Id.action_share:
-                    Toast.MakeText(this, Resource.String.action_share_todo, ToastLength.Short).Show();
-                    return true;
-            }
+            //mWearableActionDrawer.CloseDrawer();
+            //switch (menuItem.ItemId)
+            //{
+                //case Resource.Id.action_edit:
+                //    Toast.MakeText(this, Resource.String.action_edit_todo, ToastLength.Short).Show();
+                //    return true;
+                //case Resource.Id.action_share:
+                //    Toast.MakeText(this, Resource.String.action_share_todo, ToastLength.Short).Show();
+                    //return true;
+            //}
             return false;
         }
         #region DO NOT remove

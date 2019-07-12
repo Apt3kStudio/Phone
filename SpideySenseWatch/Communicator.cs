@@ -25,35 +25,23 @@ namespace SpideySenseWatch
         readonly GoogleApiClient client;
         const string path = "/my_capability";
         string capabilityName = "my_capability";
-        // Initializing GoogleApiClient
         Context _context;
         public Communicator(Context context)
         {
             try
             {
-
-            _context = context; 
-            client = new GoogleApiClient.Builder(context)
-            .AddApi(WearableClass.API)
-            .Build();
-            client.Connect();
-
+                _context = context; 
+                client = new GoogleApiClient.Builder(context)
+                .AddApi(WearableClass.API)
+                .Build();
+                client.Connect();
             }
             catch (Exception)
             {
-
-             //   throw;
+            
             }
-
-
-            //var capabilitiesTask = WearableClass.CapabilityApi.GetAllCapabilities(client, CapabilityApi.FilterReachable);
-
-
-            //var result = WearableClass.CapabilityApi.GetCapability(client, capabilityName, CapabilityApi.FilterReachable);
-
-        }
-
-        // Connecting client when we want it (usually on Activity.OnResume)
+            var result = WearableClass.CapabilityApi.GetCapability(client, capabilityName, CapabilityApi.FilterReachable);
+        }        
         public void Resume()
         {
             if (!client.IsConnected)
@@ -63,9 +51,8 @@ namespace SpideySenseWatch
                 WearableClass.DataApi.AddListener(client, this);                
                 WearableClass.CapabilityApi.AddCapabilityListener(client,this, capabilityName);
             }
-        }
-
-        // Disconnecting client when we want it (usually on Activity.OnPause)
+        }      
+       
         public void Pause()
         {
             if (client != null && client.IsConnected)
@@ -75,8 +62,6 @@ namespace SpideySenseWatch
                 //WearableClass.DataApi.RemoveListener(client, this);
             }
         }
-
-        // Sending message via MessageApi
         public void SendMessage(string message)
         {
             client.Connect();
@@ -101,8 +86,6 @@ namespace SpideySenseWatch
             {
                 try
                 {
-
-
                     var request = PutDataMapRequest.Create(path);
                     request.DataMap.PutAll(dataMap);
                     var result = WearableClass.DataApi.PutDataItem(client, request.AsPutDataRequest()).Await();
@@ -115,7 +98,24 @@ namespace SpideySenseWatch
                 }
             });
         }
-
+        public void SendStamp(DataMap dataMap)
+        {
+            System.Threading.Tasks.Task.Run(() =>
+            {
+                try
+                {
+                    var request = PutDataMapRequest.Create(path);
+                    request.DataMap.PutAll(dataMap);
+                    var result = WearableClass.DataApi.PutDataItem(client, request.AsPutDataRequest()).Await();
+                    var success = result.JavaCast<IDataApiDataItemResult>().Status.IsSuccess ? "Ok." : "Failed!";
+                    Log.Info("Spidey", "Communicator: Sending data map " + dataMap + "... " + success);
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            });
+        }
         public void SetTriggerEvent(int index)
         {
             switch (index)
@@ -169,14 +169,12 @@ namespace SpideySenseWatch
         // Events for incoming message or update data
         public event Action<string> MessageReceived = delegate { };
         public event Action<DataMap> DataReceived = delegate { };
-
         IList<INode> Nodes()
         {
 
             var result = WearableClass.NodeApi.GetConnectedNodes(client).Await();
             return result.JavaCast<INodeApiGetConnectedNodesResult>().Nodes;
         }
-
         public void OnCapabilityChanged(ICapabilityInfo capabilityInfo)
         {
             string isVibrate = "";
