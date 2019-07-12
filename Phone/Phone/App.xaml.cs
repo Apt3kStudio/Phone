@@ -24,9 +24,19 @@ namespace Phone
         {
             _context = context;
             InitializeComponent();
-          
             FCMService.InitializeComponents();
             MainPage = new Account(_context).IsUseregistered(true);
+            Task.Run(async () => {
+                await UtilityHelper.SaveToPhoneAsync("stampcounter", "0");
+            });
+
+            for (int i = 1; i <= 10; i++)
+            {
+                Task.Run(async () => {
+                    await UtilityHelper.SaveToPhoneAsync("TimeStamp" + 1, "");
+                });
+            }
+            MainPage = new Account(_context).IsUseregistered(false);
         }        
     }
 }

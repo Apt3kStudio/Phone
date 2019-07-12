@@ -51,8 +51,18 @@ namespace SpideySenseWatch
 
         public override Drawable GetItemDrawable(int index)
         {
-            Section selectedSection = getSection(index);
-            return mContext.GetDrawable(selectedSection.drawableRes);
+            try
+            {
+                System.Diagnostics.Debug.WriteLine("Index: " +  index.ToString());
+                Section selectedSection = getSection(index);
+                return mContext.GetDrawable(selectedSection.drawableRes);
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message.ToString());
+                throw;
+            }
+            
         }
 
         public override void OnItemSelected(int index)
@@ -92,18 +102,18 @@ namespace SpideySenseWatch
             Section selectedSection = null;
             foreach (var item in Section.Values)
             {
+                System.Diagnostics.Debug.WriteLine("In Get Session Item: " + item.ToString());
                 if (index == i)
                     selectedSection = item;
                 i++;
             }
-
+            System.Diagnostics.Debug.WriteLine("getSection return " +  selectedSection.ToString());
             return selectedSection;
         }
 
         public int GetCount()
         {
             var v = (List<Section>)Section.Values.GetEnumerator();
-
             return v.Count;
         }
     }
