@@ -52,7 +52,9 @@
 
 
 
-
+            <Label Grid.Column="1" Grid.Row="8" Grid.ColumnSpan ="1" Text="Time Stamp:"></Label>
+            <!--<Label x:Name="lbltimestamp" Text="xxxxxxxxxxxxxxxx"></Label>-->
+            <Label Grid.Column="2" Grid.Row="8" Grid.ColumnSpan ="3" Text="{Binding strtimestamp}"></Label>
         </Grid>
 
     </ContentPage>

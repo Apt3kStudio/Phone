@@ -3,15 +3,30 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace Phone.Models
 {
-   public static class UtilityHelper
+    public static class UtilityHelper
     {
         public static Guid getNewID()
         {
             Guid id = Guid.NewGuid();
             return id;
+        }
+
+        /*TODO: READ DATA METHOD TO READ MESSAGE FROM WATCH WITH TIMESTAMP
+         * SAVE LOCAL DEVICE NAME IN DATABASE LOGINUSERVIEWMODEL SAMPLE CODE TYPE SECURESTORAGE
+        */
+
+        public static async Task SaveToPhoneAsync(string key, string data)
+        {
+            await SecureStorage.SetAsync(key, data);
+        }
+        public static async Task<string> RetrieveFromPhone(string key)
+        {
+            return await SecureStorage.GetAsync(key);
         }
         public static bool IsValidEmail(string email)
         {
@@ -56,6 +71,11 @@ namespace Phone.Models
             {
                 return false;
             }
+        }
+
+        internal static Task SaveToPhoneAsync(string v, int currentIndex)
+        {
+            throw new NotImplementedException();
         }
     }
 }

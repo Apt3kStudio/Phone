@@ -21,11 +21,15 @@ namespace Phone.Views
     {
         private Context _context;
         private EventViewModel eventModel;
+        public string strtimestamp { get; set; }
         public HomePage(Context context)
         {
             _context = context;
             eventModel = new EventViewModel(context);
             InitializeComponent();
+            strtimestamp = "00000230000000000093";
+            BindingContext = this;
+
         }
         public void OnTapGestSoundIcon(object sender, EventArgs args)
         {
