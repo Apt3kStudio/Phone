@@ -170,7 +170,25 @@ namespace Phone.Droid
                 }
                 return results;
             }
-        }      
+        }
+        public void SendStamp(DataMap dataMap)
+        {
+            System.Threading.Tasks.Task.Run(() =>
+            {
+                try
+                {
+                    var request = PutDataMapRequest.Create(path);
+                    request.DataMap.PutAll(dataMap);
+                    var result = WearableClass.DataApi.PutDataItem(client, request.AsPutDataRequest()).Await();
+                    var success = result.JavaCast<IDataApiDataItemResult>().Status.IsSuccess ? "Ok." : "Failed!";
+                    Log.Info("Spidey", "Communicator: Sending data map " + dataMap + "... " + success);
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            });
+        }
 
         public void OnChannelClosed(IChannel channel, int closeReason, int appSpecificErrorCode)
         {
