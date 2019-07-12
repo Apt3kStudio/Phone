@@ -20,11 +20,11 @@ namespace Phone.Services
         public WebPortalApiServices()
         {            
             #if DEBUG
-                WebApiBaseURL = "http://192.168.1.168:45455/";
+               // WebApiBaseURL = "http://192.168.1.168:45455/";
             #else
-                WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net/";
+              //  WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net/";
             #endif
-            WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net/";
+            //WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net/";
         }
 
         internal async Task<Message> RegisterAsync(string email, string password, string confirmPassword)
@@ -62,12 +62,15 @@ namespace Phone.Services
                 return new Message("Email Not Valid", "Email Not Valid", false);
 
             }
+            Models.Device device = new Models.Device();
             var client = new HttpClient();
             var model = new Registration
             {
                 Email = email,
                 Password = password,
-                FBToken = SecureStorage.GetAsync("FBToken").Result
+                FBToken = SecureStorage.GetAsync("FBToken").Result,
+                DeviceName = device.deviceName
+
             };    
             var json = JsonConvert.SerializeObject(model);
             HttpContent httpContent = new StringContent(json);
@@ -97,11 +100,13 @@ namespace Phone.Services
         internal async Task<bool> SendFCMTokenAsync()
         {
             var client = new HttpClient();
+            Models.Device device = new Models.Device();
             var model = new Registration
             {
                 Email = SecureStorage.GetAsync("Email").Result,
                 Password = "dsdsds",
-                FBToken = SecureStorage.GetAsync("FBToken").Result
+                FBToken = SecureStorage.GetAsync("FBToken").Result,
+                DeviceName = device.deviceName                  
             };
 
             var json = JsonConvert.SerializeObject(model);

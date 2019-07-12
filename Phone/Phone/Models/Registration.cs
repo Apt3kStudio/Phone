@@ -11,5 +11,6 @@ namespace Phone.Models
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public string FBToken { get; internal set; }
+        public string DeviceName { get; set; }
     }
 }

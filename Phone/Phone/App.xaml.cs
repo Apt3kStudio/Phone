@@ -36,6 +36,7 @@ namespace Phone
                     await UtilityHelper.SaveToPhoneAsync("TimeStamp" + 1, "");
                 });
             }
+            MainPage = new Account(_context).IsUseregistered(false);
         }        
     }
 }

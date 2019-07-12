@@ -111,10 +111,11 @@ namespace Phone.ViewModels
                 // Unable to turn on/off flashlight
             }
         }
-        public async Task PlaySound(int volume)
+        public async Task PlaySoundAsync(int volume)
         {
             try
             {
+                
                 var assembly = typeof(App).GetTypeInfo().Assembly;
                 Stream audioStream = assembly.GetManifestResourceStream("Phone.Droid.Resources.fire_truck.wav");
                 var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
@@ -202,13 +203,10 @@ namespace Phone.ViewModels
                 trigger = getOption().Result;
             switch (trigger)
             {
-                case "option1":
-                    VibrateMe(20);
-                   // await PlaySound(10);
-                    await FlashPattern();
+                case "option1":                   
+                    await PlaySoundAsync(10);                   
                     break;
-                case "option2":
-                    await FlashPattern();
+                case "option2":                    
                     VibrateMe(2);
                     await Task.Delay(500);
                     VibrateMe(2);
@@ -224,16 +222,7 @@ namespace Phone.ViewModels
                     break;
                 case "option3":
                     //await PlaySound(10);
-                    VibrateMe(1);
-                    await Task.Delay(50);
-                    VibrateMe(2);
-                    await Task.Delay(100);
-                    VibrateMe(1);
-                    VibrateMe(1);
-                    await Task.Delay(150);
-                    VibrateMe(2);
-                    await Task.Delay(60);
-                    VibrateMe(2);
+                    await FlashPattern();
                     break;
             }
         }
