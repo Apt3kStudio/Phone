@@ -13,7 +13,7 @@ using Phone.ViewModels;
 using Plugin.FirebasePushNotification;
 
 
-namespace Phone.Droid
+namespace Phone.Droid.Models
 {
     [Application]
     public class MainApplication : Application

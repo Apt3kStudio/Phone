@@ -17,7 +17,8 @@ using Android.Gms.Gcm;
 using Plugin.Vibrate;
 using Xamarin.Essentials;
 
-namespace SpideySenseWatch
+namespace SpideySenseWatch.Models
+
 {
 
     public class Communicator : Java.Lang.Object, IMessageApiMessageListener, IDataApiDataListener, ICapabilityApiCapabilityListener
@@ -208,23 +209,23 @@ namespace SpideySenseWatch
             }
         }
 
-        //public void OnPeerConnected(INode peer)
-        //{
-        //    var sds = WearableClass.CapabilityApi.GetCapability(client, capabilityName, CapabilityApi.FilterReachable);
+        public void OnPeerConnected(INode peer)
+        {
+            var sds = WearableClass.CapabilityApi.GetCapability(client, capabilityName, CapabilityApi.FilterReachable);
 
-        //   // WearableClass.NodeApi.AddListener(client, capabilityName,);
+            // WearableClass.NodeApi.AddListener(client, capabilityName,);
 
 
 
-        //    //  WearableClass.CapabilityApi.AddLocalCapability(client, capabilityName);
-        //    Log.Info("Spidey", "Connected" + peer.DisplayName + "id:" + peer.Id);
-        //}
+            //  WearableClass.CapabilityApi.AddLocalCapability(client, capabilityName);
+            Log.Info("Spidey", "Connected" + peer.DisplayName + "id:" + peer.Id);
+        }
 
-        //public void OnPeerDisconnected(INode peer)
-        //{
-        //    Log.Info("Spidey", "Disconnected" + peer.DisplayName + "id:" + peer.Id);
+        public void OnPeerDisconnected(INode peer)
+        {
+            Log.Info("Spidey", "Disconnected" + peer.DisplayName + "id:" + peer.Id);
 
-        //}
+        }
 
 
     }

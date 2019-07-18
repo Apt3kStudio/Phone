@@ -1,5 +1,6 @@
 ﻿using Android.Gms.Wearable;
 using Phone.Droid;
+using Phone.Droid.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;

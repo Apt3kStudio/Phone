@@ -60,18 +60,15 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Communicator.cs" />
+    <Compile Include="Models\Communicator.cs" />
     <Compile Include="Models\Device.cs" />
-    <Compile Include="DisconnectListenerService.cs" />
-    <Compile Include="FindPhoneService.cs" />
-    <Compile Include="LocalNotificationBuilder.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="NavigationAdapter.cs" />
+    <Compile Include="Models\NavigationAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.designer.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="SectionFragment.cs" />
+    <Compile Include="Models\SectionFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AboutAssets.txt" />

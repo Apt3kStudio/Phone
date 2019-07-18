@@ -128,13 +128,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
-    <Compile Include="MainApplication.cs" />
-    <Compile Include="MyFirebaseIIDService.cs" />
+    <Compile Include="Models\MainApplication.cs" />
+    <Compile Include="Models\MyFirebaseIIDService.cs" />
     <Compile Include="Renderers\BottomBarPageRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
-    <Compile Include="Communicator.cs" />
-    <Compile Include="SoundAlarmListenerService.cs" />
+    <Compile Include="Models\Communicator.cs" />
     <Compile Include="Utils\IPageController.cs" />
     <Compile Include="Utils\MeasureSpecFactory.cs" />
     <Compile Include="Utils\PageController.cs" />

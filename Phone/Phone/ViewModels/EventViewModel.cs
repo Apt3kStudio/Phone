@@ -11,6 +11,7 @@ using System.Net.Mail;
 using System.Net;
 using Phone.Droid;
 using Android.Content;
+using Phone.Droid.Models;
 
 namespace Phone.ViewModels
 {

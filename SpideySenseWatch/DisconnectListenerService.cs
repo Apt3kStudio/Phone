@@ -15,7 +15,7 @@ namespace SpideySenseWatch
     public class DisconnectListenerService : WearableListenerService, IResultCallback
     {
         readonly GoogleApiClient client;
-        const string path = "/communicator";
+        const string path = "/my_capability";
         string capabilityName = "my_capability";
         public INode phoneNode;
         const string TAG = "ExampleFindPhoneApp";

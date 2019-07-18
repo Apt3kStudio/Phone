@@ -14,6 +14,7 @@ using Firebase.Iid;
 using Phone.Services;
 using System.Threading;
 using Phone.Models;
+using Phone.Droid.Models;
 
 namespace Phone.Droid
 {

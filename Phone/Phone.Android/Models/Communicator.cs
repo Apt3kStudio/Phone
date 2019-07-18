@@ -16,9 +16,9 @@ using Phone.ViewModels;
 using Xamarin.Forms;
 using Java.Lang;
 
-namespace Phone.Droid
+namespace Phone.Droid.Models
 {
-    public class Communicator : Java.Lang.Object, IMessageApiMessageListener, IDataApiDataListener, IChannelApiChannelListener,ICapabilityApiCapabilityListener,INodeApiNodeListener
+    public class Communicator : Java.Lang.Object, IMessageApiMessageListener, IDataApiDataListener, IChannelApiChannelListener,ICapabilityApiCapabilityListener
     {
         readonly GoogleApiClient client;
         const string path = "/my_capability";
@@ -128,7 +128,9 @@ namespace Phone.Droid
             {
                 var dataEvent = p0.Get(i).JavaCast<IDataEvent>();
                 if (dataEvent.Type == DataEvent.TypeChanged && dataEvent.DataItem.Uri.Path == path)
+                {
                     DataReceived(DataMapItem.FromDataItem(dataEvent.DataItem).DataMap);
+                }
             }
         }
 
@@ -137,14 +139,11 @@ namespace Phone.Droid
         {
 
         };
-        public event Action<DataMap> DataReceived = delegate 
-        {
-
-        };
+        public event Action<DataMap> DataReceived = delegate {};
 
         IList<INode> Nodes()
         {
-
+             
             var result = WearableClass.NodeApi.GetConnectedNodes(client).Await();
             return result.JavaCast<INodeApiGetConnectedNodesResult>().Nodes;
         }
@@ -183,7 +182,7 @@ namespace Phone.Droid
                     var success = result.JavaCast<IDataApiDataItemResult>().Status.IsSuccess ? "Ok." : "Failed!";
                     Log.Info("Spidey", "Communicator: Sending data map " + dataMap + "... " + success);
                 }
-                catch (Exception ex)
+                catch (System.Exception ex)
                 {
                     throw;
                 }

@@ -11,8 +11,9 @@ using Android.Runtime;
 using Android.Support.Wearable.View.Drawer;
 using Android.Views;
 using Android.Widget;
+using SpideySenseWatch.Models;
 
-namespace SpideySenseWatch
+namespace SpideySenseWatch.Models
 {
     public class NavigationAdapter : WearableNavigationDrawer.WearableNavigationDrawerAdapter
     {

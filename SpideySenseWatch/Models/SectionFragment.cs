@@ -17,7 +17,7 @@ using Android.Views;
 using Android.Widget;
 using Java.IO;
 
-namespace SpideySenseWatch
+namespace SpideySenseWatch.Models
 {
     public class SectionFragment : Fragment, View.IOnClickListener, View.IOnContextClickListener
     {

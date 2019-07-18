@@ -8,7 +8,7 @@ using Phone.Models;
 using Android.Widget;
 using Android.Content;
 
-namespace Phone.Droid
+namespace Phone.Droid.Models
 {
     [Service]
     [IntentFilter(new[] { "com.google.firebase.INSTANCE_ID_EVENT" })]
