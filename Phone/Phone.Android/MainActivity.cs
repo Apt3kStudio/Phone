@@ -15,6 +15,7 @@ using Phone.Services;
 using System.Threading;
 using Phone.Models;
 using Phone.Droid.Models;
+using Xamarin.Forms;
 
 namespace Phone.Droid
 {
@@ -26,18 +27,19 @@ namespace Phone.Droid
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            //TabLayoutResource = Resource.Layout.Tabbar;
-            //ToolbarResource = Resource.Layout.Toolbar;
+            TabLayoutResource = Resource.Layout.Tabbar;
+            ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-         
+            FormsMaterial.Init(this, savedInstanceState);
+            LoadApplication(new App(this));
+
+
             #region Registering Xamarin Essentials on android;
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             #endregion
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
-            LoadApplication(new App(this));
-           
             #region call firebase            
 
             FirebaseMessaging.Instance.SubscribeToTopic("admin");

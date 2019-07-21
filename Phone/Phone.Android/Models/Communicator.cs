@@ -15,10 +15,11 @@ using Phone.Views;
 using Phone.ViewModels;
 using Xamarin.Forms;
 using Java.Lang;
+using Android.OS;
 
 namespace Phone.Droid.Models
 {
-    public class Communicator : Java.Lang.Object, IMessageApiMessageListener, IDataApiDataListener, IChannelApiChannelListener,ICapabilityApiCapabilityListener
+    public class Communicator : Java.Lang.Object, IMessageApiMessageListener, IDataApiDataListener, IChannelApiChannelListener,ICapabilityApiCapabilityListener, GoogleApiClient.IConnectionCallbacks, INodeApiNodeListener
     {
         readonly GoogleApiClient client;
         const string path = "/my_capability";
@@ -29,7 +30,7 @@ namespace Phone.Droid.Models
             client = new GoogleApiClient.Builder(context)                
                 .AddApi(WearableClass.API).Build();
                 WearableClass.NodeApi.AddListener(client, this);
-         //   WearableClass.CapabilityApi.AddCapabilityListener(client,ICapabilityApiCapabilityListener, "");
+           //WearableClass.CapabilityClient //AddCapabilityListener(client,ICapabilityApiCapabilityListener, "");
         }
 
         // Connecting client when we want it (usually on Activity.OnResume)
@@ -230,5 +231,15 @@ namespace Phone.Droid.Models
                 await eventModel.TriggerFeatureAsync();
             });
         }
-}
+
+        public void OnConnected(Bundle connectionHint)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnConnectionSuspended(int cause)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

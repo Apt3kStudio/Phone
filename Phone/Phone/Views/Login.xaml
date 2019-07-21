@@ -1,36 +1,143 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Phone.Views.Login">
+<ContentPage
+    x:Class="Phone.Views.Login"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Phone"
+    xmlns:skia="clr-namespace:SkiaSharp;assembly=SkiaSharp"
+    xmlns:skiaforms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+    Visual="Material">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="#0A2638" Padding="20,0,20,0">
-            <Grid Padding="20" VerticalOptions="CenterAndExpand">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="3*" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
-                </Grid.RowDefinitions>
+        <StackLayout Padding="0,0,0,0" BackgroundColor="Transparent">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*" />
-                    <ColumnDefinition Width="5*" />
-                </Grid.ColumnDefinitions>
+            <AbsoluteLayout>
 
-                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  Source="/YourNamespace;component/Resources/Spide_Icon_WhiteBlue" />                
-                
-                
+                <Grid VerticalOptions="Fill">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-                <Entry Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="white"  Placeholder="Email Address" Text="{Binding Email}" HorizontalOptions="FillAndExpand"/>
-                <Entry Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="white" Placeholder="Password" IsPassword="True"  Text="{Binding Password}"  HorizontalOptions="FillAndExpand"/>
-                <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalOptions="FillAndExpand" Text="Login" Clicked="goToStartUpPage" TextColor="White" BackgroundColor="#2c3e50"/>
-                <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalOptions="FillAndExpand" Text="SignUp" Clicked="NavigateToRegistrationPage_Clicked" TextColor="White" BackgroundColor="#566a7d"/>
+                    <skiaforms:SKCanvasView
+                        x:Name="canvasView"
+                        Grid.Row="0"
+                        HeightRequest="500"
+                        PaintSurface="OnCanvasViewPaintSurface"
+                        VerticalOptions="FillAndExpand" />
+                    <Grid VerticalOptions="Fill">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="3*" />
+                        </Grid.RowDefinitions>
+                        <StackLayout
+                            Grid.Row="0"
+                            Margin="5,20,5,0"
+                            Spacing="0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+                                <Frame Grid.Row="0" Padding="0">
+                                    <ContentView
+                                        Grid.Row="0"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center">
+                                        <AbsoluteLayout>
+                                            <Grid BackgroundColor="{StaticResource SpideyBlueBckGrnd}">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="1*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*" />
+                                                    <ColumnDefinition Width="3*" />
+                                                </Grid.ColumnDefinitions>
 
-            </Grid>
-
-           
+                                                <Image
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    Margin="0,50,50,0"
+                                                    Aspect="AspectFit"
+                                                    HorizontalOptions="Start"
+                                                    Source="/YourNamespace;component/Resources/Spide_Icon_WhiteBlue"
+                                                    VerticalOptions="Start" />
+                                                <ActivityIndicator
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    Margin="0,50,50,0"
+                                                    BackgroundColor="{StaticResource SpideyLightBlueBckGrnd}"
+                                                    IsRunning="true"
+                                                    Opacity="1"
+                                                    Color="{StaticResource SpideyLogoDarkRed}" />
+                                                <Label
+                                                    Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    Margin="0,0,10,0"
+                                                    FontAttributes="Bold"
+                                                    FontSize="15"
+                                                    HorizontalOptions="StartAndExpand"
+                                                    Text="Spidey Sense"
+                                                    TextColor="{StaticResource SpideyWhite}"
+                                                    VerticalOptions="CenterAndExpand" />
+                                            </Grid>
+                                        </AbsoluteLayout>
+                                    </ContentView>
+                                </Frame>
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Row="1"
+                            Margin="5,20,5,0"
+                            Spacing="0"
+                            VerticalOptions="CenterAndExpand">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+                                <Frame
+                                    Grid.Row="0"
+                                    BackgroundColor="{StaticResource SpideyLightBlueBckGrnd}"
+                                    Opacity="0.50">
+                                    <StackLayout>
+                                        <Editor
+                                            AutoSize="TextChanges"
+                                            BackgroundColor="Transparent"
+                                            Placeholder="UserName"
+                                            Text="{Binding Email}"
+                                            TextColor="{StaticResource SpideyWhite}" />
+                                        <Editor
+                                            AutoSize="TextChanges"
+                                            BackgroundColor="Transparent"
+                                            FontSize="Small"
+                                            Placeholder="Password"
+                                            Text="{Binding Password}"
+                                            TextColor="{StaticResource SpideyWhite}" />
+                                    </StackLayout>
+                                </Frame>
+                                <ContentView
+                                    Grid.Row="1"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="CenterAndExpand">
+                                    <StackLayout>
+                                        <Button
+                                            BackgroundColor="{StaticResource SpideyLightBlueBckGrnd}"
+                                            Clicked="goToStartUpPage"
+                                            CornerRadius="25"
+                                            HorizontalOptions="FillAndExpand"
+                                            Text="login" />
+                                        <Button
+                                            BackgroundColor="{StaticResource SpideyLogoDarkRed}"
+                                            Clicked="NavigateToRegistrationPage_Clicked"
+                                            CornerRadius="25"
+                                            HorizontalOptions="FillAndExpand"
+                                            ImageSource=""
+                                            Text="Sign Up" />
+                                    </StackLayout>
+                                </ContentView>
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+            </AbsoluteLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
