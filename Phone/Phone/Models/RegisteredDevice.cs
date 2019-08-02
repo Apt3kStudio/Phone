@@ -24,14 +24,15 @@ namespace Phone.Models
         public string Sound { get; set; }
         public string Vibration { get; set; }
        
-
         string _Distance = "";
 
         public RegisteredDevice()
         {
-            Task.Run(()=> { GetCount(); });            
+            Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
+            {
+                await GetCount();
+            });             
         }
-
         public string Distance
         {
             get => _Distance;
@@ -55,16 +56,17 @@ namespace Phone.Models
                 throw;
             }
         }
-
-        public void GetCount()
+        public async Task<bool> GetCount()
         {
-            for (var i = 0; i < 1000; i++)
-            {
-                Task.Delay(1000);
-                Distance = i.ToString();
-            }
+                return await Task.Run(async () =>
+                {
+                    for (var i = 0; i < 10000; i++)
+                    {
+                        await Task.Delay(1000);
+                        Distance = i.ToString();
+                    }
+                return true;
+            });
         }
-
     }
-
 }

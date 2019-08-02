@@ -90,9 +90,12 @@ namespace Phone.Views
             canvas.Clear();
 
             // get the brush based on the theme
-            SKColor gradientStart = SKColor.Parse(Application.Current.Resources["SpideySilver"].ToString());
-            SKColor gradientMid = SKColor.Parse(Application.Current.Resources["SpideyBlueBckGrnd"].ToString());
-            SKColor gradientEnd = SKColor.Parse(Application.Current.Resources["SpideyLogoDarkRed"].ToString());
+            SKColor gradientStart;
+            SKColor.TryParse("#f2f2f2",out gradientStart);
+            SKColor gradientMid;
+            SKColor.TryParse("#020f1f", out gradientMid);
+            SKColor gradientEnd;
+            SKColor.TryParse("#001c41", out gradientEnd);
 
             // gradient background with 3 colors
             SKPaint backgroundBrush = new SKPaint();

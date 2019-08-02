@@ -44,8 +44,14 @@
                     <ViewCell>
                         <Grid Margin="15,15">
                             <!--  PaintSurface="OnCanvasViewPaintSurface"  -->
-
-                            <Frame HasShadow="True">
+                            <skiaforms:SKCanvasView
+                                x:Name="convasView"
+                                Grid.Row="0"
+                                BackgroundColor="white"
+                                HeightRequest="200"
+                                Opacity="0.85"
+                                VerticalOptions="FillAndExpand" />
+                            <Frame BackgroundColor="Transparent" HasShadow="True">
 
                                 <StackLayout HeightRequest="200">
                                     <Grid>
