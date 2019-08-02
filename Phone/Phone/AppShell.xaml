@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell
+    x:Class="Phone.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:fontawesome="clr-namespace:Phone.Utility"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="clr-namespace:Phone.Views"
+    Title="Shell"
+    mc:Ignorable="d">
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <ContentView BackgroundColor="{StaticResource SpideyBlueBckGrnd}" HeightRequest="150">
+                <Grid BackgroundColor="Transparent">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <StackLayout
+                        Grid.Row="0"
+                        Padding="0"
+                        BackgroundColor="Transparent">
+                        <ContentView>
+                            <Grid
+                                BackgroundColor="Transparent"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="7*" />
+                                    <RowDefinition Height="1*" />
+
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Margin="0,0,0,0"
+                                    Aspect="AspectFit"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Source="/YourNamespace;component/Resources/Spide_Icon_WhiteBlue.png"
+                                    VerticalOptions="CenterAndExpand" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="2"
+                                    FontAttributes="Bold"
+                                    FontFamily="Righteous-Regular.ttf#Righteous"
+                                    FontSize="Large"
+                                    Text="SPIDEY SENSE"
+                                    TextColor="{StaticResource SpideyWhite}"
+                                    VerticalTextAlignment="Center" />
+                                <StackLayout Grid.Row="0" Grid.Column="2" />
+                            </Grid>
+                        </ContentView>
+
+                    </StackLayout>
+                </Grid>
+            </ContentView>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <StackLayout
+                HeightRequest="44"
+                Orientation="Horizontal"
+                Spacing="40">
+
+                <Label
+                    Margin="10,10,0,10"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    FontSize="Large"
+                    HeightRequest="30"
+                    HorizontalOptions="Center"
+                    Text="{Binding Icon}"
+                    TextColor="{StaticResource SpideyLightBlueBckGrnd}"
+                    VerticalOptions="Center" />
+
+                <Label
+                    FontFamily="Righteous-Regular.ttf#Righteous"
+                    FontSize="18"
+                    Text="{Binding Title}"
+                    TextColor="{StaticResource SpideyBlueBckGrnd}"
+                    VerticalOptions="Center" />
+            </StackLayout>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+    <FlyoutItem
+        Title="Devices Home"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="{x:Static fontawesome:FontAwesomeIcons.Home}">
+        <Tab Title="DevicesHome">
+            <ShellContent ContentTemplate="{DataTemplate views:DevicesHome}" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem
+        Title="Add Device"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="{x:Static fontawesome:FontAwesomeIcons.PlusCircle}">
+        <Tab Title="AddDevice" Icon="/YourNamespace;component/Resources/sound.png">
+            <ShellContent ContentTemplate="{DataTemplate views:AddDevice}" />
+        </Tab>
+        <Tab Title="AddDevice1" Icon="/YourNamespace;component/Resources/sound.png">
+            <ShellContent ContentTemplate="{DataTemplate views:AddDevice}" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem
+        Title="Settings"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="{x:Static fontawesome:FontAwesomeIcons.Cog}">
+        <Tab Title="DevicesHome">
+            <ShellContent ContentTemplate="{DataTemplate views:Settings}" />
+        </Tab>
+    </FlyoutItem>
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <StackLayout
+                Padding="10,10"
+                HeightRequest="44"
+                Orientation="Horizontal"
+                Spacing="20">
+                <Label
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    FontSize="Large"
+                    HeightRequest="30"
+                    HorizontalOptions="Start"
+                    Text="&#xf6d3;"
+                    TextColor="{StaticResource SpideyLightBlueBckGrnd}"
+                    VerticalOptions="Center"
+                    WidthRequest="30" />
+                <Label
+                    FontFamily="Righteous-Regular.ttf#Righteous"
+                    FontSize="18"
+                    Text="{Binding Title}"
+                    TextColor="Blue"
+                    VerticalOptions="Center" />
+            </StackLayout>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+
+    <MenuItem Command="{Binding LogOutCommand}" Text="Logout" />
+
+</Shell>

@@ -1,7 +1,9 @@
-﻿using Android.Gms.Wearable;
+﻿using Android.Content;
+using Android.Gms.Wearable;
 using Phone.Droid;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Xamarin.Essentials;
 
@@ -27,6 +29,12 @@ namespace Phone.Models
             // Device Type (Physical)
             deviceType = DeviceInfo.DeviceType;
         }
+
+        internal bool InitHandShake(ConnectedDevice connectedwatch)
+        {
+           return connectedwatch.ReceivedHandShake("HandShake");
+        }
+        private Context _context;
         public string Id { get; set; }
         public string Event { get; set; }
         public string device;
@@ -37,11 +45,11 @@ namespace Phone.Models
         public DeviceIdiom idiom;
         public DeviceType deviceType;
         public string TimeStamp { get; set; }
-        private Communicator _communicator;
-        public void Initialize(Communicator communicator)
-        {
-            _communicator = communicator;
-        }
+       // private Communicator _communicator;
+     //   public void Initialize(Communicator communicator)
+       // {
+           // _communicator = communicator;
+        //}
         public void AdvertiseMyself(bool enable)
         {
             if (enable)
@@ -57,9 +65,16 @@ namespace Phone.Models
             //_communicator.SendStamp(datamap);
         }
 
-        public static explicit operator Device(DataMap v)
+
+
+
+      
+        public TimeSpan Timer(Action SendMessage)
         {
-            throw new NotImplementedException();
-        }
+            Stopwatch stopWatch = System.Diagnostics.Stopwatch.StartNew();
+            SendMessage();
+            stopWatch.Stop();
+            return stopWatch.Elapsed;
+        }       
     }
 }

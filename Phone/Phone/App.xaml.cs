@@ -6,7 +6,9 @@ using Phone.Views;
 using Phone.ViewModels;
 using System.IO;
 using Xamarin.Essentials;
-using Plugin.FirebasePushNotification;
+#region Firebase disabled
+//using Plugin.FirebasePushNotification; 
+#endregion
 using Plugin.LocalNotifications;
 using Android.Content;
 using Android.Util;
@@ -24,26 +26,12 @@ namespace Phone
         private Context _context;
         public App(Context context)
         {
-        
+        @Phone.App StartTheApplication;
         _context = context;
             InitializeComponent();
-
-
+            //FCMService.InitializeComponents();    
+           MainPage = new Account(_context).IsUseregistered(true);
            
-
-            FCMService.InitializeComponents();
-           
-            Task.Run(async () => {
-                await UtilityHelper.SaveToPhoneAsync("stampcounter", "0");
-            });
-
-            for (int i = 1; i <= 10; i++)
-            {
-                Task.Run(async () => {
-                    await UtilityHelper.SaveToPhoneAsync("TimeStamp" + 1, "");
-                });
-            }
-            MainPage = new Account(_context).IsUseregistered(false);
         }        
     }
 }

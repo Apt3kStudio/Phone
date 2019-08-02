@@ -22,7 +22,6 @@ namespace Phone.ViewModels
         public string EventMessage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string EventDuration { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-
         Communicator cm;
         public EventViewModel()
         {
@@ -30,11 +29,11 @@ namespace Phone.ViewModels
         }
         public EventViewModel(Context context)
         {
-            cm = new Communicator(context);
+           // cm = new Communicator(context);
         }
         public void VibrateWatch(int inDuration = 3)
         {
-            cm.SendMessage("vibWatch");
+            //cm.SendMessage("vibWatch");
         }
             public string VibrateMe(int inDuration = 3)
         {

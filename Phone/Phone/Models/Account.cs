@@ -24,14 +24,15 @@ namespace Phone.Models
 
         public Page IsUseregistered(bool isEnabaled)
         {
-            bool isUserRegistered = (isEnabaled == true) ? isEnabaled : LoginUserViewModel.IsUseregisteredAsync().Result;
+            bool isUserRegistered = (isEnabaled == true) ? isEnabaled : AuthVM.IsUseregisteredAsync().Result;
             if (isUserRegistered)
             {
-                return new NavigationPage(new HomePage(_context));
+                return new AppShell();
+             
             }
             else
             {
-                return new Login(_context);
+                return new Login();
             }
         }
 

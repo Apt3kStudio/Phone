@@ -6,17 +6,15 @@
     xmlns:local="clr-namespace:Phone"
     xmlns:skia="clr-namespace:SkiaSharp;assembly=SkiaSharp"
     xmlns:skiaforms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+    Shell.TabBarIsVisible="false"
     Visual="Material">
     <ContentPage.Content>
         <StackLayout Padding="0,0,0,0" BackgroundColor="Transparent">
-
             <AbsoluteLayout>
-
                 <Grid VerticalOptions="Fill">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-
                     <skiaforms:SKCanvasView
                         x:Name="canvasView"
                         Grid.Row="0"
@@ -32,55 +30,61 @@
                             Grid.Row="0"
                             Margin="5,20,5,0"
                             Spacing="0">
-                            <Grid>
+                            <Grid BackgroundColor="Transparent">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="1*" />
                                 </Grid.RowDefinitions>
-                                <Frame Grid.Row="0" Padding="0">
-                                    <ContentView
-                                        Grid.Row="0"
-                                        HorizontalOptions="Center"
-                                        VerticalOptions="Center">
-                                        <AbsoluteLayout>
-                                            <Grid BackgroundColor="{StaticResource SpideyBlueBckGrnd}">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="1*" />
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="1*" />
-                                                    <ColumnDefinition Width="3*" />
-                                                </Grid.ColumnDefinitions>
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Padding="0"
+                                    BackgroundColor="Transparent">
+                                    <ContentView>
+                                        <Grid
+                                            BackgroundColor="Transparent"
+                                            HorizontalOptions="CenterAndExpand"
+                                            VerticalOptions="FillAndExpand">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*" />
+                                                <RowDefinition Height="7*" />
+                                                <RowDefinition Height="1*" />
 
-                                                <Image
-                                                    Grid.Row="0"
-                                                    Grid.Column="0"
-                                                    Margin="0,50,50,0"
-                                                    Aspect="AspectFit"
-                                                    HorizontalOptions="Start"
-                                                    Source="/YourNamespace;component/Resources/Spide_Icon_WhiteBlue"
-                                                    VerticalOptions="Start" />
-                                                <ActivityIndicator
-                                                    Grid.Row="0"
-                                                    Grid.Column="0"
-                                                    Margin="0,50,50,0"
-                                                    BackgroundColor="{StaticResource SpideyLightBlueBckGrnd}"
-                                                    IsRunning="true"
-                                                    Opacity="1"
-                                                    Color="{StaticResource SpideyLogoDarkRed}" />
-                                                <Label
-                                                    Grid.Row="0"
-                                                    Grid.Column="1"
-                                                    Margin="0,0,10,0"
-                                                    FontAttributes="Bold"
-                                                    FontSize="15"
-                                                    HorizontalOptions="StartAndExpand"
-                                                    Text="Spidey Sense"
-                                                    TextColor="{StaticResource SpideyWhite}"
-                                                    VerticalOptions="CenterAndExpand" />
-                                            </Grid>
-                                        </AbsoluteLayout>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Image
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Margin="0,0,0,0"
+                                                Aspect="AspectFit"
+                                                HorizontalOptions="CenterAndExpand"
+                                                Source="/YourNamespace;component/Resources/Spide_Icon_WhiteBlue"
+                                                VerticalOptions="CenterAndExpand" />
+                                            <ActivityIndicator
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Margin="0,0,0,0"
+                                                BackgroundColor="{StaticResource SpideyLightBlueBckGrnd}"
+                                                IsRunning="{Binding isBussy}"
+                                                Opacity="1"
+                                                Color="{StaticResource SpideyLogoDarkRed}" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                Grid.ColumnSpan="2"
+                                                FontAttributes="Bold"
+                                                FontFamily="Righteous-Regular.ttf#Righteous"
+                                                FontSize="Large"
+                                                Text="SPIDEY SENSE"
+                                                TextColor="{StaticResource SpideyLogoLightRed}"
+                                                VerticalTextAlignment="Center" />
+                                            <StackLayout Grid.Row="0" Grid.Column="2" />
+                                        </Grid>
                                     </ContentView>
-                                </Frame>
+
+                                </StackLayout>
                             </Grid>
                         </StackLayout>
                         <StackLayout
@@ -93,41 +97,43 @@
                                     <RowDefinition Height="1*" />
                                     <RowDefinition Height="1*" />
                                 </Grid.RowDefinitions>
-                                <Frame
-                                    Grid.Row="0"
-                                    BackgroundColor="{StaticResource SpideyLightBlueBckGrnd}"
-                                    Opacity="0.50">
+                                <StackLayout Grid.Row="0" BackgroundColor="Transparent">
                                     <StackLayout>
                                         <Editor
                                             AutoSize="TextChanges"
                                             BackgroundColor="Transparent"
-                                            Placeholder="UserName"
+                                            FontFamily="Righteous-Regular.ttf#Righteous"
+                                            Placeholder="Email"
                                             Text="{Binding Email}"
-                                            TextColor="{StaticResource SpideyWhite}" />
-                                        <Editor
-                                            AutoSize="TextChanges"
+                                            TextColor="#596065" />
+                                        <Entry
                                             BackgroundColor="Transparent"
+                                            FontFamily="Righteous-Regular.ttf#Righteous"
                                             FontSize="Small"
+                                            IsPassword="true"
                                             Placeholder="Password"
                                             Text="{Binding Password}"
-                                            TextColor="{StaticResource SpideyWhite}" />
+                                            TextColor="#596065" />
                                     </StackLayout>
-                                </Frame>
+                                </StackLayout>
                                 <ContentView
                                     Grid.Row="1"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="CenterAndExpand">
                                     <StackLayout>
                                         <Button
-                                            BackgroundColor="{StaticResource SpideyLightBlueBckGrnd}"
-                                            Clicked="goToStartUpPage"
+                                            BackgroundColor="#596065"
+                                            Command="{Binding SigningInCommand}"
                                             CornerRadius="25"
+                                            FontFamily="Righteous-Regular.ttf#Righteous"
                                             HorizontalOptions="FillAndExpand"
+                                            Opacity="0.65"
                                             Text="login" />
                                         <Button
                                             BackgroundColor="{StaticResource SpideyLogoDarkRed}"
-                                            Clicked="NavigateToRegistrationPage_Clicked"
+                                            Clicked="NavigateToRegistrationPage_ClickedAsync"
                                             CornerRadius="25"
+                                            FontFamily="Righteous-Regular.ttf#Righteous"
                                             HorizontalOptions="FillAndExpand"
                                             ImageSource=""
                                             Text="Sign Up" />

@@ -21,10 +21,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)CustomVisual.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ImageResourceExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Account.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\ThisDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ApplicationSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ConnectedDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Device.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Distance.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EventModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\RegisteredDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\IUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Message.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ReceiveFromPhone.cs" />
@@ -36,9 +38,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\WebPortalApiServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\BottomBarPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\BottomBarPageExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\CustomControls\CostomControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\FontAwesomeIcons.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Renders\FrameRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ConnectedDevicesVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EventViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoginUserViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RegisterViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AuthVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AddDevice.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\DevicesHome.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -47,8 +59,14 @@
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)AppShell.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Settings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -72,5 +90,48 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Assets\Images\Spide_Icon_WhiteBlue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\AddDevice.xaml.cs">
+      <DependentUpon>AddDevice.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\ConnectedDevices.xaml.cs">
+      <DependentUpon>ConnectedDevices.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\DevicesHome.xaml.cs">
+      <DependentUpon>DevicesHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\MainShell.xaml.cs">
+      <DependentUpon>MainShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\ShellTest.xaml.cs">
+      <DependentUpon>ShellTest.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)AppShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\DevicesHome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AddDevice.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Settings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

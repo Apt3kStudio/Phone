@@ -4,6 +4,24 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Application.Resources>
+        <OnPlatform x:Key="FontAwesomeBrands" x:TypeArguments="x:String">
+            <On Platform="Android" Value="FontAwesome5Brands.otf#Regular" />
+            <On Platform="iOS" Value="FontAwesome5Brands" />
+            <On Platform="UWP" Value="/Assets/FontAwesome5Brands.otf#Font Awesome 5 Brands" />
+        </OnPlatform>
+
+        <OnPlatform x:Key="FontAwesomeSolid" x:TypeArguments="x:String">
+            <On Platform="Android" Value="FontAwesome5Solid.otf#Regular" />
+            <On Platform="iOS" Value="FontAwesome5Solid" />
+            <On Platform="UWP" Value="/Assets/FontAwesome5Solid.otf#Font Awesome 5 Free" />
+        </OnPlatform>
+
+        <OnPlatform x:Key="FontAwesomeRegular" x:TypeArguments="x:String">
+            <On Platform="Android" Value="FontAwesome5Regular.otf#Regular" />
+            <On Platform="iOS" Value="FontAwesome5Regular" />
+            <On Platform="UWP" Value="/Assets/FontAwesome5Regular.otf#Font Awesome 5 Free" />
+        </OnPlatform>
+
         <Color x:Key="PrimaryColor">#0078D7</Color>
         <Color x:Key="SecondaryColor">#FFB900</Color>
         <Color x:Key="TertiaryColor">#00A4EF</Color>
@@ -21,6 +39,13 @@
         <Color x:Key="SecondaryTextColor">#ffffff</Color>
         <ResourceDictionary>
             <!--  Global Styles  -->
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="FontName" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontFamily" Value="FontName" />
+            </Style>
+
             <Color x:Key="NavigationPrimary">#2196F3</Color>
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />

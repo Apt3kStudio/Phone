@@ -23,6 +23,7 @@ namespace Phone.Views
         private EventViewModel eventModel;
         public string UserName { get; set; }
         public string WelcomeMessage { get; set; }
+        [Obsolete]
         public HomePage(Context context)
         {
             _context = context;
@@ -33,6 +34,15 @@ namespace Phone.Views
             BindingContext = this;
             
         }
+        public HomePage()
+        {
+            eventModel = new EventViewModel();
+            InitializeComponent();
+            WelcomeMessage = "Welcome, ";
+            UserName = SecureStorage.GetAsync("Email").Result + "!";
+            BindingContext = this;
+        }
+
         public void OnTapGestSoundIcon(object sender, EventArgs args)
         {
             Task.Run(async () =>
@@ -62,7 +72,7 @@ namespace Phone.Views
         {
 
             await SecureStorage.SetAsync("Email", ""); // remove the login flag from the application settings. 
-            Application.Current.MainPage = new Login(_context);
+            Application.Current.MainPage = new Login();
 
             // await Navigation.PushModalAsync(new NavigationPage(new Login()));
         }

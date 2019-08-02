@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Phone.Views.DevicesHome"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:fontawesome="clr-namespace:Phone.Utility"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:skia="clr-namespace:SkiaSharp;assembly=SkiaSharp"
+    xmlns:skiaforms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+    Visual="Material"
+    mc:Ignorable="d">
+    <!--  ItemSelected="OnItemSelected"  -->
+    <Grid>
+        <skiaforms:SKCanvasView
+            x:Name="BackgroundGradient"
+            Grid.Row="0"
+            BackgroundColor="#15417a"
+            HeightRequest="180"
+            PaintSurface="BackgroundGradient_PaintSurface"
+            VerticalOptions="FillAndExpand" />
+        <ListView
+            x:Name="ItemsListView"
+            CachingStrategy="RecycleElement"
+            HasUnevenRows="true"
+            IsPullToRefreshEnabled="False"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+            ItemsSource="{Binding RegisteredDevices}"
+            RefreshCommand="{Binding LoadItemsCommand}"
+            VerticalOptions="FillAndExpand">
+            <d:ListView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>First Item</x:String>
+                    <x:String>Second Item</x:String>
+                    <x:String>Third Item</x:String>
+                    <x:String>Forth Item</x:String>
+                    <x:String>Fifth Item</x:String>
+                    <x:String>Sixth Item</x:String>
+                </x:Array>
+            </d:ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="15,15">
+                            <!--  PaintSurface="OnCanvasViewPaintSurface"  -->
+
+                            <Frame HasShadow="True">
+
+                                <StackLayout HeightRequest="200">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <!--  0  -->
+                                            <RowDefinition Height="20*" />
+                                            <!--  1  -->
+                                            <RowDefinition Height="20*" />
+                                            <!--  2  -->
+                                            <RowDefinition Height="20*" />
+                                            <!--  3  -->
+                                            <RowDefinition Height="20*" />
+                                            <!--  4  -->
+                                            <RowDefinition Height="20*" />
+
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*" />
+                                            <ColumnDefinition Width="4*" />
+                                        </Grid.ColumnDefinitions>
+                                        <!--  0  -->
+                                        <StackLayout
+                                            Grid.Row="0"
+                                            Grid.ColumnSpan="2"
+                                            BackgroundColor="Transparent">
+                                            <Label
+                                                d:Text="{Binding .}"
+                                                FontAttributes="Bold"
+                                                FontSize="26"
+                                                LineBreakMode="NoWrap"
+                                                Style="{DynamicResource ListItemTextStyle}"
+                                                Text="{Binding device}"
+                                                TextColor="{StaticResource SpideyBlueBckGrnd}" />
+                                        </StackLayout>
+                                        <!--  1  -->
+                                        <StackLayout
+                                            Grid.Row="1"
+                                            Grid.ColumnSpan="2"
+                                            BackgroundColor="Transparent">
+                                            <Label
+                                                d:Text="Item description"
+                                                FontSize="18"
+                                                LineBreakMode="NoWrap"
+                                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                                Text="{Binding Description}"
+                                                TextColor="{StaticResource SpideyLightBlueBckGrnd}" />
+                                        </StackLayout>
+                                        <!--  2 Icon  -->
+                                        <StackLayout
+                                            Grid.Row="2"
+                                            Grid.RowSpan="3"
+                                            BackgroundColor="Transparent">
+                                            <Label
+                                                Margin="2,0"
+                                                d:Text="{Binding .}"
+                                                FontSize="85"
+                                                HorizontalOptions="Start"
+                                                LineBreakMode="NoWrap"
+                                                Style="{DynamicResource ListItemTextStyle}"
+                                                Text="{Binding Distance}"
+                                                TextColor="{StaticResource SpideyLogoLightRed}" />
+                                        </StackLayout>
+                                        <!--  2  -->
+                                        <StackLayout
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            BackgroundColor="Transparent">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <!--  0  -->
+                                                    <RowDefinition Height="20*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="10*" />
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    IsChecked="True"
+                                                    Visual="Material"
+                                                    Color="{StaticResource SpideyLogoLightRed}" />
+                                                <Label
+                                                    Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    Margin="0,7"
+                                                    d:Text="Item description"
+                                                    FontSize="13"
+                                                    LineBreakMode="NoWrap"
+                                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                                    Text="{Binding Flash}"
+                                                    TextColor="MidnightBlue" />
+                                            </Grid>
+                                        </StackLayout>
+                                        <!--  3  -->
+                                        <StackLayout
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            BackgroundColor="Transparent">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <!--  0  -->
+                                                    <RowDefinition Height="20*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="10*" />
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    IsChecked="True"
+                                                    Visual="Material"
+                                                    Color="{StaticResource SpideyLogoLightRed}" />
+                                                <Label
+                                                    Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    Margin="0,7"
+                                                    d:Text="Item description"
+                                                    FontSize="13"
+                                                    LineBreakMode="NoWrap"
+                                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                                    Text="{Binding Sound}"
+                                                    TextColor="MidnightBlue" />
+                                            </Grid>
+                                        </StackLayout>
+                                        <!--  4  -->
+                                        <StackLayout
+                                            Grid.Row="4"
+                                            Grid.Column="1"
+                                            BackgroundColor="Transparent">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <!--  0  -->
+                                                    <RowDefinition Height="20*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="10*" />
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    IsChecked="True"
+                                                    Visual="Material"
+                                                    Color="{StaticResource SpideyLogoLightRed}" />
+                                                <Label
+                                                    Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    Margin="0,7"
+                                                    d:Text="Item description"
+                                                    FontSize="13"
+                                                    LineBreakMode="NoWrap"
+                                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                                    Text="{Binding Vibration}"
+                                                    TextColor="MidnightBlue" />
+                                            </Grid>
+                                        </StackLayout>
+
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>
