@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)CustomVisual.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ImageResourceExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Account.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Device.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ThisDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ConnectedDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Distance.cs" />
