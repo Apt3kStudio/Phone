@@ -44,7 +44,6 @@ namespace Phone.Droid
               // .AddCustomStyle(Java.Lang.Class.FromType(typeof(TextField)), Resource.Attribute.textFieldStyle)
               .Build()
           );
-            Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);
 

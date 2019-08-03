@@ -4,7 +4,6 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-    xmlns:customControls="clr-namespace:Phone.Utility.CustomControls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:fontawesome="clr-namespace:Phone.Utility"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -12,7 +11,7 @@
     xmlns:skiaforms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
     Visual="Material"
     mc:Ignorable="d">
-
+    <!--  ItemSelected="OnItemSelected"  -->
     <Grid>
         <skiaforms:SKCanvasView
             x:Name="BackgroundGradient"
@@ -29,8 +28,6 @@
             IsRefreshing="{Binding IsBusy, Mode=OneWay}"
             ItemsSource="{Binding RegisteredDevices}"
             RefreshCommand="{Binding LoadItemsCommand}"
-            SelectedItem=""
-            SeparatorVisibility="None"
             VerticalOptions="FillAndExpand">
             <d:ListView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
@@ -44,219 +41,182 @@
             </d:ListView.ItemsSource>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <customControls:ExtendedViewCell SelectedBackgroundColor="Transparent">
-                        <ViewCell.View>
-                            <Grid Margin="15,15">
-                                <!--  PaintSurface="OnCanvasViewPaintSurface"  -->
+                    <ViewCell>
+                        <Grid Margin="15,15">
+                            <!--  PaintSurface="OnCanvasViewPaintSurface"  -->
+                            <skiaforms:SKCanvasView
+                                x:Name="convasView"
+                                Grid.Row="0"
+                                BackgroundColor="white"
+                                HeightRequest="200"
+                                Opacity="0.85"
+                                VerticalOptions="FillAndExpand" />
+                            <Frame BackgroundColor="Transparent" HasShadow="True">
 
-                                <Frame
-                                    Margin="2"
-                                    BackgroundColor="{StaticResource SpideyCardBackground}"
-                                    BorderColor="{StaticResource SpideyCardBorder}"
-                                    CornerRadius="20"
-                                    HasShadow="True"
-                                    Visual="Material">
+                                <StackLayout HeightRequest="200">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <!--  0  -->
+                                            <RowDefinition Height="20*" />
+                                            <!--  1  -->
+                                            <RowDefinition Height="20*" />
+                                            <!--  2  -->
+                                            <RowDefinition Height="20*" />
+                                            <!--  3  -->
+                                            <RowDefinition Height="20*" />
+                                            <!--  4  -->
+                                            <RowDefinition Height="20*" />
 
-                                    <StackLayout HeightRequest="200">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <!--  0  -->
-                                                <RowDefinition Height="20*" />
-                                                <!--  1  -->
-                                                <RowDefinition Height="14*" />
-                                                <!--  2  -->
-                                                <RowDefinition Height="15*" />
-                                                <!--  3  -->
-                                                <RowDefinition Height="30*" />
-                                                <!--  4  -->
-                                                <RowDefinition Height="20*" />
-
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="4*" />
-                                                <ColumnDefinition Width="4*" />
-                                                <ColumnDefinition Width="4*" />
-                                            </Grid.ColumnDefinitions>
-                                            <!--  0 Title  -->
-                                            <StackLayout
-                                                Grid.Row="0"
-                                                Grid.ColumnSpan="2"
-                                                BackgroundColor="Transparent">
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*" />
+                                            <ColumnDefinition Width="4*" />
+                                        </Grid.ColumnDefinitions>
+                                        <!--  0  -->
+                                        <StackLayout
+                                            Grid.Row="0"
+                                            Grid.ColumnSpan="2"
+                                            BackgroundColor="Transparent">
+                                            <Label
+                                                d:Text="{Binding .}"
+                                                FontAttributes="Bold"
+                                                FontSize="26"
+                                                LineBreakMode="NoWrap"
+                                                Style="{DynamicResource ListItemTextStyle}"
+                                                Text="{Binding device}"
+                                                TextColor="{StaticResource SpideyBlueBckGrnd}" />
+                                        </StackLayout>
+                                        <!--  1  -->
+                                        <StackLayout
+                                            Grid.Row="1"
+                                            Grid.ColumnSpan="2"
+                                            BackgroundColor="Transparent">
+                                            <Label
+                                                d:Text="Item description"
+                                                FontSize="18"
+                                                LineBreakMode="NoWrap"
+                                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                                Text="{Binding Description}"
+                                                TextColor="{StaticResource SpideyLightBlueBckGrnd}" />
+                                        </StackLayout>
+                                        <!--  2 Icon  -->
+                                        <StackLayout
+                                            Grid.Row="2"
+                                            Grid.RowSpan="3"
+                                            BackgroundColor="Transparent">
+                                            <Label
+                                                Margin="2,0"
+                                                d:Text="{Binding .}"
+                                                FontSize="85"
+                                                HorizontalOptions="Start"
+                                                LineBreakMode="NoWrap"
+                                                Style="{DynamicResource ListItemTextStyle}"
+                                                Text="{Binding Distance}"
+                                                TextColor="{StaticResource SpideyLogoLightRed}" />
+                                        </StackLayout>
+                                        <!--  2  -->
+                                        <StackLayout
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            BackgroundColor="Transparent">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <!--  0  -->
+                                                    <RowDefinition Height="20*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="10*" />
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    IsChecked="True"
+                                                    Visual="Material"
+                                                    Color="{StaticResource SpideyLogoLightRed}" />
                                                 <Label
-                                                    d:Text="{Binding .}"
-                                                    FontAttributes="Bold"
-                                                    FontFamily="Righteous-Regular.ttf#Righteous"
-                                                    FontSize="26"
-                                                    LineBreakMode="NoWrap"
-                                                    Style="{DynamicResource ListItemTextStyle}"
-                                                    Text="{Binding device}"
-                                                    TextColor="{StaticResource SpiderCardTitle}" />
-                                            </StackLayout>
-                                            <!--  1  Sub Title  -->
-                                            <StackLayout
-                                                Grid.Row="1"
-                                                Grid.ColumnSpan="2"
-                                                BackgroundColor="Transparent">
-                                                <Label
+                                                    Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    Margin="0,7"
                                                     d:Text="Item description"
-                                                    FontSize="18"
+                                                    FontSize="13"
                                                     LineBreakMode="NoWrap"
                                                     Style="{DynamicResource ListItemDetailTextStyle}"
-                                                    Text="{Binding Description}"
-                                                    TextColor="{StaticResource SpideyCardSubTitle}" />
-                                            </StackLayout>
-                                            <!--  2 Distance  -->
+                                                    Text="{Binding Flash}"
+                                                    TextColor="MidnightBlue" />
+                                            </Grid>
+                                        </StackLayout>
+                                        <!--  3  -->
+                                        <StackLayout
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            BackgroundColor="Transparent">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <!--  0  -->
+                                                    <RowDefinition Height="20*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="10*" />
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    IsChecked="True"
+                                                    Visual="Material"
+                                                    Color="{StaticResource SpideyLogoLightRed}" />
+                                                <Label
+                                                    Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    Margin="0,7"
+                                                    d:Text="Item description"
+                                                    FontSize="13"
+                                                    LineBreakMode="NoWrap"
+                                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                                    Text="{Binding Sound}"
+                                                    TextColor="MidnightBlue" />
+                                            </Grid>
+                                        </StackLayout>
+                                        <!--  4  -->
+                                        <StackLayout
+                                            Grid.Row="4"
+                                            Grid.Column="1"
+                                            BackgroundColor="Transparent">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <!--  0  -->
+                                                    <RowDefinition Height="20*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="10*" />
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    IsChecked="True"
+                                                    Visual="Material"
+                                                    Color="{StaticResource SpideyLogoLightRed}" />
+                                                <Label
+                                                    Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    Margin="0,7"
+                                                    d:Text="Item description"
+                                                    FontSize="13"
+                                                    LineBreakMode="NoWrap"
+                                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                                    Text="{Binding Vibration}"
+                                                    TextColor="MidnightBlue" />
+                                            </Grid>
+                                        </StackLayout>
 
-                                            <StackLayout
-                                                Grid.Row="2"
-                                                Grid.RowSpan="2"
-                                                Grid.ColumnSpan="3"
-                                                BackgroundColor="Transparent">
-                                                <Grid BackgroundColor="Transparent">
-                                                    <Grid.RowDefinitions>
-                                                        <!--  0  -->
-                                                        <RowDefinition Height="Auto" />
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
 
-                                                    </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="3*" />
-                                                        <ColumnDefinition Width="Auto" />
-                                                        <ColumnDefinition Width="4*" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <Label
-                                                        Grid.Column="1"
-                                                        Margin="10,0,0,0"
-                                                        d:Text="{Binding .}"
-                                                        BackgroundColor="Transparent"
-                                                        FontSize="65"
-                                                        HorizontalOptions="Center"
-                                                        LineBreakMode="NoWrap"
-                                                        Style="{DynamicResource ListItemTextStyle}"
-                                                        Text="{Binding Distance}"
-                                                        TextColor="{StaticResource SpiderCardDistance}"
-                                                        VerticalTextAlignment="Center" />
-                                                    <Label
-                                                        Grid.Column="2"
-                                                        Margin="0,20"
-                                                        d:Text="{Binding .}"
-                                                        FontAttributes="Bold"
-                                                        FontSize="20"
-                                                        HorizontalOptions="Start"
-                                                        LineBreakMode="NoWrap"
-                                                        Style="{DynamicResource ListItemTextStyle}"
-                                                        Text="{Binding Measurement}"
-                                                        TextColor="{StaticResource SpiderCardDistance}"
-                                                        VerticalOptions="End" />
-                                                </Grid>
-                                            </StackLayout>
-                                            <!--  2  -->
-                                            <StackLayout
-                                                Grid.Row="4"
-                                                Grid.Column="0"
-                                                BackgroundColor="Transparent">
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <!--  0  -->
-                                                        <RowDefinition Height="20*" />
-                                                    </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="6*" />
-                                                        <ColumnDefinition Width="8*" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <Switch
-                                                        Grid.Row="0"
-                                                        Grid.Column="0"
-                                                        IsToggled="false"
-                                                        OnColor="{StaticResource SpideyCardSwtichOn}"
-                                                        Visual="Material" />
-
-                                                    <Label
-                                                        Grid.Row="0"
-                                                        Grid.Column="1"
-                                                        Margin="0,7"
-                                                        d:Text="Item description"
-                                                        FontSize="13"
-                                                        LineBreakMode="NoWrap"
-                                                        Style="{DynamicResource ListItemDetailTextStyle}"
-                                                        Text="{Binding Flash}"
-                                                        TextColor="MidnightBlue" />
-                                                </Grid>
-                                            </StackLayout>
-                                            <!--  3  -->
-                                            <StackLayout
-                                                Grid.Row="4"
-                                                Grid.Column="1"
-                                                BackgroundColor="Transparent">
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <!--  0  -->
-                                                        <RowDefinition Height="20*" />
-                                                    </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="6*" />
-                                                        <ColumnDefinition Width="8*" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <Switch
-                                                        Grid.Row="0"
-                                                        Grid.Column="0"
-                                                        IsToggled="false"
-                                                        OnColor="{StaticResource SpideyCardSwtichOn}"
-                                                        Visual="Material" />
-
-                                                    <Label
-                                                        Grid.Row="0"
-                                                        Grid.Column="1"
-                                                        Margin="0,7"
-                                                        d:Text="Item description"
-                                                        FontSize="13"
-                                                        LineBreakMode="NoWrap"
-                                                        Style="{DynamicResource ListItemDetailTextStyle}"
-                                                        Text="{Binding Sound}"
-                                                        TextColor="MidnightBlue" />
-                                                </Grid>
-                                            </StackLayout>
-                                            <!--  4  -->
-                                            <StackLayout
-                                                Grid.Row="4"
-                                                Grid.Column="2"
-                                                BackgroundColor="Transparent">
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <!--  0  -->
-                                                        <RowDefinition Height="20*" />
-                                                    </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="6*" />
-                                                        <ColumnDefinition Width="8*" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <Switch
-                                                        Grid.Row="0"
-                                                        Grid.Column="0"
-                                                        IsToggled="false"
-                                                        OnColor="{StaticResource SpideyCardSwtichOn}"
-                                                        Visual="Material" />
-
-                                                    <Label
-                                                        Grid.Row="0"
-                                                        Grid.Column="1"
-                                                        Margin="0,7"
-                                                        d:Text="Item description"
-                                                        FontSize="13"
-                                                        LineBreakMode="NoWrap"
-                                                        Style="{DynamicResource ListItemDetailTextStyle}"
-                                                        Text="{Binding Vibration}"
-                                                        TextColor="MidnightBlue" />
-
-                                                </Grid>
-                                            </StackLayout>
-
-                                        </Grid>
-                                    </StackLayout>
-                                </Frame>
-
-                            </Grid>
-                        </ViewCell.View>
-                    </customControls:ExtendedViewCell>
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

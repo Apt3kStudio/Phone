@@ -7,7 +7,6 @@
     xmlns:fontawesome="clr-namespace:Phone.Utility"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:Phone.Views"
-    xmlns:viewsLayout="clr-namespace:Phone.Views.Layout"
     Title="Shell"
     mc:Ignorable="d">
     <Shell.FlyoutHeaderTemplate>
@@ -106,19 +105,8 @@
         <Tab Title="AddDevice" Icon="/YourNamespace;component/Resources/sound.png">
             <ShellContent ContentTemplate="{DataTemplate views:AddDevice}" />
         </Tab>
-    </FlyoutItem>
-    <FlyoutItem
-        Title="Colls View"
-        FlyoutDisplayOptions="AsSingleItem"
-        Icon="{x:Static fontawesome:FontAwesomeIcons.PlusCircle}">
-        <Tab Title="HorzGridPage" Icon="/YourNamespace;component/Resources/sound.png">
-            <ShellContent ContentTemplate="{DataTemplate viewsLayout:HorizontalGridPage}" />
-        </Tab>
-        <Tab Title="VertGridPage" Icon="/YourNamespace;component/Resources/sound.png">
-            <ShellContent ContentTemplate="{DataTemplate viewsLayout:VerticalGridPage}" />
-        </Tab>
-        <Tab Title="VertGridPage" Icon="/YourNamespace;component/Resources/sound.png">
-            <ShellContent ContentTemplate="{DataTemplate viewsLayout:VerticalListDataTemplateSelectorPage}" />
+        <Tab Title="AddDevice1" Icon="/YourNamespace;component/Resources/sound.png">
+            <ShellContent ContentTemplate="{DataTemplate views:AddDevice}" />
         </Tab>
     </FlyoutItem>
     <FlyoutItem
@@ -129,7 +117,6 @@
             <ShellContent ContentTemplate="{DataTemplate views:Settings}" />
         </Tab>
     </FlyoutItem>
-
     <Shell.MenuItemTemplate>
         <DataTemplate>
             <StackLayout
@@ -155,8 +142,7 @@
             </StackLayout>
         </DataTemplate>
     </Shell.MenuItemTemplate>
-    <!--  error is normal  -->
-    <MenuItem Command="{Binding LogOutCommand}" Text="Logout" />
 
+    <MenuItem Command="{Binding LogOutCommand}" Text="Logout" />
 
 </Shell>
