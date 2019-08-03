@@ -24,21 +24,15 @@ namespace Phone.ViewModels
         {
             RegisteredDevices.Add(new RegisteredDevice
             {
-                Id = "1",
-                Description = "Smatt Sung's Phone is connected",
-                Text = "OnePlus",
-                deviceType = "Phone",
-                device = "OnePlus 5.0".ToUpper(),
-                deviceName = "OnePlus 5",
-                manufacturer = "OnePlus",
-                version = "5.0",
-                platform = "Android",
-                idiom = "Phone",
-                Flash = "Flash",
-                Sound = "Sound",
-                Vibration = "Vibration",
-                Distance = "34",
-                Measurement = "ft"
+                Id = "1", Description = "Jonh Doe's Watch is connected",
+                Text = "Moto Watch", deviceType = "Wear",
+                device = "LRS 365", deviceName = "LRS",
+                manufacturer ="Motorola", version = "7.0",
+                platform ="Android", idiom="Watch",
+                 Flash = "Flash",
+                 Sound = "Sound",
+                 Vibration = "Vibration",
+                  Distance = "25"
             });
             RegisteredDevices.Add(new RegisteredDevice
             {
@@ -46,7 +40,7 @@ namespace Phone.ViewModels
                 Description = "Micheal Smith's watch is Connected",
                 Text = "Samsung Watch",
                 deviceType = "Wear",
-                device = "Galaxy Watch".ToUpper(),
+                device = "Galaxy Watch",
                 deviceName = "LRS",
                 manufacturer = "Samsung",
                 version = "10.0",
@@ -55,24 +49,25 @@ namespace Phone.ViewModels
                 Flash = "Flash",
                 Sound = "Sound",
                 Vibration = "Vibration",
-                Distance = "43",
-                Measurement = "ft"
+                Distance = "43"
             });
-
             RegisteredDevices.Add(new RegisteredDevice
             {
-                Id = "1", Description = "Jonh Doe's Watch is connected",
-                Text = "Moto Watch", deviceType = "Wear",
-                device = "LRS 365".ToUpper(), deviceName = "LRS",
-                manufacturer ="Motorola", version = "7.0",
-                platform ="Android", idiom="Watch",
-                 Flash = "Flash",
-                 Sound = "Sound",
-                 Vibration = "Vibration",
-                  Distance = "25",
-                  Measurement = "ft"
+                Id = "1",
+                Description = "Smatt Sung's Phone is connected",
+                Text = "OnePlus",
+                deviceType = "Phone",
+                device = "OnePlus 5.0",
+                deviceName = "OnePlus 5",
+                manufacturer = "OnePlus",
+                version = "5.0",
+                platform = "Android",
+                idiom = "Phone",
+                Flash = "Flash",
+                Sound = "Sound",
+                Vibration = "Vibration",
+                Distance = "34"
             });
-           
 
 
         }

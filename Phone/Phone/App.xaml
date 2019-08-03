@@ -35,14 +35,6 @@
         <Color x:Key="SpideyLogoDarkRed">#c01823</Color>
         <Color x:Key="SpideyLogoLightRed">#da3835</Color>
 
-        <Color x:Key="SpiderCardTitle">#0263A8</Color>
-        <Color x:Key="SpiderCardDistance">#0263A8</Color>
-        <Color x:Key="SpideyCardSwtichOn">#4C8827</Color>
-        <Color x:Key="SpideyCardSwtichOff">#8B3129</Color>
-        <Color x:Key="SpideyCardBackground">#F3F3F3</Color>
-        <Color x:Key="SpideyCardSubTitle">#B0B0B0</Color>
-        <Color x:Key="SpideyCardBorder">#f5f5f5</Color>
-
         <Color x:Key="TextColor">#1d1d1d</Color>
         <Color x:Key="SecondaryTextColor">#ffffff</Color>
         <ResourceDictionary>
