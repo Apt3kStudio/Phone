@@ -31,7 +31,7 @@ namespace Phone.Models
             Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
             {
                 await GetCount();
-            });             
+            });
         }
         public string Distance
         {
@@ -44,6 +44,9 @@ namespace Phone.Models
                 NotifyPropertyChange(nameof(Distance));
             }
         }
+
+        public string Measurement { get; internal set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChange(string propertyName)
         {
