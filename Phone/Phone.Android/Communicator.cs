@@ -15,6 +15,8 @@ using Phone.Views;
 using Phone.ViewModels;
 using Xamarin.Forms;
 using Java.Lang;
+using Phone;
+using Phone.Models;
 
 namespace Phone.Droid
 {
@@ -78,8 +80,6 @@ namespace Phone.Droid
             Task.Run(() => {
                 try
                 {
-
-
                     var request = PutDataMapRequest.Create(path);
                     request.DataMap.PutAll(dataMap);
                     var result = WearableClass.DataApi.PutDataItem(client, request.AsPutDataRequest()).Await();
@@ -103,21 +103,45 @@ namespace Phone.Droid
             EventViewModel eventModel = new EventViewModel();
             if (message.Contains("option") && message.ToString().ToCharArray().Length > ("option").Length)
             {
-                Device.BeginInvokeOnMainThread(async () =>
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
                 {
                     await eventModel.setOption(message);
                 });
             }
             if (message.Contains("option"))
             {
-                Device.BeginInvokeOnMainThread(async () => {
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => {
                     await eventModel.TriggerFeatureAsync();
                 });
             }
             MessageReceived(message);
         }
 
-       
+        public void TimeStampInitiateFromDevice(IMessageEvent messageEvent)
+        {
+            var DeviceID = System.Text.Encoding.Default.GetString(messageEvent.GetData());
+            Log.Info("my_log", "Communicator: Message received \"" + DeviceID + "\"");
+
+            ConnectedDevice connDevice = new ConnectedDevice();
+            connDevice.ID = int.Parse(DeviceID);
+        }
+
+        internal Action StartTrip()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool HadShakeReceived()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void SendHadShake()
+        {
+            throw new NotImplementedException();
+        }
+
+
 
         // Implementing IDataApiDataListener interface
         // On data changed we want invoke event
@@ -183,7 +207,7 @@ namespace Phone.Droid
                     var success = result.JavaCast<IDataApiDataItemResult>().Status.IsSuccess ? "Ok." : "Failed!";
                     Log.Info("Spidey", "Communicator: Sending data map " + dataMap + "... " + success);
                 }
-                catch (Exception ex)
+                catch (System.Exception ex)
                 {
                     throw;
                 }
@@ -213,7 +237,7 @@ namespace Phone.Droid
         public void OnPeerDisconnected(INode peer)
         {
             EventViewModel eventModel = new EventViewModel();
-            Device.BeginInvokeOnMainThread(async () => {
+            Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => {
              //   await TriggerFeatureAsync("vib", eventModel);
                 await eventModel.TriggerFeatureAsync();
             });
@@ -226,7 +250,7 @@ namespace Phone.Droid
         public void OnPeerConnected(INode peer)
         {
             EventViewModel eventModel = new EventViewModel();
-            Device.BeginInvokeOnMainThread(async () => {
+            Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => {
               //  await TriggerFeatureAsync("vib", eventModel);
                 await eventModel.TriggerFeatureAsync();
             });
