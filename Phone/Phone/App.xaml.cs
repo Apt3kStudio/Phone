@@ -17,15 +17,22 @@ using Phone.Models;
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Phone
 {
+   
     public partial class App : Application
-    {      
+    {
+        
         private Context _context;
         public App(Context context)
         {
-            _context = context;
+        
+        _context = context;
             InitializeComponent();
+
+
+           
+
             FCMService.InitializeComponents();
-            MainPage = new Account(_context).IsUseregistered(true);
+           
             Task.Run(async () => {
                 await UtilityHelper.SaveToPhoneAsync("stampcounter", "0");
             });

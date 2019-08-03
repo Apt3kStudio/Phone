@@ -46,39 +46,49 @@ namespace FindMyPhoneSample
 			base.OnDestroy ();
 		}
 
-		//public override void OnDataChanged (DataEventBuffer buffer)
-		//{
-		//	if (Log.IsLoggable (TAG, LogPriority.Debug))
-		//		Log.Debug (TAG, "OnDataChanged: " + buffer + " for " + PackageName);
-		//	for (int i = 0; i < buffer.Count; i++) {
-		//		IDataEvent e = Android.Runtime.Extensions.JavaCast<IDataEvent> (buffer.Get (i));
-		//		if (e.Type  == DataEvent.TypeDeleted) {
-		//			Log.Info (TAG, e + " deleted");
-		//		} else if (e.Type  == DataEvent.TypeChanged) {
-		//			bool alarmOn = (bool)DataMap.FromByteArray (e.DataItem.GetData ()).Get (FIELD_ALARM_ON);
-		//			if (!alarmOn) {
-		//				orig_volume = audio_manager.GetStreamVolume (Android.Media.Stream.Alarm);
-		//				media_player.Reset ();
+        public override void OnDataChanged(DataEventBuffer buffer)
+        {
+            if (Log.IsLoggable(TAG, LogPriority.Debug))
+                Log.Debug(TAG, "OnDataChanged: " + buffer + " for " + PackageName);
+            for (int i = 0; i < buffer.Count; i++)
+            {
+                IDataEvent e = Android.Runtime.Extensions.JavaCast<IDataEvent>(buffer.Get(i));
+                if (e.Type == DataEvent.TypeDeleted)
+                {
+                    Log.Info(TAG, e + " deleted");
+                }
+                else if (e.Type == DataEvent.TypeChanged)
+                {
+                    bool alarmOn = (bool)DataMap.FromByteArray(e.DataItem.GetData()).Get(FIELD_ALARM_ON);
+                    if (!alarmOn)
+                    {
+                        orig_volume = audio_manager.GetStreamVolume(Android.Media.Stream.Alarm);
+                        media_player.Reset();
 
-  //                      max_volume = 0;
+                        max_volume = 0;
 
-  //                      audio_manager.SetStreamVolume (Android.Media.Stream.Alarm, max_volume, 0);
-		//				media_player.SetAudioStreamType (Android.Media.Stream.Alarm);
-		//				try {
-		//					media_player.SetDataSource (ApplicationContext, alarm_sound);
-		//					media_player.Prepare ();
-		//				} catch (IOException ex) {
-		//					Log.Error (TAG, "Failed to prepare media player to play alarm.", ex);
-		//				}
-		//				media_player.Start ();
-		//			} else {
-		//				audio_manager.SetStreamVolume (Android.Media.Stream.Alarm, orig_volume, 0);
-		//				if (media_player.IsPlaying)
-		//					media_player.Stop ();
-		//			}
-		//		}
-		//	}
-		//	buffer.Close ();
-		//}
-	}
+                        audio_manager.SetStreamVolume(Android.Media.Stream.Alarm, max_volume, 0);
+                        media_player.SetAudioStreamType(Android.Media.Stream.Alarm);
+                        try
+                        {
+                            media_player.SetDataSource(ApplicationContext, alarm_sound);
+                            media_player.Prepare();
+                        }
+                        catch (IOException ex)
+                        {
+                            Log.Error(TAG, "Failed to prepare media player to play alarm.", ex);
+                        }
+                        media_player.Start();
+                    }
+                    else
+                    {
+                        audio_manager.SetStreamVolume(Android.Media.Stream.Alarm, orig_volume, 0);
+                        if (media_player.IsPlaying)
+                            media_player.Stop();
+                    }
+                }
+            }
+            buffer.Close();
+        }
+    }
 }

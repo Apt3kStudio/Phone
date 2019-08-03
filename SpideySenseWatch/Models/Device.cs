@@ -61,9 +61,7 @@ namespace SpideySenseWatch.Models
             int msec = DateTime.Now.Millisecond;
             DataMap datamap = new DataMap();
             datamap.PutString("TimeStamp", msec.ToString());
-            _communicator.SendStamp(datamap);
-           
-               
+            _communicator.SendStamp(datamap);                          
         }
     }
 }

@@ -18,15 +18,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)CustomVisual.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ImageResourceExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Account.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\ApplicationSetting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ThisDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ConnectedDevice.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Device.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Distance.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EventModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\IUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Message.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\ProximityStatus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ReceiveFromPhone.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Registration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\settingM.cs" />
@@ -69,5 +69,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Assets\Images\Spide_Icon_WhiteBlue.png" />
   </ItemGroup>
 </Project>

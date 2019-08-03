@@ -1,10 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Phone.App">
+<Application
+    x:Class="Phone.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Application.Resources>
+        <Color x:Key="PrimaryColor">#0078D7</Color>
+        <Color x:Key="SecondaryColor">#FFB900</Color>
+        <Color x:Key="TertiaryColor">#00A4EF</Color>
+        <Color x:Key="QuaternaryColor">#7FBA00</Color>
+        <Color x:Key="QuinaryColor">#F25022</Color>
+
+        <Color x:Key="SpideySilver">#f2f2f2</Color>
+        <Color x:Key="SpideyWhite">#ffffff</Color>
+        <Color x:Key="SpideyBlueBckGrnd">#020f1f</Color>
+        <Color x:Key="SpideyLightBlueBckGrnd">#001c41</Color>
+        <Color x:Key="SpideyLogoDarkRed">#c01823</Color>
+        <Color x:Key="SpideyLogoLightRed">#da3835</Color>
+
+        <Color x:Key="TextColor">#1d1d1d</Color>
+        <Color x:Key="SecondaryTextColor">#ffffff</Color>
         <ResourceDictionary>
-            <!--Global Styles-->
+            <!--  Global Styles  -->
             <Color x:Key="NavigationPrimary">#2196F3</Color>
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
