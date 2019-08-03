@@ -19,7 +19,7 @@ using Android.OS;
 
 namespace Phone.Droid.Models
 {
-    public class Communicator : Java.Lang.Object, IMessageApiMessageListener, IDataApiDataListener, IChannelApiChannelListener,ICapabilityApiCapabilityListener, GoogleApiClient.IConnectionCallbacks, INodeApiNodeListener
+    public class Communicator : Java.Lang.Object, IMessageApiMessageListener, IDataApiDataListener, IChannelApiChannelListener,ICapabilityApiCapabilityListener, GoogleApiClient.IConnectionCallbacks
     {
         readonly GoogleApiClient client;
         const string path = "/my_capability";
@@ -29,8 +29,9 @@ namespace Phone.Droid.Models
         {
             client = new GoogleApiClient.Builder(context)                
                 .AddApi(WearableClass.API).Build();
-                WearableClass.NodeApi.AddListener(client, this);
-           //WearableClass.CapabilityClient //AddCapabilityListener(client,ICapabilityApiCapabilityListener, "");
+            WearableClass.CapabilityApi.AddCapabilityListener(client, this, "my_capability");
+               // WearableClass.Api.NodeApi(client, this);
+               //WearableClass.CapabilityClient //AddCapabilityListener(client,ICapabilityApiCapabilityListener, "");
         }
 
         // Connecting client when we want it (usually on Activity.OnResume)

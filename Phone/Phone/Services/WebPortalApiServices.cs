@@ -18,15 +18,69 @@ namespace Phone.Services
         private static string WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net/";
 
         public WebPortalApiServices()
-        {            
+        {
             #if DEBUG
-               // WebApiBaseURL = "http://192.168.1.168:45455/";
+            //WebApiBaseURL = "http://192.168.1.168:45455/";
+            WebApiBaseURL = "https://192.168.1.168:45456/";
             #else
-              //  WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net/";
+                WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net/";
             #endif
             //WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net/";
         }
+        internal async Task<Message> SigningIn(string email, string password)
+        {
+            if (!UtilityHelper.IsValidEmail(email))
+            {
+                return new Message("Email Not Valid", "Email Not Valid", false);
 
+            }
+            Models.Device device = new Models.Device();
+
+            var client = new HttpClient(new System.Net.Http.HttpClientHandler());
+            var model = new Registration
+            {
+                Email = email,
+                Password = password,
+                FBToken = SecureStorage.GetAsync("FBToken").Result,
+                DeviceName = device.deviceName
+
+            };
+            var json = JsonConvert.SerializeObject(model);
+            HttpContent httpContent = new StringContent(json);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            try
+            {
+                var response = await client.PostAsync(WebApiBaseURL + "api/auth/Login", httpContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    Stream receiveStream = response.Content.ReadAsStreamAsync().Result;
+                    StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
+                    string theContent = readStream.ReadToEnd();
+                    ReceiveFromAPI rfp = JsonConvert.DeserializeObject<ReceiveFromAPI>(theContent);
+                    await Task.Run(() =>
+                    {
+                        rfp.SaveJwtTokenAsync();
+                    });
+                    await Task.Run(async () =>
+                    {
+                        bool isAmatch = rfp.ValidateFCMToken();
+                        if (!isAmatch)
+                        {
+                            await SendFCMTokenAsync();
+                        }
+                    });
+                }
+                return new Message("Sign In", "Welcome " + email + "!", response.IsSuccessStatusCode);
+            }
+            catch (Exception e)
+            {
+                return new Message("Error", "Error " + email + "!", false);
+
+                // throw;
+            }
+
+
+        }
         internal async Task<Message> RegisterAsync(string email, string password, string confirmPassword)
         {
             if (!UtilityHelper.IsValidEmail(email))
@@ -34,7 +88,7 @@ namespace Phone.Services
                 return new Message("Email Not Valid", "Email Not Valid", false);
                
             }
-            var client = new HttpClient();
+            var client = new HttpClient(new System.Net.Http.HttpClientHandler());
             var model = new Registration
             {
                 Email = email,
@@ -47,56 +101,21 @@ namespace Phone.Services
             HttpContent httpContent = new StringContent(json);
 
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            try
+            {
 
+          
             var response = await client.PostAsync(WebApiBaseURL +"api/auth/registration", httpContent);
 
-            
             return new Message("Registration", email + " is registered!",response.IsSuccessStatusCode);
-        }
-
-        //Todo we need to encode the json to create protection for the password. 
-        internal async Task<Message> SigningIn(string email, string password)
-        {
-            if (!UtilityHelper.IsValidEmail(email))
-            {
-                return new Message("Email Not Valid", "Email Not Valid", false);
-
             }
-            Models.Device device = new Models.Device();
-            var client = new HttpClient();
-            var model = new Registration
+            catch (Exception e)
             {
-                Email = email,
-                Password = password,
-                FBToken = SecureStorage.GetAsync("FBToken").Result,
-                DeviceName = device.deviceName
-
-            };    
-            var json = JsonConvert.SerializeObject(model);
-            HttpContent httpContent = new StringContent(json);
-            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await client.PostAsync(WebApiBaseURL + "api/auth/Login", httpContent);
-            if (response.IsSuccessStatusCode)
-            {
-                Stream receiveStream = response.Content.ReadAsStreamAsync().Result;
-                StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
-                string theContent = readStream.ReadToEnd();
-                ReceiveFromAPI rfp = JsonConvert.DeserializeObject<ReceiveFromAPI>(theContent);
-                await Task.Run(() => 
-                {
-                    rfp.SaveJwtTokenAsync();                   
-                });
-                await Task.Run(async () =>
-                {
-                    bool isAmatch = rfp.ValidateFCMToken();
-                    if (!isAmatch)
-                    {
-                        await SendFCMTokenAsync();
-                    } 
-                });
+                return new Message("Registration", email + " is registered!", false);
+                //throw;
             }
-            return new Message("Sign In", "Welcome "+ email + "!", response.IsSuccessStatusCode);
-        }
+        }       
+      
         internal async Task<bool> SendFCMTokenAsync()
         {
             var client = new HttpClient();

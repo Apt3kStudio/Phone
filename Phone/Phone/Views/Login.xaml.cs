@@ -16,52 +16,44 @@ using Xamarin.Forms.Xaml;
 namespace Phone.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Login : ContentPage, INotifyPropertyChanged
+    public partial class Login : ContentPage
     {
-        private WebPortalApiServices apiService = new WebPortalApiServices();
-        public LoginUserViewModel UserVM { set; get; }
-        public string ErrorMessage { get; set; }
-        private Context _context;
-        public Login(Context context)
+        public Login()
         {
-            SKCanvasView canvasView = new SKCanvasView();
-            canvasView.PaintSurface += OnCanvasViewPaintSurface;
-           
-            Content = canvasView;
-            _context = context;
             InitializeComponent();
-            UserVM = new LoginUserViewModel(Navigation, _context) {
-                 //Email = "newuser@app.com",
-                 //Password = "Password@123"
-            };           
-            BindingContext = UserVM;           
+            auth = new AuthVM()
+            {
+                Email = "dioscarr@gmail.com",
+                Password = "Password@123"
+            };
+            BindingContext = auth;
         }
-        public Login(string username, Context context)
+        public Login(string username)
         {
-            SKCanvasView canvasView = new SKCanvasView();
-            canvasView.PaintSurface += OnCanvasViewPaintSurface;
-            
-            Content = canvasView;
-            _context = context;
             InitializeComponent();
-            UserVM = new LoginUserViewModel(Navigation, _context)
+            auth = new AuthVM()
             {
                 Email = username,
                 Password = ""
-            };           
-            BindingContext = UserVM;              
+            };
+            BindingContext = auth;
         }
-        async void NavigateToRegistrationPage_Clicked(object sender, EventArgs e)
+
+        private WebPortalApiServices apiService = new WebPortalApiServices();
+        public AuthVM auth { set; get; }
+        public string ErrorMessage { get; set; }
+
+        async void NavigateToRegistrationPage_ClickedAsync(object sender, EventArgs e)
         {
-            await DisplayAlert("SignUp", "You will be redirected to the Registration form", "OK");
-            await Navigation.PushModalAsync(new NavigationPage(new Registration(_context)));           
+            auth.isBussy = true;
+           // await Navigation.PushModalAsync(new NavigationPage(new Registration()));            
+            auth.isBussy = false;
         }
-        async void goToStartUpPage(object sender, EventArgs e)
+        void goToStartUpPage(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(UserVM.Email)&& !string.IsNullOrEmpty(UserVM.Password))
+            if (!string.IsNullOrEmpty(auth.Email) && !string.IsNullOrEmpty(auth.Password))
             {
-                UserVM.Message = "too soon!";               
-                UserVM.SigningInCommand.Execute(null);                
+                auth.SigningInCommand.Execute(true);
             }
         }
         void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
@@ -77,7 +69,7 @@ namespace Phone.Views
                 SKColor SpideyLightBlueBckGrnd;
                 SKColor.TryParse("#001c41", out SpideyLightBlueBckGrnd);
                 paint.Shader = SKShader.CreateLinearGradient(
-                                    new SKPoint(info.Rect.Top,info.Rect.Top),
+                                    new SKPoint(info.Rect.Top, info.Rect.Top),
                                     new SKPoint(info.Rect.Bottom, info.Rect.Bottom),
                                     new SKColor[] { SpideyBlueBckGrnd, SpideyLightBlueBckGrnd },
                                     new float[] { 0, 0.60f },

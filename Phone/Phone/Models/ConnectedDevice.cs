@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Android.Bluetooth;
+using Android.Content;
+using Phone.Droid.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +15,12 @@ namespace Phone.Models
         public int CurrentIndex { get; set; }
         public string TimeStamp { get; set; }
         public int ID { get; set; }
+        public string GetRSSI()
+        {
+            return BluetoothDevice.ExtraRssi;
+        }
+        public int DelayInMilliseconds { get; private set; }
+        private Context _context;
         public static void Initialize()
         {
             //TimeStamps = new List<string>();
@@ -27,6 +36,12 @@ namespace Phone.Models
             //TimeStamps.Add("timestamp10");
 
         }
+
+        internal void SetDelay(int delayInMilliseconds)
+        {
+            DelayInMilliseconds = delayInMilliseconds;
+        }
+
         public async Task GetPreviousCountAsync()
         {
             await UtilityHelper.RetrieveFromPhone("stampcounter");
@@ -44,6 +59,21 @@ namespace Phone.Models
         {
 
             await UtilityHelper.SaveToPhoneAsync("DeviceID", ID);
+        }
+
+        internal bool ReceivedHandShake(string message)
+        {
+            if (message == "HandShake")
+            {
+                return true;
+            }
+            return false;
+        }
+
+        internal void SendMessage()
+        {
+            Communicator cmd = new Communicator(_context);
+            cmd.SendMessage("");            
         }
     }
 }

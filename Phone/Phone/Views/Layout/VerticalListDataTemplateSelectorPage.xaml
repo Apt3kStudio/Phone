@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Phone.Views.Layout.VerticalListDataTemplateSelectorPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Phone.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Vertical List (DataTRemplate"
+    mc:Ignorable="d">
+    <ContentPage.Resources>
+        <DataTemplate x:Key="AmericanMonkeyTemplate">
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image
+                    Grid.RowSpan="2"
+                    Aspect="AspectFill"
+                    HeightRequest="60"
+                    Source="{Binding ImageUrl}"
+                    WidthRequest="60" />
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    Text="{Binding Name}"
+                    TextColor="Teal" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontAttributes="Italic"
+                    Text="{Binding Location}"
+                    TextColor="Teal"
+                    VerticalOptions="End" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="OtherMonkeyTemplate">
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image
+                    Grid.RowSpan="2"
+                    Aspect="AspectFill"
+                    HeightRequest="60"
+                    Opacity="0.5"
+                    Source="{Binding ImageUrl}"
+                    WidthRequest="60" />
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    Text="{Binding Name}"
+                    TextColor="Silver" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontAttributes="Italic"
+                    Text="{Binding Location}"
+                    TextColor="Silver"
+                    VerticalOptions="End" />
+            </Grid>
+        </DataTemplate>
+
+        <controls:MonkeyDataTemplateSelector
+            x:Key="MonkeySelector"
+            AmericanMonkey="{StaticResource AmericanMonkeyTemplate}"
+            OtherMonkey="{StaticResource OtherMonkeyTemplate}" />
+    </ContentPage.Resources>
+
+    <StackLayout Margin="20">
+        <CollectionView ItemTemplate="{StaticResource MonkeySelector}" ItemsSource="{Binding Monkeys}" />
+    </StackLayout>
+</ContentPage>

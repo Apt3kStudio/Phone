@@ -10,12 +10,14 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Phone.ViewModels;
-using Plugin.FirebasePushNotification;
+#region Firebase disabled
+//using Plugin.FirebasePushNotification; 
+#endregion
 
 
 namespace Phone.Droid.Models
 {
-    [Application]
+   
     public class MainApplication : Application
     {
         public MainApplication(IntPtr handle, JniHandleOwnership transer) : base(handle, transer)
@@ -30,19 +32,25 @@ namespace Phone.Droid.Models
             if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
             {
                 //Change for your default notification channel id here
-                FirebasePushNotificationManager.DefaultNotificationChannelId = "FirebasePushNotificationChannel";
+                #region Firebase disabled
+                // FirebasePushNotificationManager.DefaultNotificationChannelId = "FirebasePushNotificationChannel"; 
+                #endregion
 
                 //Change for your default notification channel name here
-                FirebasePushNotificationManager.DefaultNotificationChannelName = "General";
+                #region Firebase disabled
+                //FirebasePushNotificationManager.DefaultNotificationChannelName = "General"; 
+                #endregion
             }
 
 
             //If debug you should reset the token each time.
-            #if DEBUG
-            FirebasePushNotificationManager.Initialize(this, true);
-            #else
+#if DEBUG
+            #region Firebase disabled
+            //FirebasePushNotificationManager.Initialize(this, true); 
+            #endregion
+#else
               FirebasePushNotificationManager.Initialize(this,false);
-            #endif
+#endif
 
             //Handle notification when app is closed here
             //CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>

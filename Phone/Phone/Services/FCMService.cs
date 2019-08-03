@@ -1,7 +1,9 @@
 ﻿using Android.Util;
 using Firebase.Iid;
 using Phone.ViewModels;
-using Plugin.FirebasePushNotification;
+#region Firebase disabled
+//using Plugin.FirebasePushNotification; 
+#endregion
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,13 +33,15 @@ namespace Phone.Services
         public static async Task RegisterOnTokenRefreshAsync()
         {
             Log.Info("FCM-Token", "FCM-RegisterOnTokenRefresh()");
-            CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
-            {
-                System.Diagnostics.Debug.WriteLine($"TOKEN:{p.Token}");
-                Console.WriteLine($"*******************TOKEN-Refreshed:{p.Token.ToString()}");
-                Log.Info("***********************FCM-Token-Refreshed", p.Token.ToString());
-                CheckStoredToken(p.Token);
-            };
+            #region Firebase disabled
+            //CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
+            //    {
+            //        System.Diagnostics.Debug.WriteLine($"TOKEN:{p.Token}");
+            //        Console.WriteLine($"*******************TOKEN-Refreshed:{p.Token.ToString()}");
+            //        Log.Info("***********************FCM-Token-Refreshed", p.Token.ToString());
+            //        CheckStoredToken(p.Token);
+            //    }; 
+            #endregion
             await SaveFCMTokenAsync(GetFCMToken());
                     
         }
@@ -49,51 +53,58 @@ namespace Phone.Services
         }
         public static void RegisterOnNotificationReceived()
         {
-            CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
-            {
-               
-                foreach (var data in p.Data)
-                {
-                    if (data.Key == "Option")
-                    {
-                        EventViewModel evm = new EventViewModel();
-                        Device.BeginInvokeOnMainThread(async () =>
-                        {
-                            _ = evm.setOption(data.Value.ToString());
-                            await evm.TriggerFeatureAsync();
-                        });                       
-                    }
-                    Log.Info($"{data.Key}", $"{data.Value}");
-                    System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
-                }                
-                Log.Info("FCM-Fired", "CrossFirebasePushNotification.Current.OnNotificationReceived");
-            };
+            #region Firebase disabled
+
+            //CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
+            //{
+
+            //    foreach (var data in p.Data)
+            //    {
+            //        if (data.Key == "Option")
+            //        {
+            //            EventViewModel evm = new EventViewModel();
+            //            Device.BeginInvokeOnMainThread(async () =>
+            //            {
+            //                _ = evm.setOption(data.Value.ToString());
+            //                await evm.TriggerFeatureAsync();
+            //            });
+            //        }
+            //        Log.Info($"{data.Key}", $"{data.Value}");
+            //        System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
+            //    }
+              //  Log.Info("FCM-Fired", "CrossFirebasePushNotification.Current.OnNotificationReceived");
+            //}; 
+            #endregion
             Log.Info("FCM", "RegisterOnNotificationReceived");            
         }
         public static void RegisterOnNotificationOpened()
         {
-            CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
-            {
-                foreach (var data in p.Data)
-                {
-                    EventViewModel evm = new EventViewModel();
+        #region Firebase disabled
+        //CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
+        //    {
+        //        foreach (var data in p.Data)
+        //        {
+        //            EventViewModel evm = new EventViewModel();
 
-                    Device.BeginInvokeOnMainThread(async () =>
-                    {
-                        _ = evm.setOption("option1");
-                        await evm.TriggerFeatureAsync();
-                    });
-                    System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
-                }
-                Log.Info("FCM-fired", "CrossFirebasePushNotification.Current.OnNotificationOpened");
-            };
-            Log.Info("FCM", "RegisterOnNotificationOpened");
+        //            Device.BeginInvokeOnMainThread(async () =>
+        //            {
+        //                _ = evm.setOption("option1");
+        //                await evm.TriggerFeatureAsync();
+        //            });
+        //            System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
+        //        }
+        //        Log.Info("FCM-fired", "CrossFirebasePushNotification.Current.OnNotificationOpened");
+        //    }; 
+        #endregion
+        Log.Info("FCM", "RegisterOnNotificationOpened");
         }
         public static async Task SaveFCMTokenAsync(string Token)
         {           
             await SecureStorage.SetAsync("FBToken", Token.ToString());                       
             Log.Info("FCM", "SaveFCMTokenAsync");
         }
+
+        [Obsolete]
         public static async Task DeleteFCMTokenAsync()
         {
             Log.Info("FCM", "DeleteFCMTokenAsync");
