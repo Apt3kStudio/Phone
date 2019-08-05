@@ -10,7 +10,7 @@
         <StackLayout Margin="20">
             <CollectionView>
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                    <GridItemsLayout Orientation="Vertical" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemsSource>
                     <x:Array Type="{x:Type x:String}">

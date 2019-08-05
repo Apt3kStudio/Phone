@@ -46,11 +46,11 @@
                 <DataTemplate>
                     <customControls:ExtendedViewCell SelectedBackgroundColor="Transparent">
                         <ViewCell.View>
-                            <Grid Margin="15,15">
+                            <Grid Margin="10">
                                 <!--  PaintSurface="OnCanvasViewPaintSurface"  -->
 
                                 <Frame
-                                    Margin="2"
+                                    Margin="2,10"
                                     BackgroundColor="{StaticResource SpideyCardBackground}"
                                     BorderColor="{StaticResource SpideyCardBorder}"
                                     CornerRadius="20"
@@ -160,14 +160,16 @@
                                                         <RowDefinition Height="20*" />
                                                     </Grid.RowDefinitions>
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="6*" />
                                                         <ColumnDefinition Width="8*" />
+                                                        <ColumnDefinition Width="7*" />
                                                     </Grid.ColumnDefinitions>
                                                     <Switch
                                                         Grid.Row="0"
                                                         Grid.Column="0"
+                                                        HorizontalOptions="Center"
                                                         IsToggled="false"
                                                         OnColor="{StaticResource SpideyCardSwtichOn}"
+                                                        VerticalOptions="Center"
                                                         Visual="Material" />
 
                                                     <Label
@@ -193,14 +195,16 @@
                                                         <RowDefinition Height="20*" />
                                                     </Grid.RowDefinitions>
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="6*" />
                                                         <ColumnDefinition Width="8*" />
+                                                        <ColumnDefinition Width="7*" />
                                                     </Grid.ColumnDefinitions>
                                                     <Switch
                                                         Grid.Row="0"
                                                         Grid.Column="0"
+                                                        HorizontalOptions="Center"
                                                         IsToggled="false"
                                                         OnColor="{StaticResource SpideyCardSwtichOn}"
+                                                        VerticalOptions="Center"
                                                         Visual="Material" />
 
                                                     <Label
@@ -226,14 +230,16 @@
                                                         <RowDefinition Height="20*" />
                                                     </Grid.RowDefinitions>
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="6*" />
                                                         <ColumnDefinition Width="8*" />
+                                                        <ColumnDefinition Width="7*" />
                                                     </Grid.ColumnDefinitions>
                                                     <Switch
                                                         Grid.Row="0"
                                                         Grid.Column="0"
+                                                        HorizontalOptions="Center"
                                                         IsToggled="false"
                                                         OnColor="{StaticResource SpideyCardSwtichOn}"
+                                                        VerticalOptions="Center"
                                                         Visual="Material" />
 
                                                     <Label

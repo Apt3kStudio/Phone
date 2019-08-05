@@ -24,10 +24,10 @@ namespace Phone
     {
         
         private Context _context;
-        public App(Context context)
+        public App()
         {
-        @Phone.App StartTheApplication;
-        _context = context;
+            @Phone.App StartTheApplication;
+            _context = Android.App.Application.Context;
             InitializeComponent();
             //FCMService.InitializeComponents();    
            MainPage = new Account(_context).IsUseregistered(true);

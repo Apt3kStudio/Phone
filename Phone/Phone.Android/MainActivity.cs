@@ -48,8 +48,8 @@ namespace Phone.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);
 
-
-            LoadApplication(new App(this));
+           
+            LoadApplication(new App());
 
 
             #region Registering Xamarin Essentials on android;

@@ -120,6 +120,9 @@
         <Tab Title="VertGridPage" Icon="/YourNamespace;component/Resources/sound.png">
             <ShellContent ContentTemplate="{DataTemplate viewsLayout:VerticalListDataTemplateSelectorPage}" />
         </Tab>
+        <Tab Title="VertSpacPage" Icon="/YourNamespace;component/Resources/sound.png">
+            <ShellContent ContentTemplate="{DataTemplate viewsLayout:VerticalListSpacingPage}" />
+        </Tab>
     </FlyoutItem>
     <FlyoutItem
         Title="Settings"

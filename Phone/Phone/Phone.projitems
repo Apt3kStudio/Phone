@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\EnumPicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\FilterData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MonkeyDataTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\SkiaCustomControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SpacingModifier.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -35,6 +36,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Distance.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EventModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Monkey.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PairedDevices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\RegisteredDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\IUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Message.cs" />
@@ -75,6 +77,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Layout\VerticalListDataTemplateSelectorPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Layout\VerticalListSpacingPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -89,6 +94,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Settings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)XamarinFormsMarkupExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Login.xaml">
@@ -160,6 +166,9 @@
     <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Layout\VerticalListRTLPage.xaml.cs">
       <DependentUpon>VerticalListRTLPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Layout\VerticalListSpacingPage.xaml.cs">
+      <DependentUpon>VerticalListSpacingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Layout\VerticalListTextPage.xaml.cs">
       <DependentUpon>VerticalListTextPage.xaml</DependentUpon>
     </Compile>
@@ -213,6 +222,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Layout\VerticalListDataTemplateSelectorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Layout\VerticalListSpacingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

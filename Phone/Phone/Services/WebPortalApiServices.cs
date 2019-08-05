@@ -20,12 +20,13 @@ namespace Phone.Services
         public WebPortalApiServices()
         {
             #if DEBUG
-            //WebApiBaseURL = "http://192.168.1.168:45455/";
-            WebApiBaseURL = "https://192.168.1.168:45456/";
-            #else
-                WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net/";
-            #endif
-            //WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net/";
+                //WebApiBaseURL = "http://192.168.1.168:45455/";
+                WebApiBaseURL = "https://192.168.1.168:45456/";
+#else
+                
+                WebApiBaseURL = "https://apt3k-development.azurewebsites.net/admin/Dashboard";                
+#endif
+            //WebApiBaseURL = "https://apt3k.azurewebsites.net/"; // Prod
         }
         internal async Task<Message> SigningIn(string email, string password)
         {

@@ -18,6 +18,15 @@ namespace Phone.Views
         {
             icon = FontAwesomeIcons.BatteryQuarter;
             InitializeComponent();
+            LayoutChanged += LoginPage_LayoutChanged;
+
+        }
+
+        private void LoginPage_LayoutChanged(object sender, EventArgs e)
+        {
+            if (SelectorBackground.Height < 0) return;
+            SelectorBackground.CornerRadius = SelectorBackground.Height / 2;
+
         }
     }
 }
