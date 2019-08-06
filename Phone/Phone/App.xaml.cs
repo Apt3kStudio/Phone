@@ -24,7 +24,7 @@ namespace Phone
     {
         
         private Context _context;
-        public App()
+        public App(Context context)
         {
             @Phone.App StartTheApplication;
             _context = Android.App.Application.Context;

@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using CSharpForMarkup;
 
 namespace Phone.Views
 {
@@ -25,13 +24,10 @@ namespace Phone.Views
 
         public DevicesHome()
         {
-          
             InitializeComponent();
             canvasView = new SKCanvasView(Android.App.Application.Context);
             canvasView.PaintSurface += OnCanvasViewPaintSurface;
             cd = new ConnectedDevicesVM();
-
-
             BindingContext = cd;
         }
         void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -53,13 +49,13 @@ namespace Phone.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
+            
             if (cd.RegisteredDevices.Count == 0)
                 cd.LoadItemsCommand.Execute(null);
             canvasView.ClearAnimation();
             canvasView.ClearFocus();
             canvasView.Invalidate();
-
+       
 
         }
         protected void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
@@ -107,7 +103,7 @@ namespace Phone.Views
                 new SKPoint(0, info.Height * .8f),
                 info.Height * .8f,
                 new SKColor[] { gradientStart, gradientMid, gradientEnd },
-                new float[] { 0, .9f, 1 },
+                new float[] { 0, .5f, 1 },
                 SKShaderTileMode.Clamp);
 
             SKRect backgroundBounds = new SKRect(0, 0, info.Width, info.Height);

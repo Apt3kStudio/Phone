@@ -1,0 +1,8 @@
+Phone.App .ctor
+
+Xamarin.Forms.Content* Build*
+
+Xamarin.Forms.ContentPage
+
+Phone.Views.DevicesHome .ctor
+
