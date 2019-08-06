@@ -15,7 +15,6 @@ using Android.Util;
 using Firebase.Iid;
 using System.Threading.Tasks;
 using Phone.Models;
-using Phone.Droid;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Phone
@@ -27,9 +26,6 @@ namespace Phone
         private Context _context;
         public App()
         {
-//#if DEBUG
-//            HotReloader.Current.Run(this);
-//#endif
             @Phone.App StartTheApplication;
             _context = Android.App.Application.Context;
             InitializeComponent();

@@ -6,15 +6,3 @@ Xamarin.Forms.ContentPage
 
 Phone.Views.DevicesHome .ctor
 
-Phone.Views.DevicesHome* Build*
-
-Phone.Views.AddDevice*
-
-Phone.Views.AddDevice* Build*
-
-Phone.Views.AddDevice SelectorOption_Tapped
-
-Phone.Views.DevicesHome
-
-Phone.Views*
-
