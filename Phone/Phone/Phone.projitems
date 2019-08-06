@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Card.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\EnumPicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\FilterData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MonkeyDataTemplateSelector.cs" />
@@ -27,6 +28,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SearchTermDataTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomVisual.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\TasksExtentions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\IndexParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ImageResourceExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Account.cs" />
