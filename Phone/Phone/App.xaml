@@ -47,6 +47,26 @@
         <Color x:Key="SecondaryTextColor">#ffffff</Color>
         <ResourceDictionary>
             <!--  Global Styles  -->
+            <Style x:Key="TextTitle" TargetType="Label">
+                <Setter Property="TextColor" Value="#B0000000" />
+                <Setter Property="FontFamily" Value="Righteous-Regular.ttf#Righteous" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+            <Style x:Key="TextTitleBaseWhite" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontFamily" Value="Righteous-Regular.ttf#Righteous" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+            <Style x:Key="LargeTextTitle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontFamily" Value="Righteous-Regular.ttf#Righteous" />
+                <Setter Property="FontSize" Value="Large" />
+            </Style>
+            <Style x:Key="SelectedDeviceBase" TargetType="Label">
+                <Setter Property="TextColor" Value="white" />
+                <Setter Property="FontFamily" Value="Righteous-Regular.ttf#Righteous" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
             <Style TargetType="Label">
                 <Setter Property="FontFamily" Value="FontName" />
             </Style>

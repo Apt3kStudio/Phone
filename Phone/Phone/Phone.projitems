@@ -26,6 +26,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SearchTermDataTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomVisual.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\TasksExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\IndexParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ImageResourceExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Account.cs" />
@@ -35,6 +36,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Distance.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EventModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Monkey.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PairedDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\RegisteredDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\IUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Message.cs" />

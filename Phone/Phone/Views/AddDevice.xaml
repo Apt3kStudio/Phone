@@ -1,15 +1,359 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="Phone.Views.AddDevice">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+<ContentPage
+    x:Class="Phone.Views.AddDevice"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Phone.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:skiaforms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+    Visual="Material"
+    mc:Ignorable="d">
+    <ContentPage.Resources>
+        <Style
+            x:Key="CenteredTextTitle"
+            BasedOn="{StaticResource TextTitle}"
+            TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+        <Style
+            x:Key="CenteredTextBodyWhite"
+            BasedOn="{StaticResource TextTitleBaseWhite}"
+            TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+        <Style
+            x:Key="LargeTitles"
+            BasedOn="{StaticResource LargeTextTitle}"
+            TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+        <Style
+            x:Key="SelectedDevice"
+            BasedOn="{StaticResource SelectedDeviceBase}"
+            TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+    </ContentPage.Resources>
+    <Grid>
+        <skiaforms:SKCanvasView
+            x:Name="BackgroundGradient"
+            Grid.Row="0"
+            BackgroundColor="#15417a"
+            HeightRequest="180"
+            PaintSurface="BackgroundGradient_PaintSurface"
+            VerticalOptions="FillAndExpand" />
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="5*" />
+            </Grid.RowDefinitions>
+            <controls:Card
+                Grid.Row="0"
+                Margin="12"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="24"
+                Elevation="30"
+                Opacity="0.1"
+                Visual="Material" />
+            <controls:Card
+                x:Name="DeviceRegistrationScreen"
+                Grid.Row="0"
+                Margin="12"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="24"
+                Elevation="30"
+                IsVisible="False"
+                Visual="Material">
+                <StackLayout Spacing="12">
+                    <Label
+                        HorizontalOptions="Center"
+                        Style="{StaticResource LargeTitles}"
+                        Text="Registration"
+                        VerticalOptions="Start"
+                        Visual="Material" />
+                    <Entry
+                        BackgroundColor="Transparent"
+                        Placeholder="NickName"
+                        TextColor="White"
+                        Visual="Material" />
+                    <Entry
+                        BackgroundColor="Transparent"
+                        Placeholder="Greetings"
+                        TextColor="White"
+                        Visual="Material" />
+                    <StackLayout
+                        x:Name="RegistrationSelectedDevice"
+                        BackgroundColor="Transparent"
+                        VerticalOptions="FillAndExpand">
+                        <Label
+                            Style="{StaticResource CenteredTextBodyWhite}"
+                            Text="LRS 365"
+                            Visual="Material" />
+                        <Label
+                            Style="{StaticResource CenteredTextBodyWhite}"
+                            Text="Moto Watch 7.0"
+                            Visual="Material" />
+                        <Label
+                            Style="{StaticResource CenteredTextBodyWhite}"
+                            Text="Android"
+                            Visual="Material" />
+                        <Label
+                            Style="{StaticResource CenteredTextBodyWhite}"
+                            Text="Watch"
+                            Visual="Material" />
+                    </StackLayout>
+                </StackLayout>
+
+            </controls:Card>
+
+
+            <controls:Card
+                x:Name="RegisteredDeviceScreen"
+                Grid.Row="0"
+                Margin="12"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="24"
+                Elevation="30"
+                Visual="Material">
+                <StackLayout Padding="20" Spacing="12">
+                    <Label
+                        Style="{StaticResource LargeTitles}"
+                        Text="SELECTED DEVICE"
+                        Visual="Material" />
+                    <StackLayout
+                        x:Name="SelectedDevice"
+                        BackgroundColor="Transparent"
+                        VerticalOptions="FillAndExpand">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*" />
+                                <ColumnDefinition Width="5*" />
+
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <StackLayout Margin="0,80">
+                                    <Label
+                                        Style="{StaticResource SelectedDeviceBase}"
+                                        Text="LRS 365"
+                                        Visual="Material" />
+                                    <Label
+                                        Style="{StaticResource SelectedDeviceBase}"
+                                        Text="Moto Watch 7.0"
+                                        Visual="Material" />
+                                    <Label
+                                        Style="{StaticResource SelectedDeviceBase}"
+                                        Text="Android"
+                                        Visual="Material" />
+                                    <Label
+                                        Style="{StaticResource SelectedDeviceBase}"
+                                        Text="Watch"
+                                        Visual="Material" />
+                                </StackLayout>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Image
+                                    x:Name="backgroundImage"
+                                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    Aspect="AspectFit"
+                                    HorizontalOptions="FillAndExpand"
+                                    Source="https://developers.google.com/maps/documentation/android-sdk/images/android-wear.png"
+                                    VerticalOptions="FillAndExpand" />
+                            </Grid>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </controls:Card>
+
+            <StackLayout
+                Grid.Row="1"
+                Padding="10"
+                BackgroundColor="Transparent">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid
+                        Margin="40,0"
+                        Padding="10"
+                        ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <BoxView
+                            x:Name="SelectorBackground"
+                            Grid.ColumnSpan="2"
+                            BackgroundColor="#20000000"
+                            CornerRadius="20" />
+                        <Label Style="{StaticResource CenteredTextBodyWhite}" Text="Existing">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SelectorOption_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <Grid Grid.Column="1">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SelectorOption_Tapped" />
+                            </Grid.GestureRecognizers>
+                            <Label Style="{StaticResource CenteredTextBodyWhite}" Text="New" />
+
+                        </Grid>
+                        <controls:Card
+                            x:Name="SelectorButon"
+                            BackgroundColor="White"
+                            CornerRadius="20"
+                            Elevation="24"
+                            Visual="Material">
+                            <Label
+                                x:Name="SelectorButtonLabel"
+                                Style="{StaticResource CenteredTextTitle}"
+                                Text="Existing" />
+                        </controls:Card>
+                    </Grid>
+                </Grid>
+            </StackLayout>
+            <StackLayout
+                x:Name="RegistedDevices"
+                Grid.Row="2"
+                BackgroundColor="Transparent">
+                <CollectionView>
+                    <CollectionView.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>HS-Moto Watch</x:String>
+                            <x:String>One Plus 5</x:String>
+                            <x:String>HS-Moto Watch</x:String>
+                            <x:String>One Plus 5</x:String>
+                            <x:String>HS-Moto Watch</x:String>
+                            <x:String>HS-Moto Watch</x:String>
+                        </x:Array>
+                    </CollectionView.ItemsSource>
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Horizontal" Span="1" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions />
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="100*" />
+                                        <RowDefinition Height="1*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="17*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Frame
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        BackgroundColor="white"
+                                        BorderColor="Transparent"
+                                        Opacity="0.2"
+                                        Visual="Material" />
+                                    <StackLayout Padding="10" WidthRequest="160">
+                                        <Image
+                                            Aspect="AspectFit"
+                                            HeightRequest="60"
+                                            HorizontalOptions="FillAndExpand"
+                                            Source="https://png2.kisspng.com/sh/05c12b0d93e8fac1dfc4b5b620529203/L0KzQYm3VMA4N5lAfZH0aYP2gLBuTf1wfJCyS6g5LULxdH7uhf5mepJ5gdH3LXHwccv2jr1kd54yi99qcoT6ccXqiL1xbV58eeZsaHX2PYbog8kxbWM3S9UCYXG1PoWAV8U3OWQ9Sac7M0G1RYiCVMI1P2gziNDw/kisspng-moto-360-2nd-generation-amazon-com-smartwatch-pe-watches-5ac90e223c7aa2.4775613815231257942477.png" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="Center"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding}"
+                                            TextColor="{StaticResource SpideyWhite}"
+                                            VerticalOptions="Center" />
+
+                                    </StackLayout>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            <StackLayout
+                x:Name="UnRegistedDevices"
+                Grid.Row="2"
+                BackgroundColor="Transparent"
+                IsVisible="False">
+                <CollectionView>
+                    <CollectionView.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>HS-Moto Watch</x:String>
+                            <x:String>One Plus 5</x:String>
+                            <x:String>HS-Moto Watch</x:String>
+                            <x:String>One Plus 5</x:String>
+                            <x:String>HS-Moto Watch</x:String>
+                            <x:String>HS-Moto Watch</x:String>
+                        </x:Array>
+                        <!--    -->
+                    </CollectionView.ItemsSource>
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Horizontal" Span="1" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions />
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="100*" />
+                                        <RowDefinition Height="1*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="17*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Frame
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        BackgroundColor="white"
+                                        Opacity="0.2"
+                                        Visual="Material" />
+                                    <StackLayout Padding="10" WidthRequest="160">
+                                        <Image
+                                            Aspect="AspectFit"
+                                            HeightRequest="60"
+                                            HorizontalOptions="FillAndExpand"
+                                            Source="https://png2.kisspng.com/sh/24f713c4870c11d0ff47fd73edb19ce9/L0KzQYm3U8E4N6l7fZH0aYP2gLBuTfxoNZgyj9N9Y3iwgn70jCRwNWQ7SJ87bnSwd7b1hgJifJp0hp98YX32hbBuTfdmaV5xjepAcomwh7L7gBhme146edNtN0DpR4aChck3P183T6oCOUCzRIK8UsE0OWc1UKk8Nki2PsH1h5==/kisspng-lg-g-watch-r-moto-360-2nd-generation-samsung-gea-luxury-watches-5aad70f759e967.2787900415213160873683.png" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="Center"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding}"
+                                            TextColor="{StaticResource SpideyWhite}"
+                                            VerticalOptions="Center" />
+
+                                    </StackLayout>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </Grid>
+    </Grid>
 </ContentPage>
