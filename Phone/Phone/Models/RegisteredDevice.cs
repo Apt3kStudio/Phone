@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace Phone.Models
 {
@@ -28,10 +29,21 @@ namespace Phone.Models
 
         public RegisteredDevice()
         {
-            //Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
-            //{
-            //    await GetCount();
-            //});             
+            Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
+            {
+                await Task.Run(async() =>
+                {
+                    await Task.Delay(5000);
+                    Distance = DateTime.Now.Second.ToString();
+                    //for (int i = 0; i<2000; i++)
+                    //{
+                        
+                    //}
+                    
+                });
+                
+
+            });
         }
         public string Distance
         {
@@ -63,13 +75,17 @@ namespace Phone.Models
         {
                 return await Task.Run(async () =>
                 {
-                    for (var i = 0; i < 10000; i++)
-                    {
-                        await Task.Delay(1000);
-                        Distance = i.ToString();
-                    }
-                return true;
+                    await Task.Delay(3);
+
+
+                    //for (var i = 0; i < 10000; i++)
+                    //{
+                    //    await Task.Delay(1000);
+                    //    Distance = i.ToString();
+                    //}
+                    return true;
             });
         }
+
     }
 }

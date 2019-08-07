@@ -1,16 +1,24 @@
-﻿using Android.Content;
+﻿using Android.Bluetooth;
+using Android.Content;
 using Android.Gms.Wearable;
 using Phone.Droid;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace Phone.Models
 {
     public class Device
     {
+        public string DeviceName { get; set; }
+        public List<string> TimeStamps { get; set; }
+        public int CurrentIndex { get; set; }
+        public string TimeStamp { get; set; }
+        public int ID { get; set; }
+
         public Device()
         {
             Id = Guid.NewGuid().ToString();
@@ -32,7 +40,7 @@ namespace Phone.Models
 
         internal bool InitHandShake(ConnectedDevice connectedwatch)
         {
-           return connectedwatch.ReceivedHandShake("HandShake");
+           return ReceivedHandShake("HandShake");
         }
         private Context _context;
         public string Id { get; set; }
@@ -44,7 +52,6 @@ namespace Phone.Models
         public DevicePlatform platform;
         public DeviceIdiom idiom;
         public DeviceType deviceType;
-        public string TimeStamp { get; set; }
        // private Communicator _communicator;
      //   public void Initialize(Communicator communicator)
        // {
@@ -75,6 +82,52 @@ namespace Phone.Models
             SendMessage();
             stopWatch.Stop();
             return stopWatch.Elapsed;
-        }       
+        }
+
+        public string GetRSSI()
+        {
+            return BluetoothDevice.ExtraRssi;
+        }
+        public int DelayInMilliseconds { get; private set; }
+
+
+        internal void SetDelay(int delayInMilliseconds)
+        {
+            DelayInMilliseconds = delayInMilliseconds;
+        }
+
+        public async Task GetPreviousCountAsync()
+        {
+            await UtilityHelper.RetrieveFromPhone("stampcounter");
+            CurrentIndex++;
+        }
+        public void CounterReset()
+        {
+            CurrentIndex = 1;
+        }
+        public async Task SaveCurrentCountAsync()
+        {
+            await UtilityHelper.SaveToPhoneAsync("stampcounter", CurrentIndex);
+        }
+        public async Task SaveDeviceID()
+        {
+
+            await UtilityHelper.SaveToPhoneAsync("DeviceID", ID);
+        }
+
+        internal bool ReceivedHandShake(string message)
+        {
+            if (message == "HandShake")
+            {
+                return true;
+            }
+            return false;
+        }
+
+        internal void SendMessage()
+        {
+            //Communicator cmd = new Communicator(_context);
+            //cmd.SendMessage("");
+        }
     }
 }
