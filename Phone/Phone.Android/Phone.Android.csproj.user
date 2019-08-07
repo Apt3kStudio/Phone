@@ -4,7 +4,7 @@
     <SelectedDevice>Mobvoi Ticwatch E</SelectedDevice>
     <DefaultDevice>my_device</DefaultDevice>
     <AndroidDesignerPreferredDevice>Nexus 6P</AndroidDesignerPreferredDevice>
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
     <AndroidDesignerPreferredTheme>Theme.AppCompat.Light.NoActionBar</AndroidDesignerPreferredTheme>
   </PropertyGroup>
 </Project>
