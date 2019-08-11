@@ -11,7 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Xamarin.Essentials;
-using SpideySenseWatch.Services;
+
 namespace SpideySenseWatch.Models
 {
     public class Device
@@ -44,8 +44,8 @@ namespace SpideySenseWatch.Models
         public DeviceIdiom idiom;
         public DeviceType deviceType;        
         public string TimeStamp { get; set; }
-        private ConnectionService _communicator;
-        public void Initialize(ConnectionService communicator)
+        private Communicator _communicator;
+        public void Initialize(Communicator communicator)
         {
             _communicator = communicator;
         }
@@ -61,8 +61,7 @@ namespace SpideySenseWatch.Models
             int msec = DateTime.Now.Millisecond;
             DataMap datamap = new DataMap();
             datamap.PutString("TimeStamp", msec.ToString());
-            Events events = new Events();
-            events.SendStamp(datamap);                          
+            _communicator.SendStamp(datamap);                          
         }
     }
 }

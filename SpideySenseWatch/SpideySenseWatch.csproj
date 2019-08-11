@@ -17,7 +17,7 @@
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <IsAppExtension>true</IsAppExtension>
-    <TargetFrameworkVersion>v9.0.99</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
   </PropertyGroup>
@@ -60,12 +60,10 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sevices\ConnectionService.cs" />
+    <Compile Include="Models\Communicator.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Models\Events.cs" />
     <Compile Include="Models\NavigationAdapter.cs" />
-    <Compile Include="Models\UtilityHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.designer.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -98,59 +96,32 @@
     <PackageReference Include="Xamarin.Android.Wear">
       <Version>2.2.0</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.AppCompat">
-      <Version>1.0.2-preview02</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4">
-      <Version>1.0.0-preview02</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Media">
-      <Version>1.0.1-preview02</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Migration">
-      <Version>1.0.0-preview03</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.PercentLayout">
-      <Version>1.0.0-preview02</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Wear">
-      <Version>1.0.0-preview02</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
-      <Version>1.3.0-pre</Version>
+      <Version>1.2.0</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Auth">
-      <Version>71.1600.0</Version>
+      <Version>60.1142.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Base">
-      <Version>71.1610.0</Version>
+      <Version>60.1142.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Basement">
-      <Version>71.1620.0</Version>
+      <Version>60.1142.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Gcm">
-      <Version>71.1600.0</Version>
+      <Version>60.1142.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Location">
-      <Version>71.1600.0</Version>
+      <Version>60.1142.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Maps">
-      <Version>71.1600.0</Version>
+      <Version>60.1142.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Tasks">
-      <Version>71.1601.0</Version>
+      <Version>60.1142.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Wearable">
-      <Version>71.1601.0</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Common">
-      <Version>2.0.0-preview02</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Browser">
-      <Version>1.0.0-preview02</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Core">
-      <Version>1.0.1-preview02</Version>
+      <Version>60.1142.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

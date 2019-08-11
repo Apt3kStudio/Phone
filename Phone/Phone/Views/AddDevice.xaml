@@ -229,8 +229,8 @@
                 x:Name="RegistedDevices"
                 Grid.Row="2"
                 BackgroundColor="Transparent">
-                <CollectionView ItemsSource="{Binding RegisteredDevices}">
-                    <!--<CollectionView.ItemsSource>
+                <CollectionView>
+                    <CollectionView.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>HS-Moto Watch</x:String>
                             <x:String>One Plus 5</x:String>
@@ -239,7 +239,7 @@
                             <x:String>HS-Moto Watch</x:String>
                             <x:String>HS-Moto Watch</x:String>
                         </x:Array>
-                    </CollectionView.ItemsSource>-->
+                    </CollectionView.ItemsSource>
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Horizontal" Span="1" />
                     </CollectionView.ItemsLayout>
@@ -272,13 +272,13 @@
                                             Aspect="AspectFit"
                                             HeightRequest="60"
                                             HorizontalOptions="FillAndExpand"
-                                            Source="{Binding ImageSource}" />
+                                            Source="https://png2.kisspng.com/sh/05c12b0d93e8fac1dfc4b5b620529203/L0KzQYm3VMA4N5lAfZH0aYP2gLBuTf1wfJCyS6g5LULxdH7uhf5mepJ5gdH3LXHwccv2jr1kd54yi99qcoT6ccXqiL1xbV58eeZsaHX2PYbog8kxbWM3S9UCYXG1PoWAV8U3OWQ9Sac7M0G1RYiCVMI1P2gziNDw/kisspng-moto-360-2nd-generation-amazon-com-smartwatch-pe-watches-5ac90e223c7aa2.4775613815231257942477.png" />
 
                                         <Label
                                             FontAttributes="Bold"
                                             HorizontalOptions="Center"
                                             LineBreakMode="TailTruncation"
-                                            Text="{Binding device}"
+                                            Text="{Binding}"
                                             TextColor="{StaticResource SpideyWhite}"
                                             VerticalOptions="Center" />
 
@@ -294,8 +294,8 @@
                 Grid.Row="2"
                 BackgroundColor="Transparent"
                 IsVisible="False">
-                <CollectionView ItemsSource="{Binding RegisteredDevices}">
-                    <!--<CollectionView.ItemsSource>
+                <CollectionView>
+                    <CollectionView.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>HS-Moto Watch</x:String>
                             <x:String>One Plus 5</x:String>
@@ -304,10 +304,8 @@
                             <x:String>HS-Moto Watch</x:String>
                             <x:String>HS-Moto Watch</x:String>
                         </x:Array>
-                    -->
-                    <!--    -->
-                    <!--
-                    </CollectionView.ItemsSource>-->
+                        <!--    -->
+                    </CollectionView.ItemsSource>
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Horizontal" Span="1" />
                     </CollectionView.ItemsLayout>
@@ -339,13 +337,13 @@
                                             Aspect="AspectFit"
                                             HeightRequest="60"
                                             HorizontalOptions="FillAndExpand"
-                                            Source="{Binding ImageSource}" />
+                                            Source="https://png2.kisspng.com/sh/24f713c4870c11d0ff47fd73edb19ce9/L0KzQYm3U8E4N6l7fZH0aYP2gLBuTfxoNZgyj9N9Y3iwgn70jCRwNWQ7SJ87bnSwd7b1hgJifJp0hp98YX32hbBuTfdmaV5xjepAcomwh7L7gBhme146edNtN0DpR4aChck3P183T6oCOUCzRIK8UsE0OWc1UKk8Nki2PsH1h5==/kisspng-lg-g-watch-r-moto-360-2nd-generation-samsung-gea-luxury-watches-5aad70f759e967.2787900415213160873683.png" />
 
                                         <Label
                                             FontAttributes="Bold"
                                             HorizontalOptions="Center"
                                             LineBreakMode="TailTruncation"
-                                            Text="{Binding device}"
+                                            Text="{Binding}"
                                             TextColor="{StaticResource SpideyWhite}"
                                             VerticalOptions="Center" />
 

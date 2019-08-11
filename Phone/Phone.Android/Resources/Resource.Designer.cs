@@ -5216,7 +5216,6 @@ namespace Phone.Droid
 			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialProgressBarHorizontal = global::Phone.Droid.Resource.Style.XamarinFormsMaterialProgressBarHorizontal;
 			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialSlider = global::Phone.Droid.Resource.Style.XamarinFormsMaterialSlider;
 			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialTheme = global::Phone.Droid.Resource.Style.XamarinFormsMaterialTheme;
-			global::Xamarin.Forms.Material.Android.Resource.Style.collectionViewStyle = global::Phone.Droid.Resource.Style.collectionViewStyle;
 			global::Xamarin.Forms.Material.Android.Resource.Styleable.ActionBar = global::Phone.Droid.Resource.Styleable.ActionBar;
 			global::Xamarin.Forms.Material.Android.Resource.Styleable.ActionBar_background = global::Phone.Droid.Resource.Styleable.ActionBar_background;
 			global::Xamarin.Forms.Material.Android.Resource.Styleable.ActionBar_backgroundSplit = global::Phone.Droid.Resource.Styleable.ActionBar_backgroundSplit;
@@ -7785,7 +7784,6 @@ namespace Phone.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense = global::Phone.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.Widget_MaterialComponents_Toolbar = global::Phone.Droid.Resource.Style.Widget_MaterialComponents_Toolbar;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.Widget_Support_CoordinatorLayout = global::Phone.Droid.Resource.Style.Widget_Support_CoordinatorLayout;
-			global::Xamarin.Forms.Platform.Android.Resource.Style.collectionViewStyle = global::Phone.Droid.Resource.Style.collectionViewStyle;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ActionBar = global::Phone.Droid.Resource.Styleable.ActionBar;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ActionBar_background = global::Phone.Droid.Resource.Styleable.ActionBar_background;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ActionBar_backgroundSplit = global::Phone.Droid.Resource.Styleable.ActionBar_backgroundSplit;
@@ -14150,8 +14148,8 @@ namespace Phone.Droid
 			// aapt resource value: 0x7f0b0043
 			public const int abc_toolbar_collapse_description = 2131427395;
 			
-			// aapt resource value: 0x7f0b0066
-			public const int app_name = 2131427430;
+			// aapt resource value: 0x7f0b0065
+			public const int app_name = 2131427429;
 			
 			// aapt resource value: 0x7f0b001c
 			public const int appbar_scrolling_view_behavior = 2131427356;
@@ -14165,62 +14163,62 @@ namespace Phone.Droid
 			// aapt resource value: 0x7f0b001f
 			public const int character_counter_pattern = 2131427359;
 			
+			// aapt resource value: 0x7f0b0053
+			public const int common_google_play_services_enable_button = 2131427411;
+			
 			// aapt resource value: 0x7f0b0054
-			public const int common_google_play_services_enable_button = 2131427412;
+			public const int common_google_play_services_enable_text = 2131427412;
 			
 			// aapt resource value: 0x7f0b0055
-			public const int common_google_play_services_enable_text = 2131427413;
+			public const int common_google_play_services_enable_title = 2131427413;
 			
 			// aapt resource value: 0x7f0b0056
-			public const int common_google_play_services_enable_title = 2131427414;
+			public const int common_google_play_services_install_button = 2131427414;
 			
 			// aapt resource value: 0x7f0b0057
-			public const int common_google_play_services_install_button = 2131427415;
+			public const int common_google_play_services_install_text = 2131427415;
 			
 			// aapt resource value: 0x7f0b0058
-			public const int common_google_play_services_install_text = 2131427416;
+			public const int common_google_play_services_install_title = 2131427416;
 			
 			// aapt resource value: 0x7f0b0059
-			public const int common_google_play_services_install_title = 2131427417;
+			public const int common_google_play_services_notification_channel_name = 2131427417;
 			
 			// aapt resource value: 0x7f0b005a
-			public const int common_google_play_services_notification_channel_name = 2131427418;
+			public const int common_google_play_services_notification_ticker = 2131427418;
+			
+			// aapt resource value: 0x7f0b0052
+			public const int common_google_play_services_unknown_issue = 2131427410;
 			
 			// aapt resource value: 0x7f0b005b
-			public const int common_google_play_services_notification_ticker = 2131427419;
-			
-			// aapt resource value: 0x7f0b0053
-			public const int common_google_play_services_unknown_issue = 2131427411;
+			public const int common_google_play_services_unsupported_text = 2131427419;
 			
 			// aapt resource value: 0x7f0b005c
-			public const int common_google_play_services_unsupported_text = 2131427420;
+			public const int common_google_play_services_update_button = 2131427420;
 			
 			// aapt resource value: 0x7f0b005d
-			public const int common_google_play_services_update_button = 2131427421;
+			public const int common_google_play_services_update_text = 2131427421;
 			
 			// aapt resource value: 0x7f0b005e
-			public const int common_google_play_services_update_text = 2131427422;
+			public const int common_google_play_services_update_title = 2131427422;
 			
 			// aapt resource value: 0x7f0b005f
-			public const int common_google_play_services_update_title = 2131427423;
+			public const int common_google_play_services_updating_text = 2131427423;
 			
 			// aapt resource value: 0x7f0b0060
-			public const int common_google_play_services_updating_text = 2131427424;
+			public const int common_google_play_services_wear_update_text = 2131427424;
 			
 			// aapt resource value: 0x7f0b0061
-			public const int common_google_play_services_wear_update_text = 2131427425;
+			public const int common_open_on_phone = 2131427425;
 			
 			// aapt resource value: 0x7f0b0062
-			public const int common_open_on_phone = 2131427426;
+			public const int common_signin_button_text = 2131427426;
 			
 			// aapt resource value: 0x7f0b0063
-			public const int common_signin_button_text = 2131427427;
+			public const int common_signin_button_text_long = 2131427427;
 			
-			// aapt resource value: 0x7f0b0064
-			public const int common_signin_button_text_long = 2131427428;
-			
-			// aapt resource value: 0x7f0b006a
-			public const int default_web_client_id = 2131427434;
+			// aapt resource value: 0x7f0b0069
+			public const int default_web_client_id = 2131427433;
 			
 			// aapt resource value: 0x7f0b0018
 			public const int expand_button_title = 2131427352;
@@ -14231,35 +14229,32 @@ namespace Phone.Droid
 			// aapt resource value: 0x7f0b0021
 			public const int fab_transformation_sheet_behavior = 2131427361;
 			
-			// aapt resource value: 0x7f0b0065
-			public const int fcm_fallback_notification_channel_label = 2131427429;
+			// aapt resource value: 0x7f0b0064
+			public const int fcm_fallback_notification_channel_label = 2131427428;
+			
+			// aapt resource value: 0x7f0b006a
+			public const int firebase_database_url = 2131427434;
+			
+			// aapt resource value: 0x7f0b0067
+			public const int gcm_defaultSenderId = 2131427431;
 			
 			// aapt resource value: 0x7f0b006b
-			public const int firebase_database_url = 2131427435;
+			public const int google_api_key = 2131427435;
 			
 			// aapt resource value: 0x7f0b0068
-			public const int gcm_defaultSenderId = 2131427432;
-			
-			// aapt resource value: 0x7f0b0052
-			public const int gcm_fallback_notification_channel_label = 2131427410;
+			public const int google_app_id = 2131427432;
 			
 			// aapt resource value: 0x7f0b006c
-			public const int google_api_key = 2131427436;
-			
-			// aapt resource value: 0x7f0b0069
-			public const int google_app_id = 2131427433;
+			public const int google_crash_reporting_api_key = 2131427436;
 			
 			// aapt resource value: 0x7f0b006d
-			public const int google_crash_reporting_api_key = 2131427437;
-			
-			// aapt resource value: 0x7f0b006e
-			public const int google_storage_bucket = 2131427438;
+			public const int google_storage_bucket = 2131427437;
 			
 			// aapt resource value: 0x7f0b0022
 			public const int hide_bottom_view_on_scroll_behavior = 2131427362;
 			
-			// aapt resource value: 0x7f0b0067
-			public const int library_name = 2131427431;
+			// aapt resource value: 0x7f0b0066
+			public const int library_name = 2131427430;
 			
 			// aapt resource value: 0x7f0b0000
 			public const int mr_button_content_description = 2131427328;
@@ -14351,8 +14346,8 @@ namespace Phone.Droid
 			// aapt resource value: 0x7f0b0028
 			public const int path_password_strike_through = 2131427368;
 			
-			// aapt resource value: 0x7f0b006f
-			public const int project_id = 2131427439;
+			// aapt resource value: 0x7f0b006e
+			public const int project_id = 2131427438;
 			
 			// aapt resource value: 0x7f0b0044
 			public const int search_menu_title = 2131427396;
@@ -14400,32 +14395,32 @@ namespace Phone.Droid
 			// aapt resource value: 0x7f0d0036
 			public const int Animation_Design_BottomSheetDialog = 2131558454;
 			
-			// aapt resource value: 0x7f0d0232
-			public const int AppCompatDialogStyle = 2131558962;
-			
-			// aapt resource value: 0x7f0d022f
-			public const int BB_BottomBarBadge_Text = 2131558959;
-			
-			// aapt resource value: 0x7f0d0228
-			public const int BB_BottomBarItem = 2131558952;
-			
-			// aapt resource value: 0x7f0d0229
-			public const int BB_BottomBarItem_Fixed = 2131558953;
-			
-			// aapt resource value: 0x7f0d022b
-			public const int BB_BottomBarItem_Fixed_TitleAppearance = 2131558955;
-			
-			// aapt resource value: 0x7f0d022c
-			public const int BB_BottomBarItem_Shifting = 2131558956;
-			
-			// aapt resource value: 0x7f0d022d
-			public const int BB_BottomBarItem_Shifting_TitleAppearance = 2131558957;
+			// aapt resource value: 0x7f0d0231
+			public const int AppCompatDialogStyle = 2131558961;
 			
 			// aapt resource value: 0x7f0d022e
-			public const int BB_BottomBarItem_Tablet = 2131558958;
+			public const int BB_BottomBarBadge_Text = 2131558958;
+			
+			// aapt resource value: 0x7f0d0227
+			public const int BB_BottomBarItem = 2131558951;
+			
+			// aapt resource value: 0x7f0d0228
+			public const int BB_BottomBarItem_Fixed = 2131558952;
 			
 			// aapt resource value: 0x7f0d022a
-			public const int BB_BottomBarItem_TitleStyle = 2131558954;
+			public const int BB_BottomBarItem_Fixed_TitleAppearance = 2131558954;
+			
+			// aapt resource value: 0x7f0d022b
+			public const int BB_BottomBarItem_Shifting = 2131558955;
+			
+			// aapt resource value: 0x7f0d022c
+			public const int BB_BottomBarItem_Shifting_TitleAppearance = 2131558956;
+			
+			// aapt resource value: 0x7f0d022d
+			public const int BB_BottomBarItem_Tablet = 2131558957;
+			
+			// aapt resource value: 0x7f0d0229
+			public const int BB_BottomBarItem_TitleStyle = 2131558953;
 			
 			// aapt resource value: 0x7f0d014e
 			public const int Base_AlertDialog_AppCompat = 2131558734;
@@ -15000,11 +14995,11 @@ namespace Phone.Droid
 			// aapt resource value: 0x7f0d0215
 			public const int CardView_Light = 2131558933;
 			
-			// aapt resource value: 0x7f0d0230
-			public const int MainTheme = 2131558960;
+			// aapt resource value: 0x7f0d022f
+			public const int MainTheme = 2131558959;
 			
-			// aapt resource value: 0x7f0d0231
-			public const int MainTheme_Base = 2131558961;
+			// aapt resource value: 0x7f0d0230
+			public const int MainTheme_Base = 2131558960;
 			
 			// aapt resource value: 0x7f0d012f
 			public const int Platform_AppCompat = 2131558703;
@@ -15987,8 +15982,8 @@ namespace Phone.Droid
 			// aapt resource value: 0x7f0d00b0
 			public const int Widget_MaterialComponents_ChipGroup = 2131558576;
 			
-			// aapt resource value: 0x7f0d0226
-			public const int Widget_MaterialComponents_CompoundButton_CheckBox = 2131558950;
+			// aapt resource value: 0x7f0d0225
+			public const int Widget_MaterialComponents_CompoundButton_CheckBox = 2131558949;
 			
 			// aapt resource value: 0x7f0d00b1
 			public const int Widget_MaterialComponents_FloatingActionButton = 2131558577;
@@ -16044,32 +16039,29 @@ namespace Phone.Droid
 			// aapt resource value: 0x7f0d0216
 			public const int Widget_Support_CoordinatorLayout = 2131558934;
 			
+			// aapt resource value: 0x7f0d0222
+			public const int XamarinFormsMaterialButton = 2131558946;
+			
 			// aapt resource value: 0x7f0d0223
-			public const int XamarinFormsMaterialButton = 2131558947;
+			public const int XamarinFormsMaterialButtonOutlined = 2131558947;
+			
+			// aapt resource value: 0x7f0d0226
+			public const int XamarinFormsMaterialCheckBox = 2131558950;
 			
 			// aapt resource value: 0x7f0d0224
-			public const int XamarinFormsMaterialButtonOutlined = 2131558948;
-			
-			// aapt resource value: 0x7f0d0227
-			public const int XamarinFormsMaterialCheckBox = 2131558951;
-			
-			// aapt resource value: 0x7f0d0225
-			public const int XamarinFormsMaterialEntryFilled = 2131558949;
-			
-			// aapt resource value: 0x7f0d0222
-			public const int XamarinFormsMaterialProgressBarCircular = 2131558946;
+			public const int XamarinFormsMaterialEntryFilled = 2131558948;
 			
 			// aapt resource value: 0x7f0d0221
-			public const int XamarinFormsMaterialProgressBarHorizontal = 2131558945;
+			public const int XamarinFormsMaterialProgressBarCircular = 2131558945;
 			
 			// aapt resource value: 0x7f0d0220
-			public const int XamarinFormsMaterialSlider = 2131558944;
+			public const int XamarinFormsMaterialProgressBarHorizontal = 2131558944;
 			
 			// aapt resource value: 0x7f0d021f
-			public const int XamarinFormsMaterialTheme = 2131558943;
+			public const int XamarinFormsMaterialSlider = 2131558943;
 			
 			// aapt resource value: 0x7f0d021e
-			public const int collectionViewStyle = 2131558942;
+			public const int XamarinFormsMaterialTheme = 2131558942;
 			
 			static Style()
 			{

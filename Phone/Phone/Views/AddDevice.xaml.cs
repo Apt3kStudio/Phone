@@ -8,36 +8,21 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SkiaSharp;
-using Phone.Extensions;
-using Phone.ViewModels;
 
 namespace Phone.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddDevice : ContentPage
     {
-        public const int AnimationDuration = 200;
-        private ConnectedDevicesVM cd;
-
         public string icon { get; set; }
         public AddDevice()
         {
-            
+            icon = FontAwesomeIcons.BatteryQuarter;
             InitializeComponent();
-            cd= new  ConnectedDevicesVM();
-            BindingContext = cd;
             SizeChanged += LoginPage_SizeChanged;
 
         }
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
 
-            if (cd.RegisteredDevices.Count == 0)
-                cd.LoadItemsCommand.Execute(null);      
-
-
-        }
         private void LoginPage_SizeChanged(object sender, EventArgs e)
         {
             if (SelectorBackground.Height < 0) return;
