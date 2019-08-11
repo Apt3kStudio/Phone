@@ -22,7 +22,7 @@ namespace Phone.ViewModels
         public string EventMessage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string EventDuration { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        Communicator cm;
+        ConnectionService cm;
         public EventViewModel()
         {
             

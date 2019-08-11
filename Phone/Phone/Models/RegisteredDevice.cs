@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Phone.Droid;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -20,11 +21,12 @@ namespace Phone.Models
         public string platform { get; set; }
         public string idiom { get; set; }
         public string deviceType { get; set; }
+        public string ImageSource { set; get; }
         public string Flash { get; set; }
         public string Sound { get; set; }
-        public string Vibration { get; set; }
-       
-        string _Distance = "";
+        //public string public string Vibration { get; set; } { get; set; }
+
+
 
         public RegisteredDevice()
         {
@@ -33,6 +35,30 @@ namespace Phone.Models
             //    await GetCount();
             //});             
         }
+        bool _Vibration = false;
+        public bool Buzz
+        {
+            get => _Vibration;
+            set
+            {
+                if (_Vibration == value)
+                    return;
+                _Vibration = value;
+                BuzzWatch(value);
+                NotifyPropertyChange(nameof(Buzz));
+            }
+        }
+
+        private void BuzzWatch(bool enabled)
+        {
+            if (enabled)
+            {           
+                ConnectionService c = new ConnectionService();
+                c.SendMessage("Buzz");
+            }
+        }
+
+        string _Distance = "";
         public string Distance
         {
             get => _Distance;
