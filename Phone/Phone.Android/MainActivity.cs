@@ -27,7 +27,7 @@ namespace Phone.Droid
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         public static Context AppContext { get; private set; }
-        Communicator cmm;
+        ConnectionService cmm;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -35,26 +35,17 @@ namespace Phone.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-            CalligraphyConfig.InitDefault(new CalligraphyConfig.Builder()
-                  .SetDefaultFontPath("fonts/Righteous-Regular.ttf")
-                  .SetFontAttrId(Resource.Attribute.fontPath)
-              // Adding a custom view that support adding a typeFace
-              // .AddCustomViewWithSetTypeface(Java.Lang.Class.FromType(typeof(CustomViewWithTypefaceSupport)))
-              // Adding a custom style
-              // .AddCustomStyle(Java.Lang.Class.FromType(typeof(TextField)), Resource.Attribute.textFieldStyle)
-              .Build()
-          );
+            CalligraphyConfig.InitDefault(new CalligraphyConfig.Builder().SetDefaultFontPath("fonts/Righteous-Regular.ttf").SetFontAttrId(Resource.Attribute.fontPath).Build());
             Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);
-
-
-            LoadApplication(new App(this));
-
-
             #region Registering Xamarin Essentials on android;
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             #endregion
+            LoadApplication(new App(this));
+            cmm = new ConnectionService();
+
+          
 
             ServicePointManager.ServerCertificateValidationCallback += (o, cert, chain, errors) => true;
             #region Firebase disabled
@@ -67,40 +58,24 @@ namespace Phone.Droid
 
             #endregion
             #region watch => phone communication
-            new Task(() =>
-            {
-                cmm = new Communicator(this);
-                cmm.SendMessage("FromPhone" + DateTime.Now.ToString("T"));
-                cmm.DataReceived += DeviceReceived;
-
-            });
-
-            //cmm.DataReceived
-
             #endregion
             StartService(new Intent(this, Class));
-
         }
         private void DeviceReceived(Android.Gms.Wearable.DataMap device)
         {
 
             var TimeStamp = device.GetString("TimeStamp");
         }
-
         protected override void OnResume()
         {
             base.OnResume();
-
-            //   cmm.Resume();
+            cmm.Resume();
         }
-
         protected override void OnPause()
         {
-            // cmm.Pause();
-
+            cmm.Pause();
             base.OnPause();
         }
-
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

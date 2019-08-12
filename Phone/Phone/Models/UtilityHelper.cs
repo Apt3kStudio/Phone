@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Android.Content;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
@@ -73,9 +74,9 @@ namespace Phone.Models
             }
         }
 
-        internal static Task SaveToPhoneAsync(string v, int currentIndex)
+        public static Context GetContext()
         {
-            throw new NotImplementedException();
+            return Android.App.Application.Context;
         }
     }
 }
