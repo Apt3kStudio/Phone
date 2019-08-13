@@ -23,7 +23,8 @@ namespace Phone.ViewModels
             RegisteredDevices = new ObservableCollection<RegisteredDevice>();
             //RegisteredDevices.CollectionChanged += mycollChanged;
             LoadItemsCommand = new Command(() =>ExecuteLoadItemsCommand());
-            DeviceRegistrationService cc = new DeviceRegistrationService();
+            DeviceService devicServ = new DeviceService();
+            
         }
 
         //private void mycollChanged(object sender, NotifyCollectionChangedEventArgs e)

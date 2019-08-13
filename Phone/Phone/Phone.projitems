@@ -44,9 +44,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\ReceiveFromPhone.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Registration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\settingM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UnRegisteredDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserLoginSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UtilityHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\DeviceRegistrationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DeviceService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\FCMService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\WebPortalApiServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\BottomBarPage.cs" />

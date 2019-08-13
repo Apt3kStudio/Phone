@@ -14,12 +14,17 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Phone.Models;
 using System.Linq;
+using Java.Lang;
 
 namespace Phone.Droid
 {
     [Service]
     [IntentFilter(new[] { "com.google.android.gms.wearable.BIND_LISTENER" })]
-    public class ConnectionService : Java.Lang.Object, MessageClient.IOnMessageReceivedListener, DataClient.IOnDataChangedListener, CapabilityClient.IOnCapabilityChangedListener
+    public class ConnectionService : Java.Lang.Object, 
+                                        MessageClient.IOnMessageReceivedListener, 
+                                        DataClient.IOnDataChangedListener, 
+                                        CapabilityClient.IOnCapabilityChangedListener,
+                                        Android.Gms.Tasks.IOnSuccessListener
     {       
         const string path = "/my_capability";
         string capabilityName = "my_capability";
@@ -147,6 +152,94 @@ namespace Phone.Droid
                 }
                 return results;
             }
-        }      
+        }
+
+        public void DeviceDiscovery()
+        {
+
+            WearableClass.GetCapabilityClient(context)
+                .GetAllCapabilities(CapabilityClient.FilterReachable)
+                .AddOnSuccessListener(this);
+            //Task.Run(() => {
+            //    Android.Gms.Tasks.IOnSuccessListener result = null;
+            //    //var nodes =
+            //    //    Android.Gms.Wearable.WearableClass.NodeApi.GetConnectedNodes(client)
+            //    //        .Await()
+            //    //        .JavaCast<Android.Gms.Wearable.INodeApiGetConnectedNodesResult>();
+
+            //    var nodess =  WearableClass.GetNodeClient(context).GetConnectedNodes();
+            //    var sss =   WearableClass.GetCapabilityClient(context).GetAllCapabilities(CapabilityClient.FilterReachable);
+            //    // .AddOnSuccessListener(result);
+            //});
+
+        }
+
+        public void OnSuccess(Java.Lang.Object result)
+        {
+            var nodes = Android.Runtime.Extensions.JavaCast<ICapabilityInfo>(result);
+        }
+
+        private void showNodes(string capabilityNames)
+        {
+            
+            WearableClass.GetCapabilityClient(context).GetAllCapabilities(CapabilityClient.FilterReachable)
+                .AddOnSuccessListener(this);
+
+ //           Wearable.getCapabilityClient(this)
+ //                   .getAllCapabilities(CapabilityClient.FILTER_REACHABLE).apply {
+ //               addOnSuccessListener {
+ //                   capabilityInfoMap->
+ //val nodes: Set < Node > = capabilityInfoMap
+ //        .filter { capabilityNames.contains(it.key) }
+ //                           .flatMap { it.value.nodes }
+ //                           .toSet()
+ //                   showDiscoveredNodes(nodes)
+ //               }
+ //           }
+        }
+
+       
+
+        //       private fun showDiscoveredNodes(nodes: Set<Node>)
+        //       {
+        //           val nodesList: Set < String > = nodes.map { it.displayName }.toSet()
+        //           val msg: String = if (nodesList.isEmpty())
+        //           {
+        //               Log.d(TAG, "Connected Nodes: No connected device was found for the given capabilities")
+        //       getString(R.string.no_device)
+        //   }
+        //           else
+        //           {
+        //               Log.d(TAG, "Connected Nodes: ${nodesList.joinToString(separator = ", ")}")
+        //             getString(R.string.connected_nodes, nodesList)
+        //         }
+        //           Toast.makeText(this@MainActivity, msg, Toast.LENGTH_LONG).show()
+        //       }
+
+        public void RegisterListeners()
+        {
+            RegisterDataListener();
+            RegisterMessageListener();
+            RegisterCapabilityListener();
+            RegisterCapabilityWithURIListener();
+        }
+        private void RegisterCapabilityWithURIListener()
+        {
+            WearableClass.GetCapabilityClient(context).AddListener(this, Android.Net.Uri.Parse("wear://"), CapabilityClient.FilterReachable);
+        }
+        private void RegisterCapabilityListener()
+        {
+            WearableClass.GetCapabilityClient(context).AddListener(this, capabilityName);
+        }
+        private void RegisterMessageListener()
+        {
+            WearableClass.GetMessageClient(context).AddListener(this);
+        }
+        private void RegisterDataListener()
+        {
+            WearableClass.GetDataClient(context).AddListener(this);
+        }
+
+       
     }
 }
