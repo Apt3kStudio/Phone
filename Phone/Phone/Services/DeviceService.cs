@@ -3,27 +3,33 @@ using Phone.Droid;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Phone.Services
 {
     public class DeviceService
     {
+        public Func<object> ReceiveConnectedNodes { get; internal set; }
+        ConnectionService cServ;
         public DeviceService()
         {
-            ConnectionService cServ = new ConnectionService();
-            cServ.DeviceDiscovery();
-            
+            cServ  = new ConnectionService();
+            SubscribeToGetDiscoveredNodes(cServ);
         }
 
-        private void RegisterOnCapabilityChanged(ConnectionService cServ)
+        public void InitiateDiscovery()
         {
-            cServ.OnCapabilityChangedReceived += Deviceregistration;
-            cServ.Resume();
+            cServ.DeviceDiscovery();           
         }
 
-        private void Deviceregistration(List<INode> nodes)
+        private void SubscribeToGetDiscoveredNodes(ConnectionService cServ)
         {
-            
+            cServ.GetNodeSubscriber += ActionReceiveConnectedNodes;
         }
+        private void ActionReceiveConnectedNodes(List<INode> nodes)
+        {
+            SubscribeToUnregisteredDevicesDiscovered(nodes);
+        }
+        public event Action<List<INode>> SubscribeToUnregisteredDevicesDiscovered= delegate { };
     }
 }

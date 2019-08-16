@@ -252,9 +252,9 @@
                                 <Grid.ColumnDefinitions />
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*" />
-                                        <RowDefinition Height="100*" />
-                                        <RowDefinition Height="1*" />
+
+                                        <RowDefinition Height="auto" />
+
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="17*" />
@@ -294,7 +294,7 @@
                 Grid.Row="2"
                 BackgroundColor="Transparent"
                 IsVisible="False">
-                <CollectionView ItemsSource="{Binding RegisteredDevices}">
+                <CollectionView ItemsSource="{Binding UnRegisteredDevices}">
                     <!--<CollectionView.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>HS-Moto Watch</x:String>
@@ -320,9 +320,9 @@
                                 <Grid.ColumnDefinitions />
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*" />
-                                        <RowDefinition Height="100*" />
-                                        <RowDefinition Height="1*" />
+
+                                        <RowDefinition Height="auto" />
+
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="17*" />

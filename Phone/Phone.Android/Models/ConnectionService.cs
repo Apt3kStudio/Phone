@@ -15,6 +15,7 @@ using Xamarin.Forms.Platform.Android;
 using Phone.Models;
 using System.Linq;
 using Java.Lang;
+using System.Runtime.CompilerServices;
 
 namespace Phone.Droid
 {
@@ -132,90 +133,25 @@ namespace Phone.Droid
         public void OnCapabilityChanged(ICapabilityInfo capabilityInfo)
         {
             var nodes = capabilityInfo.Nodes.ToList();
-            OnCapabilityChangedReceived(nodes);
+            GetNodeSubscriber(nodes);
         }
-        public event Action<List<INode>> OnCapabilityChangedReceived = delegate { };
-
-        public ICollection<string> NodeIds
-        {
-            get
-            {
-                var results = new HashSet<string>();
-                var nodes =
-                    Android.Gms.Wearable.WearableClass.NodeApi.GetConnectedNodes(client)
-                        .Await()
-                        .JavaCast<Android.Gms.Wearable.INodeApiGetConnectedNodesResult>();
-
-                foreach (var node in nodes.Nodes)
-                {
-                    results.Add(node.Id);
-                }
-                return results;
-            }
-        }
-
         public void DeviceDiscovery()
         {
-
-            WearableClass.GetCapabilityClient(context)
-                .GetAllCapabilities(CapabilityClient.FilterReachable)
-                .AddOnSuccessListener(this);
-            //Task.Run(() => {
-            //    Android.Gms.Tasks.IOnSuccessListener result = null;
-            //    //var nodes =
-            //    //    Android.Gms.Wearable.WearableClass.NodeApi.GetConnectedNodes(client)
-            //    //        .Await()
-            //    //        .JavaCast<Android.Gms.Wearable.INodeApiGetConnectedNodesResult>();
-
-            //    var nodess =  WearableClass.GetNodeClient(context).GetConnectedNodes();
-            //    var sss =   WearableClass.GetCapabilityClient(context).GetAllCapabilities(CapabilityClient.FilterReachable);
-            //    // .AddOnSuccessListener(result);
-            //});
-
+            Task.Run(async () => 
+            {
+                var result2 = await WearableClass
+                                        .GetCapabilityClient(context)
+                                        .GetAllCapabilitiesAsync(CapabilityClient.FilterReachable);
+                List<INode> nodes = result2.Values.First().Nodes.ToList();
+                GetNodeSubscriber(nodes);
+            });
         }
+        public event Action<List<INode>> GetNodeSubscriber = delegate { };
 
         public void OnSuccess(Java.Lang.Object result)
         {
-            var nodes = Android.Runtime.Extensions.JavaCast<ICapabilityInfo>(result);
+            var nodes = (ICapabilityInfo)result;
         }
-
-        private void showNodes(string capabilityNames)
-        {
-            
-            WearableClass.GetCapabilityClient(context).GetAllCapabilities(CapabilityClient.FilterReachable)
-                .AddOnSuccessListener(this);
-
- //           Wearable.getCapabilityClient(this)
- //                   .getAllCapabilities(CapabilityClient.FILTER_REACHABLE).apply {
- //               addOnSuccessListener {
- //                   capabilityInfoMap->
- //val nodes: Set < Node > = capabilityInfoMap
- //        .filter { capabilityNames.contains(it.key) }
- //                           .flatMap { it.value.nodes }
- //                           .toSet()
- //                   showDiscoveredNodes(nodes)
- //               }
- //           }
-        }
-
-       
-
-        //       private fun showDiscoveredNodes(nodes: Set<Node>)
-        //       {
-        //           val nodesList: Set < String > = nodes.map { it.displayName }.toSet()
-        //           val msg: String = if (nodesList.isEmpty())
-        //           {
-        //               Log.d(TAG, "Connected Nodes: No connected device was found for the given capabilities")
-        //       getString(R.string.no_device)
-        //   }
-        //           else
-        //           {
-        //               Log.d(TAG, "Connected Nodes: ${nodesList.joinToString(separator = ", ")}")
-        //             getString(R.string.connected_nodes, nodesList)
-        //         }
-        //           Toast.makeText(this@MainActivity, msg, Toast.LENGTH_LONG).show()
-        //       }
-
         public void RegisterListeners()
         {
             RegisterDataListener();

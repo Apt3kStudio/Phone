@@ -22,21 +22,19 @@ namespace Phone.Views
         public string icon { get; set; }
         public AddDevice()
         {
-            
             InitializeComponent();
-            cd= new  ConnectedDevicesVM();
+            cd= new  ConnectedDevicesVM();          
             BindingContext = cd;
             SizeChanged += LoginPage_SizeChanged;
-
         }
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
             if (cd.RegisteredDevices.Count == 0)
-                cd.LoadItemsCommand.Execute(null);      
-
-
+            {
+                cd.loadUnregisteredDevices();
+                cd.loadRegisteredDevices();
+            }
         }
         private void LoginPage_SizeChanged(object sender, EventArgs e)
         {
