@@ -53,12 +53,12 @@ namespace Phone.Models
         }
         public async Task SaveCurrentCountAsync()
         {
-           await UtilityHelper.SaveToPhoneAsync("stampcounter",  CurrentIndex);
+           await UtilityHelper.SaveToPhoneAsync("stampcounter",  CurrentIndex.ToString());
         }
         public async Task SaveDeviceID()
         {
 
-            await UtilityHelper.SaveToPhoneAsync("DeviceID", ID);
+            await UtilityHelper.SaveToPhoneAsync("DeviceID", ID.ToString());
         }
 
         internal bool ReceivedHandShake(string message)
@@ -72,8 +72,8 @@ namespace Phone.Models
 
         internal void SendMessage()
         {
-            Communicator cmd = new Communicator(_context);
-            cmd.SendMessage("");            
+          //  Communicator cmd = new Communicator(_context);
+           // cmd.SendMessage("");            
         }
     }
 }

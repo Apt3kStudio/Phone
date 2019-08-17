@@ -8,21 +8,35 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SkiaSharp;
+using Phone.Extensions;
+using Phone.ViewModels;
 
 namespace Phone.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddDevice : ContentPage
     {
+        public const int AnimationDuration = 200;
+        private ConnectedDevicesVM cd;
+
+
         public string icon { get; set; }
         public AddDevice()
         {
-            icon = FontAwesomeIcons.BatteryQuarter;
             InitializeComponent();
+            cd= new  ConnectedDevicesVM();
+            cd.loadUnregisteredDevices();
+            cd.loadRegisteredDevices();
+            BindingContext = cd;
             SizeChanged += LoginPage_SizeChanged;
-
         }
-
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            
+            
+         
+        }
         private void LoginPage_SizeChanged(object sender, EventArgs e)
         {
             if (SelectorBackground.Height < 0) return;
@@ -70,6 +84,10 @@ namespace Phone.Views
           
             });
 
+        }
+        private async void SelectedDevice_Tap(object sender, EventArgs e)
+        {
+            if (!(sender is View view)) return;
         }
         private void BackgroundGradient_PaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e)
         {

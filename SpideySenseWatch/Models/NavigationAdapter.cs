@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.Graphics.Drawables;
-using Android.OS;
-using Android.Runtime;
 using Android.Support.Wearable.View.Drawer;
-using Android.Views;
-using Android.Widget;
-using SpideySenseWatch.Models;
+using SpideySenseWatch.Services;
 
 namespace SpideySenseWatch.Models
 {
@@ -21,7 +14,6 @@ namespace SpideySenseWatch.Models
         private Context mContext;
         private Section mCurrentSection = Section.Vibrate;
         private readonly FragmentManager _fragmentManager;
-        private Communicator _Communicator;
         public virtual FragmentManager GetFragmentManager()
         {
             return _fragmentManager;
@@ -33,23 +25,18 @@ namespace SpideySenseWatch.Models
         public override int Count => 4;
 
         //  public NavigationAdapter(Context context, WearableNavigationDrawer mWearableNavigationDrawer1, WearableActionDrawer mWearableActionDrawer1)
-        public NavigationAdapter(Context context, FragmentManager fragmentManager, WearableNavigationDrawer wnavDwe, WearableActionDrawer wActionDwr, Communicator objCommunicator )
+        public NavigationAdapter(Context context, FragmentManager fragmentManager, WearableNavigationDrawer wnavDwe, WearableActionDrawer wActionDwr )
         {
             mContext = context;
             _fragmentManager = fragmentManager;
             mWearableNavigationDrawer = wnavDwe;
-            mWearableActionDrawer = wActionDwr;
-            _Communicator = objCommunicator;
+            mWearableActionDrawer = wActionDwr;          
         }
-
-
         public override System.String GetItemText(int index)
         {
             Section selectedSection = getSection(index);
             return mContext.GetString(selectedSection.titleRes);
         }
-
-
         public override Drawable GetItemDrawable(int index)
         {
             try
@@ -62,14 +49,14 @@ namespace SpideySenseWatch.Models
             {
                 System.Diagnostics.Debug.WriteLine(e.Message.ToString());
                 throw;
-            }
-            
+            }            
         }
 
         public override void OnItemSelected(int index)
         {
             Section selectedSection = getSection(index);
-            _Communicator.SetTriggerEvent(index);
+            Events events = new Events();
+                events.SetTriggerEvent(index);
             // Only replace the fragment if the section is changing.
             if (selectedSection == mCurrentSection)
             {

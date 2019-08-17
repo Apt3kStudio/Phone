@@ -49,9 +49,9 @@ namespace Phone.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            
+
             if (cd.RegisteredDevices.Count == 0)
-                cd.LoadItemsCommand.Execute(null);
+                cd.loadRegisteredDevices();
             canvasView.ClearAnimation();
             canvasView.ClearFocus();
             canvasView.Invalidate();

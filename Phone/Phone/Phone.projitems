@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Card.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\EnumPicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\FilterData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MonkeyDataTemplateSelector.cs" />
@@ -43,9 +44,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\ReceiveFromPhone.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Registration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\settingM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UnRegisteredDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserLoginSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UtilityHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DeviceService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\FCMService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\MockService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\WebPortalApiServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\BottomBarPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\BottomBarPageExtensions.cs" />
