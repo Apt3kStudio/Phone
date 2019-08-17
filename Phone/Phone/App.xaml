@@ -1,10 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Phone.App">
+<Application
+    x:Class="Phone.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Application.Resources>
+        <OnPlatform x:Key="FontAwesomeBrands" x:TypeArguments="x:String">
+            <On Platform="Android" Value="FontAwesome5Brands.otf#Regular" />
+            <On Platform="iOS" Value="FontAwesome5Brands" />
+            <On Platform="UWP" Value="/Assets/FontAwesome5Brands.otf#Font Awesome 5 Brands" />
+        </OnPlatform>
+
+        <OnPlatform x:Key="FontAwesomeSolid" x:TypeArguments="x:String">
+            <On Platform="Android" Value="FontAwesome5Solid.otf#Regular" />
+            <On Platform="iOS" Value="FontAwesome5Solid" />
+            <On Platform="UWP" Value="/Assets/FontAwesome5Solid.otf#Font Awesome 5 Free" />
+        </OnPlatform>
+
+        <OnPlatform x:Key="FontAwesomeRegular" x:TypeArguments="x:String">
+            <On Platform="Android" Value="FontAwesome5Regular.otf#Regular" />
+            <On Platform="iOS" Value="FontAwesome5Regular" />
+            <On Platform="UWP" Value="/Assets/FontAwesome5Regular.otf#Font Awesome 5 Free" />
+        </OnPlatform>
+
+        <Color x:Key="PrimaryColor">#0078D7</Color>
+        <Color x:Key="SecondaryColor">#FFB900</Color>
+        <Color x:Key="TertiaryColor">#00A4EF</Color>
+        <Color x:Key="QuaternaryColor">#7FBA00</Color>
+        <Color x:Key="QuinaryColor">#F25022</Color>
+
+        <Color x:Key="SpideySilver">#f2f2f2</Color>
+        <Color x:Key="SpideyWhite">#ffffff</Color>
+        <Color x:Key="SpideyBlueBckGrnd">#020f1f</Color>
+        <Color x:Key="SpideyLightBlueBckGrnd">#001c41</Color>
+        <Color x:Key="SpideyLogoDarkRed">#c01823</Color>
+        <Color x:Key="SpideyLogoLightRed">#da3835</Color>
+
+        <Color x:Key="SpiderCardTitle">#0263A8</Color>
+        <Color x:Key="SpiderCardDistance">#0263A8</Color>
+        <Color x:Key="SpideyCardSwtichOn">#4C8827</Color>
+        <Color x:Key="SpideyCardSwtichOff">#8B3129</Color>
+        <Color x:Key="SpideyCardBackground">#F3F3F3</Color>
+        <Color x:Key="SpideyCardSubTitle">#B0B0B0</Color>
+        <Color x:Key="SpideyCardBorder">#f5f5f5</Color>
+
+        <Color x:Key="TextColor">#1d1d1d</Color>
+        <Color x:Key="SecondaryTextColor">#ffffff</Color>
         <ResourceDictionary>
-            <!--Global Styles-->
+            <!--  Global Styles  -->
+            <Style x:Key="TextTitle" TargetType="Label">
+                <Setter Property="TextColor" Value="#B0000000" />
+                <Setter Property="FontFamily" Value="Righteous-Regular.ttf#Righteous" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+            <Style x:Key="TextTitleBaseWhite" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontFamily" Value="Righteous-Regular.ttf#Righteous" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+            <Style x:Key="LargeTextTitle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontFamily" Value="Righteous-Regular.ttf#Righteous" />
+                <Setter Property="FontSize" Value="Large" />
+            </Style>
+            <Style x:Key="SelectedDeviceBase" TargetType="Label">
+                <Setter Property="TextColor" Value="white" />
+                <Setter Property="FontFamily" Value="Righteous-Regular.ttf#Righteous" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="FontName" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontFamily" Value="FontName" />
+            </Style>
+
             <Color x:Key="NavigationPrimary">#2196F3</Color>
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />

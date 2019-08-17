@@ -1,4 +1,7 @@
-﻿using Phone.ViewModels;
+﻿using Android.Content;
+using Phone.ViewModels;
+using SkiaSharp;
+using SkiaSharp.Views.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,25 +16,47 @@ namespace Phone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Registration : ContentPage
     {
-        RegisterViewModel RegisterVM { get; set; }
 
         public Registration()
         {
             InitializeComponent();
-            RegisterVM = new RegisterViewModel(Navigation)
+            auth = new AuthVM()
             {
                 Email = "",
                 Password = "",
-                ConfirmPassword = ""
+                ConfirmPassword = "",
+                ErrorMessage="Init Error"
             };
-        
-           // var s = RegisterVM.RegisterCommand.Execute(null);
-            BindingContext = RegisterVM;
+
+            BindingContext = auth;
+        }      
+        public AuthVM auth { get; set; }      
+
+        public  void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
+        {
+            SKImageInfo info = args.Info;
+            SKSurface surface = args.Surface;
+            SKCanvas canvas = surface.Canvas;
+            canvas.Clear();
+            using (SKPaint paint = new SKPaint())
+            {
+                SKColor SpideyBlueBckGrnd;
+                SKColor.TryParse("#020f1f", out SpideyBlueBckGrnd);
+                SKColor SpideyLightBlueBckGrnd;
+                SKColor.TryParse("#001c41", out SpideyLightBlueBckGrnd);
+                paint.Shader = SKShader.CreateLinearGradient(
+                                    new SKPoint(info.Rect.Top, info.Rect.Top),
+                                    new SKPoint(info.Rect.Bottom, info.Rect.Bottom),
+                                    new SKColor[] { SpideyBlueBckGrnd, SpideyLightBlueBckGrnd },
+                                    new float[] { 0, 0.60f },
+                                    SKShaderTileMode.Mirror);
+                canvas.DrawRect(info.Rect, paint);
+            }
         }
 
-        async void BackToLogin(object sender, EventArgs e)
+        void BackToLogin(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new Login()));
+            Shell.Current.Navigation.PushAsync(new Login());            
         }
     }
     

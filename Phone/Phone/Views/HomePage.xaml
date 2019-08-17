@@ -1,35 +1,115 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <bnb:BottomBarPage
-    xmlns:bnb="clr-namespace:Phone.Utility"
+    x:Class="Phone.Views.HomePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Phone.Views.HomePage">
-   
-    <ContentPage Title="Watch" Icon="round_watch_black_18dp.png" bnb:BottomBarPageExtensions.TabColor="DodgerBlue">
-       
-        <Label Text="Watch screen"/>
-    
-    </ContentPage>
-    <ContentPage Title="Alert" Icon="round_add_alert_black_18dp.png" 
-                 bnb:BottomBarPageExtensions.TabColor="#ee6002"
-                bnb:BottomBarPageExtensions.BadgeCount="6">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:bnb="clr-namespace:Phone.Utility">
 
-        <Label Text="Alert Screen"/>
-   
-    </ContentPage>
-    <ContentPage Title="Notification" Icon="round_notifications_active_black_18dp.png"
-                bnb:BottomBarPageExtensions.BadgeCount="3"
-                bnb:BottomBarPageExtensions.TabColor="#5300e8">
+    <ContentPage
+        bnb:BottomBarPageExtensions.TabColor="#ffffff"
+        Icon="Spide_Icon_WhiteBlue.png"
+        NavigationPage.HasNavigationBar="false">
+        <StackLayout
+            HorizontalOptions="Start"
+            Orientation="Vertical"
+            VerticalOptions="Start">
+            <Grid Padding="10,0,20,0" BackgroundColor="#0A2638">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="120" />
 
-        <Label Text="Notification Screen"/>
-    
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Font="Bold"
+                    HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Center"
+                    Text="Welcome"
+                    TextColor="#ffffff"
+                    VerticalTextAlignment="End" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    FontSize="10"
+                    HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Center"
+                    Text="Dioscarr@gmail.com"
+                    TextColor="#ffffff"
+                    VerticalTextAlignment="Start" />
+                <Image
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Source="/YourNamespace;component/Resources/Spide_Icon_WhiteBlue" />
+            </Grid>
+            <Grid Padding="10,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="10*" />
+                </Grid.ColumnDefinitions>
+
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Source="/YourNamespace;component/Resources/sound.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTapGestSoundIcon" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Source="/YourNamespace;component/Resources/vibrate.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTapGestVibrate" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Source="/YourNamespace;component/Resources/flash.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTapGestFlash" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <Grid Padding="10,0,10,0" VerticalOptions="EndAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="10*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Font=""
+                    FontSize="9"
+                    HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Center"
+                    Text="Watch Connected!"
+                    TextColor="red"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+        </StackLayout>
     </ContentPage>
-    <ContentPage Title="Settings" Icon="baseline_settings_black_18dp.png" bnb:BottomBarPageExtensions.TabColor="#008b00">
-        <Label Text="Setting Screen"/>
-    </ContentPage>
-    <ContentPage Title="TestPage" Icon="test_page_icon" bnb:BottomBarPageExtensions.TabColor="#DD2C00">
+    <ContentPage bnb:BottomBarPageExtensions.TabColor="#DD2C00" Icon="test_page_icon">
         <Grid Padding="20" VerticalOptions="CenterAndExpand">
-            <!-- Region (Set Rows definitions) -->
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
@@ -37,29 +117,95 @@
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
             </Grid.RowDefinitions>
-            <!-- EndRegion -->
-            <!-- Region (Set Column definitions) -->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*" />
                 <ColumnDefinition Width="5*" />
             </Grid.ColumnDefinitions>
-            <!-- EndRegion -->
-
-            <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="2"  HorizontalOptions="FillAndExpand" Text="Vib" Clicked="PushVibrate_Clicked" TextColor="White" BackgroundColor="#566a7d"/>
-            <Button Grid.Column="0" Grid.Row="1" HorizontalOptions="FillAndExpand" Text="Flash Ligh On" Clicked="Flash_On" TextColor="White" BackgroundColor="#566a7d"/>
-            <Button Grid.Column="1" Grid.Row="1" HorizontalOptions="FillAndExpand" Text="Flash Light Off" Clicked="Flash_Off" TextColor="White" BackgroundColor="#566a7d"/>
-            <Button Grid.Column="0" Grid.Row="2" HorizontalOptions="FillAndExpand" Text="Play Sound" Clicked="Play_Sound" TextColor="White" BackgroundColor="#566a7d"/>
-            <Button Grid.Column="1" Grid.Row="2" HorizontalOptions="FillAndExpand" Text="Send Email" Clicked="Send_Email" TextColor="White" BackgroundColor="#566a7d"/>
-            <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Send SMS" Clicked="Send_SMS" TextColor="White" BackgroundColor="#566a7d"/>
-            <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Save Option1" Clicked="saveOption1" TextColor="White" BackgroundColor="#566a7d"/>
-            <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Save Option2" Clicked="saveOption2" TextColor="White" BackgroundColor="#566a7d"/>
-            <Button Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Save Option3" Clicked="saveOption3" TextColor="White" BackgroundColor="#566a7d"/>
+            <Button
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="1"
+                BackgroundColor="#566a7d"
+                Clicked="PushVibrate_Clicked"
+                HorizontalOptions="FillAndExpand"
+                Text="Vib"
+                TextColor="White" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="1"
+                Grid.ColumnSpan="1"
+                BackgroundColor="#566a7d"
+                Clicked="PushVibrateWatch_Clicked"
+                HorizontalOptions="FillAndExpand"
+                Text="Vib Watch"
+                TextColor="White" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                BackgroundColor="#566a7d"
+                Clicked="Flash_On"
+                HorizontalOptions="FillAndExpand"
+                Text="Flash Ligh On"
+                TextColor="White" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                BackgroundColor="#566a7d"
+                Clicked="Flash_Off"
+                HorizontalOptions="FillAndExpand"
+                Text="Flash Light Off"
+                TextColor="White" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="0"
+                BackgroundColor="#566a7d"
+                Clicked="Play_Sound"
+                HorizontalOptions="FillAndExpand"
+                Text="Play Sound"
+                TextColor="White" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="1"
+                BackgroundColor="#566a7d"
+                Clicked="Send_Email"
+                HorizontalOptions="FillAndExpand"
+                Text="Send Email"
+                TextColor="White" />
+            <Button
+                Grid.Row="3"
+                Grid.Column="0"
+                BackgroundColor="#566a7d"
+                Clicked="Send_SMS"
+                HorizontalOptions="FillAndExpand"
+                Text="Send SMS"
+                TextColor="White" />
+            <Button
+                Grid.Row="4"
+                Grid.Column="0"
+                BackgroundColor="#566a7d"
+                Clicked="saveOption1"
+                HorizontalOptions="FillAndExpand"
+                Text="Save Option1"
+                TextColor="White" />
+            <Button
+                Grid.Row="5"
+                Grid.Column="0"
+                BackgroundColor="#566a7d"
+                Clicked="saveOption2"
+                HorizontalOptions="FillAndExpand"
+                Text="Save Option2"
+                TextColor="White" />
+            <Button
+                Grid.Row="6"
+                Grid.Column="0"
+                BackgroundColor="#566a7d"
+                Clicked="saveOption3"
+                HorizontalOptions="FillAndExpand"
+                Text="Save Option3"
+                TextColor="White" />
         </Grid>
-        
     </ContentPage>
-    <ContentPage Title="LogOut" Icon="baseline_exit_to_app_black_18dp" bnb:BottomBarPageExtensions.TabColor="#DD2C00">
-        <Button Text="LogOut" Clicked="LogOut"></Button>
+    <ContentPage bnb:BottomBarPageExtensions.TabColor="#ffffff" Icon="baseline_exit_to_app_black_18dp">
+        <Button Clicked="LogOut" Text="LogOut" />
     </ContentPage>
-
-
 </bnb:BottomBarPage>

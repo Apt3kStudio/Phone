@@ -11,92 +11,86 @@
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\fire_truck.wav">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\EnumPicker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\FilterData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\MonkeyDataTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\SpacingModifier.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\SearchTermDataTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomVisual.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\TasksExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\IndexParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ImageResourceExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Account.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ApplicationSetting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ConnectedDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Device.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Distance.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EventModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\IPushNotificationRegister.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Monkey.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PairedDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\RegisteredDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\IUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Message.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ReceiveFromPhone.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Registration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\settingM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserLoginSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UtilityHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\DeviceLocalDbService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\IDataStore.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\AzureDataStore.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\MockDataStore.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\MyFirebaseIIDService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\FCMService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\WebPortalApiServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\BottomBarPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\BottomBarPageExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\CustomControls\ExtendedViewCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\CustomControls\ExtendedViewCellRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\FontAwesomeIcons.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Renders\FrameRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ConnectedDevicesVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EventViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemDetailViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemsViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoginUserViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RegisterViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AuthVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MonkeysViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AddDevice.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\DevicesHome.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Layout\HorizontalGridPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Layout\VerticalGridPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Layout\VerticalListDataTemplateSelectorPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)AppShell.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Setting.xaml.cs">
-      <DependentUpon>Setting.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Settings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\StartUpPage.xaml.cs">
-      <DependentUpon>StartUpPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml.cs">
-      <DependentUpon>AboutPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\AlertSummaryPage.xaml.cs">
-      <DependentUpon>AlertSummaryPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\AlertsListPage.xaml.cs">
-      <DependentUpon>AlertsListPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\AddAlertFormPage.xaml.cs">
-      <DependentUpon>AddAlertFormPage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\StartUpPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AlertSummaryPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AlertsListPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AddAlertFormPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Setting.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Login.xaml">
@@ -115,5 +109,113 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Assets\Images\Spide_Icon_WhiteBlue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Controls\Page1.xaml.cs">
+      <DependentUpon>SpacingModifier.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Controls\SpacingModifier.xaml.cs">
+      <DependentUpon>SpacingModifier.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\AddDevice.xaml.cs">
+      <DependentUpon>AddDevice.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\ConnectedDevices.xaml.cs">
+      <DependentUpon>ConnectedDevices.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\DevicesHome.xaml.cs">
+      <DependentUpon>DevicesHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\EmptyView\EmptyViewDataTemplateSelectorPage.xaml.cs">
+      <DependentUpon>EmptyViewDataTemplateSelectorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Layout\HorizontalGridPage.xaml.cs">
+      <DependentUpon>HorizontalGridPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Layout\HorizontalGridTextPage.xaml.cs">
+      <DependentUpon>HorizontalGridTextPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Layout\HorizontalListPage.xaml.cs">
+      <DependentUpon>HorizontalListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Layout\HorizontalListTextPage.xaml.cs">
+      <DependentUpon>HorizontalListTextPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Layout\Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Layout\VerticalGridPage.xaml.cs">
+      <DependentUpon>VerticalGridPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Layout\VerticalGridTextPage.xaml.cs">
+      <DependentUpon>VerticalGridTextPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Layout\VerticalListDataTemplateSelectorPage.xaml.cs">
+      <DependentUpon>VerticalListDataTemplateSelectorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Layout\VerticalListPage.xaml.cs">
+      <DependentUpon>VerticalListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Layout\VerticalListRTLPage.xaml.cs">
+      <DependentUpon>VerticalListRTLPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Layout\VerticalListTextPage.xaml.cs">
+      <DependentUpon>VerticalListTextPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\MainShell.xaml.cs">
+      <DependentUpon>MainShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\ShellTest.xaml.cs">
+      <DependentUpon>ShellTest.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)AppShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\DevicesHome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AddDevice.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Settings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\SpacingModifier.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Layout\HorizontalGridPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Layout\VerticalGridPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Layout\VerticalListDataTemplateSelectorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

@@ -9,6 +9,9 @@ using System.Reflection;
 using System.Resources;
 using System.Net.Mail;
 using System.Net;
+using Phone.Droid;
+using Android.Content;
+using Phone.Droid.Models;
 
 namespace Phone.ViewModels
 {
@@ -19,8 +22,20 @@ namespace Phone.ViewModels
         public string EventMessage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string EventDuration { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-
-        public string VibrateMe(int inDuration = 3)
+        Communicator cm;
+        public EventViewModel()
+        {
+            
+        }
+        public EventViewModel(Context context)
+        {
+           // cm = new Communicator(context);
+        }
+        public void VibrateWatch(int inDuration = 3)
+        {
+            //cm.SendMessage("vibWatch");
+        }
+            public string VibrateMe(int inDuration = 3)
         {
             string isVibrate = "";
             try
@@ -96,10 +111,11 @@ namespace Phone.ViewModels
                 // Unable to turn on/off flashlight
             }
         }
-        public async Task PlaySound(int volume)
+        public async Task PlaySoundAsync(int volume)
         {
             try
             {
+                
                 var assembly = typeof(App).GetTypeInfo().Assembly;
                 Stream audioStream = assembly.GetManifestResourceStream("Phone.Droid.Resources.fire_truck.wav");
                 var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
@@ -187,13 +203,10 @@ namespace Phone.ViewModels
                 trigger = getOption().Result;
             switch (trigger)
             {
-                case "option1":
-                    VibrateMe(20);
-                   // await PlaySound(10);
-                    await FlashPattern();
+                case "option1":                   
+                    await PlaySoundAsync(10);                   
                     break;
-                case "option2":
-                    await FlashPattern();
+                case "option2":                    
                     VibrateMe(2);
                     await Task.Delay(500);
                     VibrateMe(2);
@@ -209,16 +222,12 @@ namespace Phone.ViewModels
                     break;
                 case "option3":
                     //await PlaySound(10);
-                    VibrateMe(2);
-                    await Task.Delay(500);
-                    VibrateMe(2);
-                    await Task.Delay(500);
-                    VibrateMe(2);
+                    await FlashPattern();
                     break;
             }
         }
 
-        private async Task FlashPattern()
+        public async Task FlashPattern()
         {
             for (var i = 0; i < 10; i++)
             {

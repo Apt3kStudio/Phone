@@ -1,39 +1,45 @@
 {
   "project_info": {
-    "project_number": "267006931987",
-    "firebase_url": "https://xamarinfcm-bf061.firebaseio.com",
-    "project_id": "xamarinfcm-bf061",
-    "storage_bucket": "xamarinfcm-bf061.appspot.com"
+    "project_number": "636611274873",
+    "firebase_url": "https://spideysense-40b9f.firebaseio.com",
+    "project_id": "spideysense-40b9f",
+    "storage_bucket": "spideysense-40b9f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:267006931987:android:741a80c6402c094d",
+        "mobilesdk_app_id": "1:636611274873:android:7bd9fabfdbc7606e",
         "android_client_info": {
-          "package_name": "com.companyname.Phone"
+          "package_name": "com.Apt3k.SpideySenseMobileWear"
         }
       },
       "oauth_client": [
         {
-          "client_id": "267006931987-vo2dgfv5fdr6dvmcfdu3neh25mui4mm4.apps.googleusercontent.com",
+          "client_id": "636611274873-h465ornfiu34mm7haeft0k5fros7o5jj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Apt3k.SpideySenseMobileWear",
+            "certificate_hash": "fbbff3ef4b298e03400ceeae59078aec3fe8fb6e"
+          }
+        },
+        {
+          "client_id": "636611274873-otg8bf0hb7un493giu33jnjk2661dn06.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAtQM9Q37CMIeuhHjVvf882eoWIH1O4c5g"
+          "current_key": "AIzaSyBSHrephD6LrnDLno_DTQ0qW_S0vOBvGnw"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "636611274873-otg8bf0hb7un493giu33jnjk2661dn06.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
