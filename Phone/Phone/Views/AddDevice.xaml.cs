@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SkiaSharp;
-
+using Phone.Extensions;
 namespace Phone.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddDevice : ContentPage
     {
+        public const int AnimationDuration = 200;
         public string icon { get; set; }
         public AddDevice()
         {

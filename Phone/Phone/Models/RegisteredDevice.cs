@@ -7,12 +7,12 @@ using System.Timers;
 
 namespace Phone.Models
 {
-   public class RegisteredDevice: INotifyPropertyChanged
+    public class RegisteredDevice : INotifyPropertyChanged
     {
         public string Id { get; set; }
-        
+
         public string Text { get; set; }
-        public string Description { get; set; }        
+        public string Description { get; set; }
         public string Event { get; set; }
         public string device { get; set; }
         public string manufacturer { get; set; }
@@ -24,24 +24,24 @@ namespace Phone.Models
         public string Flash { get; set; }
         public string Sound { get; set; }
         public string Vibration { get; set; }
-       
+
         string _Distance = "";
 
         public RegisteredDevice()
         {
             Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
             {
-                await Task.Run(async() =>
+                await Task.Run(async () =>
                 {
                     await Task.Delay(5000);
                     Distance = DateTime.Now.Second.ToString();
                     //for (int i = 0; i<2000; i++)
                     //{
-                        
+
                     //}
-                    
+
                 });
-                
+
 
             });
         }
@@ -73,9 +73,9 @@ namespace Phone.Models
         }
         public async Task<bool> GetCount()
         {
-                return await Task.Run(async () =>
-                {
-                    await Task.Delay(3);
+            return await Task.Run(async () =>
+            {
+                await Task.Delay(3);
 
 
                     //for (var i = 0; i < 10000; i++)
@@ -87,5 +87,21 @@ namespace Phone.Models
             });
         }
 
+        public bool HandShake(bool isHandShake)
+        {
+            bool retVAL = true;
+            if (!isHandShake)
+            {
+                retVAL = false;
+            }
+            return retVAL;
+        }
+
+        public void RandomDelay()
+        {
+            Random random = new Random();
+            int mseconds = random.Next(3, 11) * 1000;
+            System.Threading.Thread.Sleep(mseconds);
+        }
     }
 }

@@ -18,30 +18,9 @@ namespace Phone.Models
         public int CurrentIndex { get; set; }
         public string TimeStamp { get; set; }
         public int ID { get; set; }
-
-        public Device()
-        {
-            Id = Guid.NewGuid().ToString();
-            // Device Model (SMG-950U, iPhone10,6)
-            device = DeviceInfo.Model;
-            // Manufacturer (Samsung)
-            manufacturer = DeviceInfo.Manufacturer;
-            // Device Name (Motz's iPhone)
-            deviceName = DeviceInfo.Name;
-            // Operating System Version Number (7.0)
-            version = DeviceInfo.VersionString;
-            // Platform (Android)
-            platform = DeviceInfo.Platform;
-            // Idiom (Phone)
-            idiom = DeviceInfo.Idiom;
-            // Device Type (Physical)
-            deviceType = DeviceInfo.DeviceType;
-        }
-
-        internal bool InitHandShake(ConnectedDevice connectedwatch)
-        {
-           return ReceivedHandShake("HandShake");
-        }
+        public int DelayInMilliseconds { get; private set; }
+        public TimeSpan CurrentElapsedTime { get; internal set; }
+        public int Proximity { get; set; }
         private Context _context;
         public string Id { get; set; }
         public string Event { get; set; }
@@ -52,11 +31,11 @@ namespace Phone.Models
         public DevicePlatform platform;
         public DeviceIdiom idiom;
         public DeviceType deviceType;
-       // private Communicator _communicator;
-     //   public void Initialize(Communicator communicator)
-       // {
-           // _communicator = communicator;
-        //}
+
+        public Device()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
         public void AdvertiseMyself(bool enable)
         {
             if (enable)
@@ -69,17 +48,31 @@ namespace Phone.Models
             int msec = DateTime.Now.Millisecond;
             DataMap datamap = new DataMap();
             datamap.PutString("timeStamp", msec.ToString());
-            //_communicator.SendStamp(datamap);
         }
 
+        internal void CalculateProximityStatus()
+        {
+            Task.Run(async () =>
+            {
+                if (int.Parse(CurrentElapsedTime.ToString()) > await GetPreviousCountAsync())
+                {
+                    Proximity = (int) ProximityStatus.MovingAway;
+                }
+                else if (int.Parse(CurrentElapsedTime.ToString()) == await GetPreviousCountAsync())
+                {
+                    Proximity = (int)ProximityStatus.NotMoving;
+                }
+                else
+                {
+                    Proximity = (int)ProximityStatus.MovingCloser;
+                }
+            }); 
+        }
 
-
-
-      
-        public TimeSpan Timer(Action SendMessage)
+        public TimeSpan Trip(RegisteredDevice watch)
         {
             Stopwatch stopWatch = System.Diagnostics.Stopwatch.StartNew();
-            SendMessage();
+            watch.RandomDelay();
             stopWatch.Stop();
             return stopWatch.Elapsed;
         }
@@ -88,18 +81,16 @@ namespace Phone.Models
         {
             return BluetoothDevice.ExtraRssi;
         }
-        public int DelayInMilliseconds { get; private set; }
-
 
         internal void SetDelay(int delayInMilliseconds)
         {
             DelayInMilliseconds = delayInMilliseconds;
         }
 
-        public async Task GetPreviousCountAsync()
+        public async Task<int> GetPreviousCountAsync()
         {
-            await UtilityHelper.RetrieveFromPhone("stampcounter");
-            CurrentIndex++;
+            var timeStamp = await UtilityHelper.RetrieveFromPhone("stampcounter");
+            return int.Parse(timeStamp);
         }
         public void CounterReset()
         {
@@ -115,19 +106,9 @@ namespace Phone.Models
             await UtilityHelper.SaveToPhoneAsync("DeviceID", ID);
         }
 
-        internal bool ReceivedHandShake(string message)
-        {
-            if (message == "HandShake")
-            {
-                return true;
-            }
-            return false;
-        }
-
-        internal void SendMessage()
-        {
-            //Communicator cmd = new Communicator(_context);
-            //cmd.SendMessage("");
+        internal bool HandShake(RegisteredDevice watch)
+        {           
+            return watch.HandShake(true);
         }
     }
 }

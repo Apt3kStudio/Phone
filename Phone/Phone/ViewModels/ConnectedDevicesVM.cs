@@ -43,69 +43,34 @@ namespace Phone.ViewModels
                 Vibration = "Vibration",
                 Distance = _Distance,
                 Measurement = "ft"
+
             });
-            RegisteredDevices.Add(new RegisteredDevice
+
+            foreach (RegisteredDevice watch in RegisteredDevices)
             {
-                Id = "1",
-                Description = "Micheal Smith's watch is Connected",
-                Text = "Samsung Watch",
-                deviceType = "Wear",
-                device = "Galaxy Watch".ToUpper(),
-                deviceName = "LRS",
-                manufacturer = "Samsung",
-                version = "10.0",
-                platform = "Android",
-                idiom = "Watch",
-                Flash = "Flash",
-                Sound = "Sound",
-                Vibration = "Vibration",
-                Distance = _Distance,
-                Measurement = "ft"
-            });
-            RegisteredDevices.Add(new RegisteredDevice
-            {
-                Id = "1",
-                Description = "Jonh Doe's Watch is connected",
-                Text = "Moto Watch",
-                deviceType = "Wear",
-                device = "LRS 365".ToUpper(),
-                deviceName = "LRS",
-                manufacturer = "Motorola",
-                version = "7.0",
-                platform = "Android",
-                idiom = "Watch",
-                Flash = "Flash",
-                Sound = "Sound",
-                Vibration = "Vibration",                
-                Distance = _Distance,
-                Measurement = "ft"
-            });
-
-            //foreach (var device in RegisteredDevices)
-            //{
-            //    Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
-            //    {
-            //        //Do Handshake
-            //        if (this_device.ReceivedHandShake("HandShake"))
-            //        {
-
-            //            //Initiate Trip to connected Device By ID
-            //            //Track & Save time
-            //            //device.Distance = this_device()
-            //            await GetCount();
-            //            await SaveCurrentCountAsync();
-            //            device.Distance = Distance;
-
-
-
-            //        }
-            //        else
-            //        {
-            //            //device disconnected??????send notification?
-            //        }
-            //    });
-            //}
-            //ExecuteLoadItemsCommand();
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
+                {
+                    if (this_device.HandShake(watch))
+                    {
+                        int i = 0;
+                        await UtilityHelper.SaveToPhoneAsync("PreviousTimeStamp", "");
+                        await Task.Run(async () =>
+                        {
+                            while (i < 10)
+                            {
+                                this_device.CurrentElapsedTime = this_device.Trip(watch);
+                                if (string.IsNullOrEmpty(UtilityHelper.RetrieveFromPhone("PreviousTimeStamp").ToString()))
+                                {
+                                    await UtilityHelper.SaveToPhoneAsync("PreviewsTimeStamp", this_device.CurrentElapsedTime.ToString());
+                                }
+                                this_device.CalculateProximityStatus();
+                                watch.Distance = this_device.CurrentElapsedTime.ToString();
+                                i++;
+                            }
+                        });
+                    }
+                });
+            }
         }
         public async Task SaveCurrentCountAsync()
         {
