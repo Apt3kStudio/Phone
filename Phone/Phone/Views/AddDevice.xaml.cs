@@ -19,22 +19,23 @@ namespace Phone.Views
         public const int AnimationDuration = 200;
         private ConnectedDevicesVM cd;
 
+
         public string icon { get; set; }
         public AddDevice()
         {
             InitializeComponent();
-            cd= new  ConnectedDevicesVM();          
+            cd= new  ConnectedDevicesVM();
+            cd.loadUnregisteredDevices();
+            cd.loadRegisteredDevices();
             BindingContext = cd;
             SizeChanged += LoginPage_SizeChanged;
         }
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (cd.RegisteredDevices.Count == 0)
-            {
-                cd.loadUnregisteredDevices();
-                cd.loadRegisteredDevices();
-            }
+            
+            
+         
         }
         private void LoginPage_SizeChanged(object sender, EventArgs e)
         {
@@ -83,6 +84,10 @@ namespace Phone.Views
           
             });
 
+        }
+        private async void SelectedDevice_Tap(object sender, EventArgs e)
+        {
+            if (!(sender is View view)) return;
         }
         private void BackgroundGradient_PaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e)
         {

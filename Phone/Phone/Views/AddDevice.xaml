@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Phone.Controls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:debug="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:skiaforms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
     Visual="Material"
@@ -73,23 +74,8 @@
                 Elevation="30"
                 IsVisible="False"
                 Visual="Material">
-                <StackLayout Spacing="12">
-                    <Label
-                        HorizontalOptions="Center"
-                        Style="{StaticResource LargeTitles}"
-                        Text="Registration"
-                        VerticalOptions="Start"
-                        Visual="Material" />
-                    <Entry
-                        BackgroundColor="Transparent"
-                        Placeholder="NickName"
-                        TextColor="White"
-                        Visual="Material" />
-                    <Entry
-                        BackgroundColor="Transparent"
-                        Placeholder="Greetings"
-                        TextColor="White"
-                        Visual="Material" />
+                <!--<StackLayout Spacing="12">
+
                     <StackLayout
                         x:Name="RegistrationSelectedDevice"
                         BackgroundColor="Transparent"
@@ -111,7 +97,72 @@
                             Text="Watch"
                             Visual="Material" />
                     </StackLayout>
-                </StackLayout>
+                </StackLayout>-->
+
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="9*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="5*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                        <Label
+                            HorizontalOptions="Center"
+                            Style="{StaticResource LargeTitles}"
+                            Text="Registration"
+                            VerticalOptions="Start"
+                            Visual="Material" />
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="0">
+                        <StackLayout Margin="0,5">
+
+                            <Entry
+                                BackgroundColor="Transparent"
+                                FontSize="Small"
+                                HeightRequest="50"
+                                Placeholder="NickName"
+                                TextColor="White"
+                                Visual="Material" />
+                            <Entry
+                                BackgroundColor="Transparent"
+                                FontSize="Small"
+                                HeightRequest="50"
+                                Placeholder="Greetings"
+                                TextColor="White"
+                                Visual="Material" />
+                            <Label
+                                Style="{StaticResource SelectedDeviceBase}"
+                                Text="LRS 365"
+                                Visual="Material" />
+                            <Label
+                                Style="{StaticResource SelectedDeviceBase}"
+                                Text="Moto Watch 7.0"
+                                Visual="Material" />
+                        </StackLayout>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <StackLayout>
+                            <Image
+                                x:Name="backgroundImage"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                AbsoluteLayout.LayoutFlags="All"
+                                Aspect="AspectFit"
+                                HorizontalOptions="FillAndExpand"
+                                Source="https://developers.google.com/maps/documentation/android-sdk/images/android-wear.png"
+                                VerticalOptions="FillAndExpand" />
+
+                            <Button
+                                Command="{Binding unregisteredCMD}"
+                                Text="Add"
+                                Visual="Material" />
+                        </StackLayout>
+                    </Grid>
+                </Grid>
 
             </controls:Card>
 
@@ -161,14 +212,21 @@
                                 </StackLayout>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <Image
-                                    x:Name="backgroundImage"
-                                    AbsoluteLayout.LayoutBounds="0,0,1,1"
-                                    AbsoluteLayout.LayoutFlags="All"
-                                    Aspect="AspectFit"
-                                    HorizontalOptions="FillAndExpand"
-                                    Source="https://developers.google.com/maps/documentation/android-sdk/images/android-wear.png"
-                                    VerticalOptions="FillAndExpand" />
+                                <StackLayout>
+                                    <Image
+                                        x:Name="UnRegisteredImage"
+                                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                        AbsoluteLayout.LayoutFlags="All"
+                                        Aspect="AspectFit"
+                                        HorizontalOptions="FillAndExpand"
+                                        Source="https://developers.google.com/maps/documentation/android-sdk/images/android-wear.png"
+                                        VerticalOptions="FillAndExpand" />
+
+                                    <Button
+                                        Command="{Binding unregisteredCMD}"
+                                        Text="Forget"
+                                        Visual="Material" />
+                                </StackLayout>
                             </Grid>
                         </Grid>
                     </StackLayout>
@@ -319,10 +377,11 @@
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions />
                                 <Grid>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="SelectedDevice_Tap" />
+                                    </Grid.GestureRecognizers>
                                     <Grid.RowDefinitions>
-
                                         <RowDefinition Height="auto" />
-
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="17*" />

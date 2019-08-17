@@ -21,6 +21,14 @@ namespace Phone.Models
          * SAVE LOCAL DEVICE NAME IN DATABASE LOGINUSERVIEWMODEL SAMPLE CODE TYPE SECURESTORAGE
         */
 
+        public static bool doesItExit(string key)
+        {
+            if(RetrieveFromPhone(key).Result == "")
+            {
+                return false;
+            }
+            return true;            
+        }
         public static async Task SaveToPhoneAsync(string key, string data)
         {
             await SecureStorage.SetAsync(key, data);
