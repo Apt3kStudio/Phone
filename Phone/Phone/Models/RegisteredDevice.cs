@@ -4,15 +4,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace Phone.Models
 {
-   public class RegisteredDevice: INotifyPropertyChanged
+    public class RegisteredDevice : INotifyPropertyChanged
     {
         public string Id { get; set; }
-        
+
         public string Text { get; set; }
-        public string Description { get; set; }        
+        public string Description { get; set; }
         public string Event { get; set; }
         public string device { get; set; }
         public string manufacturer { get; set; }
@@ -30,10 +31,21 @@ namespace Phone.Models
 
         public RegisteredDevice()
         {
-            //Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
-            //{
-            //    await GetCount();
-            //});             
+            Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
+            {
+                await Task.Run(async () =>
+                {
+                    await Task.Delay(5000);
+                    Distance = DateTime.Now.Second.ToString();
+                    //for (int i = 0; i<2000; i++)
+                    //{
+
+                    //}
+
+                });
+
+
+            });
         }
         bool _Vibration = false;
         public bool Buzz
@@ -87,15 +99,35 @@ namespace Phone.Models
         }
         public async Task<bool> GetCount()
         {
-                return await Task.Run(async () =>
-                {
-                    for (var i = 0; i < 10000; i++)
-                    {
-                        await Task.Delay(1000);
-                        Distance = i.ToString();
-                    }
-                return true;
+            return await Task.Run(async () =>
+            {
+                await Task.Delay(3);
+
+
+                    //for (var i = 0; i < 10000; i++)
+                    //{
+                    //    await Task.Delay(1000);
+                    //    Distance = i.ToString();
+                    //}
+                    return true;
             });
+        }
+
+        public bool HandShake(bool isHandShake)
+        {
+            bool retVAL = true;
+            if (!isHandShake)
+            {
+                retVAL = false;
+            }
+            return retVAL;
+        }
+
+        public void RandomDelay()
+        {
+            Random random = new Random();
+            int mseconds = random.Next(3, 11) * 1000;
+            System.Threading.Thread.Sleep(mseconds);
         }
     }
 }
