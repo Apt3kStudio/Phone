@@ -28,6 +28,7 @@ namespace Phone.Views
             canvasView = new SKCanvasView(Android.App.Application.Context);
             canvasView.PaintSurface += OnCanvasViewPaintSurface;
             cd = new ConnectedDevicesVM();
+         
             BindingContext = cd;
         }
         void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -51,7 +52,9 @@ namespace Phone.Views
             base.OnAppearing();
 
             if (cd.RegisteredDevices.Count == 0)
-                cd.loadRegisteredDevices();
+            {
+                cd.loadRegisteredDevicesAsync();
+            }            
             canvasView.ClearAnimation();
             canvasView.ClearFocus();
             canvasView.Invalidate();

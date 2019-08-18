@@ -26,14 +26,12 @@ namespace Phone.Views
             InitializeComponent();
             cd= new  ConnectedDevicesVM();
             cd.loadUnregisteredDevices();
-            cd.loadRegisteredDevices();
             BindingContext = cd;
             SizeChanged += LoginPage_SizeChanged;
         }
         protected override void OnAppearing()
         {
-            base.OnAppearing();
-            
+            base.OnAppearing();          
             
          
         }
