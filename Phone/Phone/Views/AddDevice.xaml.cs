@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using SkiaSharp;
 using Phone.Extensions;
 using Phone.ViewModels;
+using Phone.Models;
 
 namespace Phone.Views
 {
@@ -18,7 +19,7 @@ namespace Phone.Views
     {
         public const int AnimationDuration = 200;
         private ConnectedDevicesVM cd;
-
+        private RegisteredDevice regDeviceModel { get; set; }
 
         public string icon { get; set; }
         public AddDevice()
@@ -26,6 +27,9 @@ namespace Phone.Views
             InitializeComponent();
             cd= new  ConnectedDevicesVM();
             cd.loadUnregisteredDevices();
+            cd.loadRegisteredDevices(false,3);
+            regDeviceModel = cd.RegisteredDevices.FirstOrDefault();
+            //cd.SelectedUnRegDevic = cd.UnRegisteredDevices.FirstOrDefault();
             BindingContext = cd;
             SizeChanged += LoginPage_SizeChanged;
         }
@@ -46,7 +50,7 @@ namespace Phone.Views
             if (!(sender is View view)) return;
             var index = Grid.GetColumn(view);
             // var nextIndex = index == 0 ? 1 : 0;
-
+            cd.RefreshDevicesColls();
             SelectorButon.TranslateTo(index * view.Width, 0, AnimationDuration, Easing.CubicInOut).FireAndForget();
             await SelectorButtonLabel.FadeTo(0, AnimationDuration / 2);
             SelectorButtonLabel.Text = index == 1 ? "New" : "Existing";
@@ -56,15 +60,17 @@ namespace Phone.Views
             var hideScreen = revealRegScreen == RegisteredDeviceScreen ? DeviceRegistrationScreen : RegisteredDeviceScreen;
 
             var revealDevices = index == 0 ? RegistedDevices : UnRegistedDevices;
-            var hideDevices = revealDevices == RegistedDevices ? UnRegistedDevices  : RegistedDevices;
+            var hideDevices = revealDevices == RegistedDevices ? UnRegistedDevices : RegistedDevices;
 
 
 
             var direction = revealRegScreen == RegisteredDeviceScreen ? -1 : 1;
 
-
-            Device.BeginInvokeOnMainThread(async() => {
            
+
+            Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
+            {
+
                 await Task.WhenAll(hideScreen.TranslateTo(direction * 100, 0, AnimationDuration, Easing.SinOut), hideScreen.FadeTo(0, AnimationDuration));
                 await Task.WhenAll(hideDevices.TranslateTo(direction * 100, 0, AnimationDuration, Easing.SinOut), hideDevices.FadeTo(0, AnimationDuration));
 
@@ -79,10 +85,12 @@ namespace Phone.Views
                 revealDevices.IsVisible = true;
                 await Task.WhenAll(revealRegScreen.TranslateTo(0, 0, AnimationDuration, Easing.SinOut), revealRegScreen.FadeTo(1, AnimationDuration));
                 await Task.WhenAll(revealDevices.TranslateTo(0, 0, AnimationDuration, Easing.SinOut), revealDevices.FadeTo(1, AnimationDuration));
-          
+
             });
 
         }
+
+
         private async void SelectedDevice_Tap(object sender, EventArgs e)
         {
             if (!(sender is View view)) return;
@@ -115,5 +123,35 @@ namespace Phone.Views
             SKRect backgroundBounds = new SKRect(0, 0, info.Width, info.Height);
             canvas.DrawRect(backgroundBounds, backgroundBrush);
         }
+        //Todo Maybe usefull for animation
+        void RegisteredCMD(object sender, EventArgs e)
+        {
+            if (RegisteredCollView.SelectedItem == null)
+                return;
+            RegisteredDevice reg = (RegisteredDevice)RegisteredCollView.SelectedItem;
+        }
+        void unregisteredCMD(object sender, EventArgs e)
+        {
+            if (RegisteredCollView.SelectedItem == null)
+                return;
+            RegisteredDevice reg = (RegisteredDevice)RegisteredCollView.SelectedItem;
+        }
+        void OnRegCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string previous = (e.PreviousSelection.FirstOrDefault() as RegisteredDevice)?.deviceName;
+            string current = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice)?.deviceName;
+            cd.loadRegisteredDevices();
+            
+            RegisteredDevice CurrnRegDev = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice);
+            lcldeviceName.Text = CurrnRegDev.deviceName;
+
+        }
+        void OnUnRegCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string previous = (e.PreviousSelection.FirstOrDefault() as RegisteredDevice)?.deviceName;
+            string current = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice)?.deviceName;
+            RegisteredDevice CurrnUnRegDev = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice);
+        }
+
     }
 }

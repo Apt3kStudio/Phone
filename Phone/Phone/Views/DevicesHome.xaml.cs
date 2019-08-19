@@ -53,7 +53,7 @@ namespace Phone.Views
 
             if (cd.RegisteredDevices.Count == 0)
             {
-                cd.loadRegisteredDevicesAsync();
+                cd.loadRegisteredDevices(true,1);
             }            
             canvasView.ClearAnimation();
             canvasView.ClearFocus();
