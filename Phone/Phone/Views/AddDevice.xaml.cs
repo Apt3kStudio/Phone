@@ -124,13 +124,15 @@ namespace Phone.Views
             canvas.DrawRect(backgroundBounds, backgroundBrush);
         }
         //Todo Maybe usefull for animation
-        void RegisteredCMD(object sender, EventArgs e)
+        void DeviceRegistrationCMD(object sender, EventArgs e)
         {
             if (RegisteredCollView.SelectedItem == null)
                 return;
+         
             RegisteredDevice reg = (RegisteredDevice)RegisteredCollView.SelectedItem;
+            cd.RegisterDevice(reg);
         }
-        void unregisteredCMD(object sender, EventArgs e)
+        void unregisterDeviceCMD(object sender, EventArgs e)
         {
             if (RegisteredCollView.SelectedItem == null)
                 return;
@@ -144,6 +146,10 @@ namespace Phone.Views
             
             RegisteredDevice CurrnRegDev = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice);
             lcldeviceName.Text = CurrnRegDev.deviceName;
+            lclmanufacturer.Text = CurrnRegDev.manufacturer;
+            lclplatform.Text = CurrnRegDev.platform;
+            lclidiom.Text = CurrnRegDev.idiom;
+            UnRegisteredImage.Source = CurrnRegDev.ImageSource;
 
         }
         void OnUnRegCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -151,6 +157,13 @@ namespace Phone.Views
             string previous = (e.PreviousSelection.FirstOrDefault() as RegisteredDevice)?.deviceName;
             string current = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice)?.deviceName;
             RegisteredDevice CurrnUnRegDev = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice);
+
+            RegisteredDevice CurrnRegDev = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice);
+            lcldeviceName.Text = CurrnRegDev.deviceName;
+            lclmanufacturer.Text = CurrnRegDev.manufacturer;
+            lclplatform.Text = CurrnRegDev.platform;
+            lclidiom.Text = CurrnRegDev.idiom;
+            UnRegisteredImage.Source = CurrnRegDev.ImageSource;
         }
 
     }

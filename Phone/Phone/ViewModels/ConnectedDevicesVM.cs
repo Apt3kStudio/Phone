@@ -21,8 +21,8 @@ namespace Phone.ViewModels
     {
         public ObservableCollection<RegisteredDevice> RegisteredDevices { set; get; }
         public ObservableCollection<RegisteredDevice> UnRegisteredDevices { set; get; }
-        public ICommand unregisteredCMD { get; }
-        public ICommand RegisteredCMD { get; }
+       
+        
         private DeviceService dServ;
         private MockService mockDb;
         private bool isMock { get; set; }
@@ -56,8 +56,7 @@ namespace Phone.ViewModels
         }   
         public ConnectedDevicesVM()
         {
-            RegisteredCMD = new Command(RegisterDevice);
-            unregisteredCMD = new Command(UnRegisterDevice);
+            
             RegisteredDevices = new ObservableCollection<RegisteredDevice>();
             UnRegisteredDevices = new ObservableCollection<RegisteredDevice>();
            
@@ -66,15 +65,15 @@ namespace Phone.ViewModels
             mockDb = new MockService();
         }
 
-        private void RegisterDevice()
+        public void RegisterDevice(RegisteredDevice regDevc)
         {
             Task.Run(async () => {
-                await UtilityHelper.SaveToPhoneAsync("Ticwatch E P59N", "Registered");
+                await UtilityHelper.SaveToPhoneAsync(regDevc.deviceName,"Registered");
                 RefreshDevicesColls();
             });
         }
 
-        void UnRegisterDevice()
+        public void UnRegisterDevice()
         {
             Task.Run(async () => {
                 await UtilityHelper.SaveToPhoneAsync("Ticwatch E P59N", "");
@@ -168,7 +167,7 @@ namespace Phone.ViewModels
                 Buzz = false,
                 Distance = "34",
                 Measurement = "ft",
-                ImageSource = "https://images-na.ssl-images-amazon.com/images/I/51RGtl9zoCL._SL1000_.jpg"
+                ImageSource = "https://apt3k.azurewebsites.net/images/ticwatch.png"
             };
         }
 

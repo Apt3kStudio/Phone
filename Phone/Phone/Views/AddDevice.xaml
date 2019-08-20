@@ -100,12 +100,12 @@
                                         Style="{StaticResource SelectedDeviceBase}"
                                         Visual="Material" />
                                     <Label
+                                        x:Name="lclplatform"
                                         Style="{StaticResource SelectedDeviceBase}"
-                                        Text="{Binding deviceName}"
                                         Visual="Material" />
                                     <Label
+                                        x:Name="lclidiom"
                                         Style="{StaticResource SelectedDeviceBase}"
-                                        Text="{Binding deviceName}"
                                         Visual="Material" />
                                 </StackLayout>
                             </Grid>
@@ -121,7 +121,7 @@
                                         VerticalOptions="FillAndExpand" />
 
                                     <Button
-                                        Clicked="unregisteredCMD"
+                                        Clicked="unregisterDeviceCMD"
                                         Text="Forget"
                                         Visual="Material" />
                                 </StackLayout>
@@ -198,7 +198,7 @@
                                 VerticalOptions="FillAndExpand" />
 
                             <Button
-                                Clicked="RegisteredCMD"
+                                Clicked="DeviceRegistrationCMD"
                                 Text="Add"
                                 Visual="Material" />
                         </StackLayout>
