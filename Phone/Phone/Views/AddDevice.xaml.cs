@@ -27,7 +27,7 @@ namespace Phone.Views
             InitializeComponent();
             cd= new  ConnectedDevicesVM();
             cd.loadUnregisteredDevices();
-            cd.loadRegisteredDevices(false,3);
+            cd.loadRegisteredDevicesAsync(false,3);
             regDeviceModel = cd.RegisteredDevices.FirstOrDefault();
             //cd.SelectedUnRegDevic = cd.UnRegisteredDevices.FirstOrDefault();
             BindingContext = cd;
@@ -49,8 +49,10 @@ namespace Phone.Views
         {
             if (!(sender is View view)) return;
             var index = Grid.GetColumn(view);
+
+           
             // var nextIndex = index == 0 ? 1 : 0;
-            cd.RefreshDevicesColls();
+            
             SelectorButon.TranslateTo(index * view.Width, 0, AnimationDuration, Easing.CubicInOut).FireAndForget();
             await SelectorButtonLabel.FadeTo(0, AnimationDuration / 2);
             SelectorButtonLabel.Text = index == 1 ? "New" : "Existing";
@@ -85,6 +87,11 @@ namespace Phone.Views
                 revealDevices.IsVisible = true;
                 await Task.WhenAll(revealRegScreen.TranslateTo(0, 0, AnimationDuration, Easing.SinOut), revealRegScreen.FadeTo(1, AnimationDuration));
                 await Task.WhenAll(revealDevices.TranslateTo(0, 0, AnimationDuration, Easing.SinOut), revealDevices.FadeTo(1, AnimationDuration));
+                if (index == 1)
+                {
+                    UnRegCollView.SelectionChanged += OnUnRegCollectionViewSelectionChanged;
+                    UnRegCollView.SelectionMode = SelectionMode.Single;
+                }
 
             });
 
@@ -123,26 +130,31 @@ namespace Phone.Views
             SKRect backgroundBounds = new SKRect(0, 0, info.Width, info.Height);
             canvas.DrawRect(backgroundBounds, backgroundBrush);
         }
+
         //Todo Maybe usefull for animation
-        void DeviceRegistrationCMD(object sender, EventArgs e)
+        private void AddDeviceClicked(object sender, EventArgs e)
         {
-            if (RegisteredCollView.SelectedItem == null)
+            if (UnRegCollView.SelectedItem == null)
                 return;
-         
-            RegisteredDevice reg = (RegisteredDevice)RegisteredCollView.SelectedItem;
-            cd.RegisterDevice(reg);
+
+            RegisteredDevice reg = (RegisteredDevice)UnRegCollView.SelectedItem;
+            Task.Run(() => 
+            { 
+                cd.AddDeviceAsync(reg);
+            });
         }
-        void unregisterDeviceCMD(object sender, EventArgs e)
+        void ForgetDeviceClicked(object sender, EventArgs e)
         {
             if (RegisteredCollView.SelectedItem == null)
                 return;
             RegisteredDevice reg = (RegisteredDevice)RegisteredCollView.SelectedItem;
+            cd.ForgetDeviceAsync(reg);
         }
         void OnRegCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string previous = (e.PreviousSelection.FirstOrDefault() as RegisteredDevice)?.deviceName;
             string current = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice)?.deviceName;
-            cd.loadRegisteredDevices();
+            cd.loadRegisteredDevicesAsync();
             
             RegisteredDevice CurrnRegDev = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice);
             lcldeviceName.Text = CurrnRegDev.deviceName;
@@ -159,11 +171,11 @@ namespace Phone.Views
             RegisteredDevice CurrnUnRegDev = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice);
 
             RegisteredDevice CurrnRegDev = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice);
-            lcldeviceName.Text = CurrnRegDev.deviceName;
-            lclmanufacturer.Text = CurrnRegDev.manufacturer;
-            lclplatform.Text = CurrnRegDev.platform;
-            lclidiom.Text = CurrnRegDev.idiom;
-            UnRegisteredImage.Source = CurrnRegDev.ImageSource;
+            //lcldeviceName.Text = CurrnRegDev.deviceName;
+            //lclmanufacturer.Text = CurrnRegDev.manufacturer;
+            //lclplatform.Text = CurrnRegDev.platform;
+            //lclidiom.Text = CurrnRegDev.idiom;
+            //UnRegisteredImage.Source = CurrnRegDev.ImageSource;
         }
 
     }

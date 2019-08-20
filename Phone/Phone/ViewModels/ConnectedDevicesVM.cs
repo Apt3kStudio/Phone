@@ -64,21 +64,51 @@ namespace Phone.ViewModels
             dServ.SubscribeToUnregisteredDevicesDiscovered += OnDeviceDiscovery;
             mockDb = new MockService();
         }
-
-        public void RegisterDevice(RegisteredDevice regDevc)
+        /// <summary>
+        /// Todo: This method is suppose to 
+        /// </summary>
+        /// <param name="regDevc"></param>
+        public async Task AddDeviceAsync(RegisteredDevice regDevc)
         {
-            Task.Run(async () => {
+            await Task.Run(async () => {
                 await UtilityHelper.SaveToPhoneAsync(regDevc.deviceName,"Registered");
-                RefreshDevicesColls();
+                try
+                {
+                    await Xamarin.Forms.Device.InvokeOnMainThreadAsync(() =>
+                    {
+                        UnRegisteredDevices.Remove(regDevc);
+                        RegisteredDevices.Add(regDevc);
+                    });
+
+                }
+                catch (Exception ex1)
+                {
+
+                   
+                }
             });
         }
 
-        public void UnRegisterDevice()
+        public async Task ForgetDeviceAsync(RegisteredDevice regDevc)
         {
-            Task.Run(async () => {
-                await UtilityHelper.SaveToPhoneAsync("Ticwatch E P59N", "");
-                RefreshDevicesColls();
-            });            
+            await Task.Run(async () => 
+            {
+                await UtilityHelper.SaveToPhoneAsync(regDevc.deviceName, "");
+                try
+                {
+                    await Xamarin.Forms.Device.InvokeOnMainThreadAsync(() =>
+                    {
+                        RegisteredDevices.Remove(regDevc);
+                        UnRegisteredDevices.Add(regDevc);
+                    });
+                }
+                catch (Exception ex1)
+                {
+
+            
+                }
+            });
+            
         }
 
         internal void loadUnregisteredDevices()
@@ -89,11 +119,11 @@ namespace Phone.ViewModels
         /// This Method will Load Devices based on sample data from the MockService. It also execute the main logic. 
         /// Todo We need to find the best location for the MainLogic. I think we should branch out to a new class where we can continue working refining the main logic.
         /// </summary>
-        internal void loadRegisteredDevices(bool ExecuteMainLogic = false, int NumberOfMockDevices=0)
+        internal async Task loadRegisteredDevicesAsync(bool ExecuteMainLogic = false, int NumberOfMockDevices=0)
         {
-             Task.Run(async()=>
+             await Task.Run(async()=>
              {
-                await mockDb.MockLoadRegistedDevices(RegisteredDevices, Distance, NumberOfMockDevices);
+                await mockDb.MockLoadRegistedDevices(RegisteredDevices,UnRegisteredDevices, Distance, NumberOfMockDevices);
                  if (ExecuteMainLogic)
                  {
                      MainLogic();
@@ -106,12 +136,17 @@ namespace Phone.ViewModels
         /// </summary>
         /// <param name="nodes"></param>
         /// 
-        public void RefreshDevicesColls()
+        public void RefreshDevicesColls(string action)
         {
-            UnRegisteredDevices.Clear();
-            RegisteredDevices.Clear();
+            
+            foreach (RegisteredDevice item1 in (action=="Add")? RegisteredDevices: UnRegisteredDevices)
+            {
+                item1.isDeleted = true;
+                
+            }
+
             loadUnregisteredDevices();
-            loadRegisteredDevices(false,3);
+            loadRegisteredDevicesAsync(false,3);
         }
         private void OnDeviceDiscovery(List<INode> nodes)
         {                

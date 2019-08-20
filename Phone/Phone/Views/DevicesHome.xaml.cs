@@ -47,14 +47,15 @@ namespace Phone.Views
            // await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
-
-            if (cd.RegisteredDevices.Count == 0)
+            await Xamarin.Forms.Device.InvokeOnMainThreadAsync(async() =>
             {
-                cd.loadRegisteredDevices(true,1);
-            }            
+                cd.RegisteredDevices.Clear();
+               await cd.loadRegisteredDevicesAsync(true, 3);
+            });
+
             canvasView.ClearAnimation();
             canvasView.ClearFocus();
             canvasView.Invalidate();

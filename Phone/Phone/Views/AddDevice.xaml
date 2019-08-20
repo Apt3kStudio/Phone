@@ -121,7 +121,7 @@
                                         VerticalOptions="FillAndExpand" />
 
                                     <Button
-                                        Clicked="unregisterDeviceCMD"
+                                        Clicked="ForgetDeviceClicked"
                                         Text="Forget"
                                         Visual="Material" />
                                 </StackLayout>
@@ -198,7 +198,7 @@
                                 VerticalOptions="FillAndExpand" />
 
                             <Button
-                                Clicked="DeviceRegistrationCMD"
+                                Clicked="AddDeviceClicked"
                                 Text="Add"
                                 Visual="Material" />
                         </StackLayout>
@@ -265,17 +265,6 @@
                     ItemsSource="{Binding RegisteredDevices}"
                     SelectionChanged="OnRegCollectionViewSelectionChanged"
                     SelectionMode="Single">
-                    <!--  SelectedItem="{Binding SelectedUnRegDevic}"  -->
-                    <!--<CollectionView.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>HS-Moto Watch</x:String>
-                            <x:String>One Plus 5</x:String>
-                            <x:String>HS-Moto Watch</x:String>
-                            <x:String>One Plus 5</x:String>
-                            <x:String>HS-Moto Watch</x:String>
-                            <x:String>HS-Moto Watch</x:String>
-                        </x:Array>
-                    </CollectionView.ItemsSource>-->
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Horizontal" Span="1" />
                     </CollectionView.ItemsLayout>
@@ -335,9 +324,6 @@
                     ItemsSource="{Binding UnRegisteredDevices}"
                     SelectionChanged="OnUnRegCollectionViewSelectionChanged"
                     SelectionMode="Single">
-
-                    <!--  SelectedItem="{Binding SelectedUnRegDevic}"  -->
-
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Horizontal" Span="1" />
                     </CollectionView.ItemsLayout>
@@ -363,7 +349,7 @@
                                         Grid.Row="1"
                                         Grid.Column="0"
                                         BackgroundColor="white"
-                                        Opacity="0.2"
+                                        Opacity="1"
                                         Visual="Material" />
                                     <StackLayout Padding="10" WidthRequest="160">
                                         <Image
