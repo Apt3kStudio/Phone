@@ -15,6 +15,7 @@ using Android.Util;
 using Firebase.Iid;
 using System.Threading.Tasks;
 using Phone.Models;
+using Phone.Extensions;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Phone
@@ -26,9 +27,10 @@ namespace Phone
         private Context _context;
         public App(Context context)
         {
-            @Phone.App StartTheApplication;
+            
             _context = Android.App.Application.Context;
             InitializeComponent();
+            UtilityHelper.SaveToPhoneAsync("DeviceCount", "0").FireAndForget();
             //FCMService.InitializeComponents();    
            MainPage = new Account(_context).IsUseregistered(true);
            

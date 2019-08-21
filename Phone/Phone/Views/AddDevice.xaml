@@ -65,109 +65,6 @@
                 Opacity="0.1"
                 Visual="Material" />
             <controls:Card
-                x:Name="DeviceRegistrationScreen"
-                Grid.Row="0"
-                Margin="12"
-                BackgroundColor="Transparent"
-                BorderColor="Transparent"
-                CornerRadius="24"
-                Elevation="30"
-                IsVisible="False"
-                Visual="Material">
-                <!--<StackLayout Spacing="12">
-
-                    <StackLayout
-                        x:Name="RegistrationSelectedDevice"
-                        BackgroundColor="Transparent"
-                        VerticalOptions="FillAndExpand">
-                        <Label
-                            Style="{StaticResource CenteredTextBodyWhite}"
-                            Text="LRS 365"
-                            Visual="Material" />
-                        <Label
-                            Style="{StaticResource CenteredTextBodyWhite}"
-                            Text="Moto Watch 7.0"
-                            Visual="Material" />
-                        <Label
-                            Style="{StaticResource CenteredTextBodyWhite}"
-                            Text="Android"
-                            Visual="Material" />
-                        <Label
-                            Style="{StaticResource CenteredTextBodyWhite}"
-                            Text="Watch"
-                            Visual="Material" />
-                    </StackLayout>
-                </StackLayout>-->
-
-                <Grid Margin="20">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="9*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-
-                        <ColumnDefinition Width="5*" />
-                        <ColumnDefinition Width="5*" />
-
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Row="0" Grid.ColumnSpan="2">
-                        <Label
-                            HorizontalOptions="Center"
-                            Style="{StaticResource LargeTitles}"
-                            Text="Registration"
-                            VerticalOptions="Start"
-                            Visual="Material" />
-                    </Grid>
-                    <Grid Grid.Row="1" Grid.Column="0">
-                        <StackLayout Margin="0,5">
-
-                            <Entry
-                                BackgroundColor="Transparent"
-                                FontSize="Small"
-                                HeightRequest="50"
-                                Placeholder="NickName"
-                                TextColor="White"
-                                Visual="Material" />
-                            <Entry
-                                BackgroundColor="Transparent"
-                                FontSize="Small"
-                                HeightRequest="50"
-                                Placeholder="Greetings"
-                                TextColor="White"
-                                Visual="Material" />
-                            <Label
-                                Style="{StaticResource SelectedDeviceBase}"
-                                Text="LRS 365"
-                                Visual="Material" />
-                            <Label
-                                Style="{StaticResource SelectedDeviceBase}"
-                                Text="Moto Watch 7.0"
-                                Visual="Material" />
-                        </StackLayout>
-                    </Grid>
-                    <Grid Grid.Row="1" Grid.Column="1">
-                        <StackLayout>
-                            <Image
-                                x:Name="backgroundImage"
-                                AbsoluteLayout.LayoutBounds="0,0,1,1"
-                                AbsoluteLayout.LayoutFlags="All"
-                                Aspect="AspectFit"
-                                HorizontalOptions="FillAndExpand"
-                                Source="https://developers.google.com/maps/documentation/android-sdk/images/android-wear.png"
-                                VerticalOptions="FillAndExpand" />
-
-                            <Button
-                                Command="{Binding unregisteredCMD}"
-                                Text="Add"
-                                Visual="Material" />
-                        </StackLayout>
-                    </Grid>
-                </Grid>
-
-            </controls:Card>
-
-
-            <controls:Card
                 x:Name="RegisteredDeviceScreen"
                 Grid.Row="0"
                 Margin="12"
@@ -194,27 +91,28 @@
                             <Grid Grid.Column="0">
                                 <StackLayout Margin="0,80">
                                     <Label
+                                        x:Name="lcldeviceName"
                                         Style="{StaticResource SelectedDeviceBase}"
-                                        Text="LRS 365"
+                                        Text=""
                                         Visual="Material" />
                                     <Label
+                                        x:Name="lclmanufacturer"
                                         Style="{StaticResource SelectedDeviceBase}"
-                                        Text="Moto Watch 7.0"
                                         Visual="Material" />
                                     <Label
+                                        x:Name="lclplatform"
                                         Style="{StaticResource SelectedDeviceBase}"
-                                        Text="Android"
                                         Visual="Material" />
                                     <Label
+                                        x:Name="lclidiom"
                                         Style="{StaticResource SelectedDeviceBase}"
-                                        Text="Watch"
                                         Visual="Material" />
                                 </StackLayout>
                             </Grid>
                             <Grid Grid.Column="1">
                                 <StackLayout>
                                     <Image
-                                        x:Name="UnRegisteredImage"
+                                        x:Name="lclRegisteredDeviceImage"
                                         AbsoluteLayout.LayoutBounds="0,0,1,1"
                                         AbsoluteLayout.LayoutFlags="All"
                                         Aspect="AspectFit"
@@ -223,7 +121,7 @@
                                         VerticalOptions="FillAndExpand" />
 
                                     <Button
-                                        Command="{Binding unregisteredCMD}"
+                                        Clicked="ForgetDeviceClicked"
                                         Text="Forget"
                                         Visual="Material" />
                                 </StackLayout>
@@ -232,7 +130,84 @@
                     </StackLayout>
                 </StackLayout>
             </controls:Card>
+            <controls:Card
+                x:Name="DeviceRegistrationScreen"
+                Grid.Row="0"
+                Margin="12"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="24"
+                Elevation="30"
+                IsVisible="False"
+                Visual="Material">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="9*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
 
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="5*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                        <Label
+                            HorizontalOptions="Center"
+                            Style="{StaticResource LargeTitles}"
+                            Text="Registration"
+                            VerticalOptions="Start"
+                            Visual="Material" />
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="0">
+                        <StackLayout Margin="0,5">
+
+                            <Entry
+                                x:Name="lclAddDeviceNickName"
+                                BackgroundColor="Transparent"
+                                FontSize="Small"
+                                HeightRequest="40"
+                                Placeholder="NickName"
+                                TextColor="White"
+                                Visual="Material" />
+                            <Entry
+                                x:Name="lclAddDeviceGreetings"
+                                BackgroundColor="Transparent"
+                                FontSize="Small"
+                                HeightRequest="40"
+                                Placeholder="Greetings"
+                                TextColor="White"
+                                Visual="Material" />
+                            <Label
+                                x:Name="lclAddDeviceName"
+                                Style="{StaticResource SelectedDeviceBase}"
+                                Visual="Material" />
+                            <Label
+                                x:Name="lclAddPlatform"
+                                Style="{StaticResource SelectedDeviceBase}"
+                                Visual="Material" />
+                        </StackLayout>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <StackLayout>
+                            <Image
+                                x:Name="lclAddRegisteredDeviceImage"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                AbsoluteLayout.LayoutFlags="All"
+                                Aspect="AspectFit"
+                                HorizontalOptions="FillAndExpand"
+                                Source="https://developers.google.com/maps/documentation/android-sdk/images/android-wear.png"
+                                VerticalOptions="FillAndExpand" />
+
+                            <Button
+                                Clicked="AddDeviceClicked"
+                                Text="Add"
+                                Visual="Material" />
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+
+            </controls:Card>
             <StackLayout
                 Grid.Row="1"
                 Padding="10"
@@ -287,17 +262,11 @@
                 x:Name="RegistedDevices"
                 Grid.Row="2"
                 BackgroundColor="Transparent">
-                <CollectionView ItemsSource="{Binding RegisteredDevices}">
-                    <!--<CollectionView.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>HS-Moto Watch</x:String>
-                            <x:String>One Plus 5</x:String>
-                            <x:String>HS-Moto Watch</x:String>
-                            <x:String>One Plus 5</x:String>
-                            <x:String>HS-Moto Watch</x:String>
-                            <x:String>HS-Moto Watch</x:String>
-                        </x:Array>
-                    </CollectionView.ItemsSource>-->
+                <CollectionView
+                    x:Name="RegisteredCollView"
+                    ItemsSource="{Binding RegisteredDevices}"
+                    SelectionChanged="OnRegCollectionViewSelectionChanged"
+                    SelectionMode="Single">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Horizontal" Span="1" />
                     </CollectionView.ItemsLayout>
@@ -352,20 +321,11 @@
                 Grid.Row="2"
                 BackgroundColor="Transparent"
                 IsVisible="False">
-                <CollectionView ItemsSource="{Binding UnRegisteredDevices}">
-                    <!--<CollectionView.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>HS-Moto Watch</x:String>
-                            <x:String>One Plus 5</x:String>
-                            <x:String>HS-Moto Watch</x:String>
-                            <x:String>One Plus 5</x:String>
-                            <x:String>HS-Moto Watch</x:String>
-                            <x:String>HS-Moto Watch</x:String>
-                        </x:Array>
-                    -->
-                    <!--    -->
-                    <!--
-                    </CollectionView.ItemsSource>-->
+                <CollectionView
+                    x:Name="UnRegCollView"
+                    ItemsSource="{Binding UnRegisteredDevices}"
+                    SelectionChanged="OnUnRegCollectionViewSelectionChanged"
+                    SelectionMode="Single">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Horizontal" Span="1" />
                     </CollectionView.ItemsLayout>
@@ -391,7 +351,7 @@
                                         Grid.Row="1"
                                         Grid.Column="0"
                                         BackgroundColor="white"
-                                        Opacity="0.2"
+                                        Opacity="1"
                                         Visual="Material" />
                                     <StackLayout Padding="10" WidthRequest="160">
                                         <Image

@@ -25,6 +25,7 @@ namespace Phone.Models
         public string ImageSource { set; get; }
         public string Flash { get; set; }
         public string Sound { get; set; }
+        public bool isDeleted { get; set; }
         //public string public string Vibration { get; set; } { get; set; }
 
 

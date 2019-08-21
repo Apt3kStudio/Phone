@@ -49,26 +49,6 @@ namespace Phone.Models
             DataMap datamap = new DataMap();
             datamap.PutString("timeStamp", msec.ToString());
         }
-
-        internal void CalculateProximityStatus()
-        {
-            Task.Run(async () =>
-            {
-                if (int.Parse(CurrentElapsedTime.ToString()) > await GetPreviousCountAsync())
-                {
-                    Proximity = (int) ProximityStatus.MovingAway;
-                }
-                else if (int.Parse(CurrentElapsedTime.ToString()) == await GetPreviousCountAsync())
-                {
-                    Proximity = (int)ProximityStatus.NotMoving;
-                }
-                else
-                {
-                    Proximity = (int)ProximityStatus.MovingCloser;
-                }
-            }); 
-        }
-
         public TimeSpan Trip(RegisteredDevice watch)
         {
             Stopwatch stopWatch = System.Diagnostics.Stopwatch.StartNew();
@@ -103,13 +83,29 @@ namespace Phone.Models
         }
         public async Task SaveDeviceID()
         {
-
-
             await UtilityHelper.SaveToPhoneAsync("DeviceID", ID.ToString());
         }
         internal bool HandShake(RegisteredDevice watch)
         {           
             return watch.HandShake(true);
+        }
+        internal void CalculateProximityStatus()
+        {
+            Task.Run(async () =>
+            {
+                if (int.Parse(CurrentElapsedTime.ToString()) > await GetPreviousCountAsync())
+                {
+                    Proximity = (int)ProximityStatus.MovingAway;
+                }
+                else if (int.Parse(CurrentElapsedTime.ToString()) == await GetPreviousCountAsync())
+                {
+                    Proximity = (int)ProximityStatus.NotMoving;
+                }
+                else
+                {
+                    Proximity = (int)ProximityStatus.MovingCloser;
+                }
+            });
         }
         public void MainLogic(RegisteredDevice watch)
         {

@@ -21,10 +21,27 @@ namespace Phone.ViewModels
     {
         public ObservableCollection<RegisteredDevice> RegisteredDevices { set; get; }
         public ObservableCollection<RegisteredDevice> UnRegisteredDevices { set; get; }
-        public ICommand unregisteredCMD { get; }
+       
+        
         private DeviceService dServ;
         private MockService mockDb;
         private bool isMock { get; set; }
+
+        public RegisteredDevice SelectedUnRegDevic
+        {
+            get
+            {
+                return SelectedUnRegDevic;
+            }
+            set
+            {
+                if (SelectedUnRegDevic != value)
+                {
+                    SelectedUnRegDevic = value;
+                }
+            }
+        }
+
         string _Distance = "";
         public string Distance
         {
@@ -39,21 +56,60 @@ namespace Phone.ViewModels
         }   
         public ConnectedDevicesVM()
         {
-            unregisteredCMD = new Command(UnRegisterDevice);
+            
             RegisteredDevices = new ObservableCollection<RegisteredDevice>();
             UnRegisteredDevices = new ObservableCollection<RegisteredDevice>();
+           
             dServ = new DeviceService();     
             dServ.SubscribeToUnregisteredDevicesDiscovered += OnDeviceDiscovery;
             mockDb = new MockService();
         }
-
-        void UnRegisterDevice()
+        /// <summary>
+        /// Todo: This method is suppose to 
+        /// </summary>
+        /// <param name="regDevc"></param>
+        public async Task AddDeviceAsync(RegisteredDevice regDevc)
         {
-            Task.Run(async () => {
-                await UtilityHelper.SaveToPhoneAsync("Ticwatch E P59N", "");
-            });            
+            await Task.Run(async () => {
+                await UtilityHelper.SaveToPhoneAsync(regDevc.deviceName,"Registered");
+                try
+                {
+                    await Xamarin.Forms.Device.InvokeOnMainThreadAsync(() =>
+                    {
+                        UnRegisteredDevices.Remove(regDevc);
+                        RegisteredDevices.Add(regDevc);
+                    });
+
+                }
+                catch (Exception ex1)
+                {
+
+                   
+                }
+            });
         }
 
+        public async Task ForgetDeviceAsync(RegisteredDevice regDevc)
+        {
+            await Task.Run(async () => 
+            {
+                await UtilityHelper.SaveToPhoneAsync(regDevc.deviceName, "");
+                try
+                {
+                    await Xamarin.Forms.Device.InvokeOnMainThreadAsync(() =>
+                    {
+                        RegisteredDevices.Remove(regDevc);
+                        UnRegisteredDevices.Add(regDevc);
+                    });
+                }
+                catch (Exception ex1)
+                {
+
+            
+                }
+            });
+            
+        }
         internal void loadUnregisteredDevices()
         {           
             dServ.InitiateDiscovery();         
@@ -62,18 +118,20 @@ namespace Phone.ViewModels
         /// This Method will Load Devices based on sample data from the MockService. It also execute the main logic. 
         /// Todo We need to find the best location for the MainLogic. I think we should branch out to a new class where we can continue working refining the main logic.
         /// </summary>
-        internal void loadRegisteredDevicesAsync()
+        internal async Task loadRegisteredDevicesAsync(bool ExecuteMainLogic = false, int NumberOfMockDevices=0)
         {
-             Task.Run(async()=>
+             await Task.Run(async()=>
              {
-                await mockDb.MockLoadRegistedDevices(RegisteredDevices, Distance,1);
-                MainLogic();
+                await mockDb.MockLoadRegistedDevices(RegisteredDevices,UnRegisteredDevices, Distance, NumberOfMockDevices);
+                
+                 if (ExecuteMainLogic)
+                 {
+                     dServ.InitiateDiscovery();
+                     MainLogic();
+                 }
+                 
             });
         }
-        /// <summary>
-        /// This Method  is subscribe to a device discovery methong on Device Service. The method is called SubscribeToUnregisteredDevicesDiscovered
-        /// </summary>
-        /// <param name="nodes"></param>
         private void OnDeviceDiscovery(List<INode> nodes)
         {                
             InsertToDeviceCollections(nodes);
@@ -128,7 +186,7 @@ namespace Phone.ViewModels
                 Buzz = false,
                 Distance = "34",
                 Measurement = "ft",
-                ImageSource = "https://images-na.ssl-images-amazon.com/images/I/51RGtl9zoCL._SL1000_.jpg"
+                ImageSource = "https://apt3k.azurewebsites.net/images/ticwatch.png"
             };
         }
 
@@ -144,5 +202,6 @@ namespace Phone.ViewModels
         {
             await UtilityHelper.SaveToPhoneAsync("stampcounter", Distance);
         }       
+       
     }
 }
