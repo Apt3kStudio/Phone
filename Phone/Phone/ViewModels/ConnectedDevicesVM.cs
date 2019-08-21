@@ -1,13 +1,17 @@
 ﻿using Android.Bluetooth;
+using Android.Gms.Wearable;
 using Phone.Models;
+using Phone.Services;
 using SkiaSharp;
 using SkiaSharp.Views.Android;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Phone.ViewModels
@@ -15,114 +19,13 @@ namespace Phone.ViewModels
 
     public class ConnectedDevicesVM : BaseVM
     {
+        public ObservableCollection<RegisteredDevice> RegisteredDevices { set; get; }
+        public ObservableCollection<RegisteredDevice> UnRegisteredDevices { set; get; }
+        public ICommand unregisteredCMD { get; }
+        private DeviceService dServ;
+        private MockService mockDb;
+        private bool isMock { get; set; }
         string _Distance = "";
-        public ConnectedDevicesVM()
-        {
-            RegisteredDevices = new ObservableCollection<RegisteredDevice>();
-            LoadItemsCommand = new Command(() => ExecuteLoadItemsCommand());
-        }
-        public ObservableCollection<RegisteredDevice> RegisteredDevices { get; set; }
-        public Command LoadItemsCommand { get; set; }
-        void ExecuteLoadItemsCommand()
-        {
-            Models.Device this_device = new Models.Device();
-            RegisteredDevices.Add(new RegisteredDevice
-            {
-                Id = "1",
-                Description = "Smatt Sung's Phone is connected",
-                Text = "OnePlus",
-                deviceType = "Phone",
-                device = "OnePlus 5.0".ToUpper(),
-                deviceName = "OnePlus 5",
-                manufacturer = "OnePlus",
-                version = "5.0",
-                platform = "Android",
-                idiom = "Phone",
-                Flash = "Flash",
-                Sound = "Sound",
-                Vibration = "Vibration",
-                Distance = _Distance,
-                Measurement = "ft"
-            });
-            RegisteredDevices.Add(new RegisteredDevice
-            {
-                Id = "1",
-                Description = "Micheal Smith's watch is Connected",
-                Text = "Samsung Watch",
-                deviceType = "Wear",
-                device = "Galaxy Watch".ToUpper(),
-                deviceName = "LRS",
-                manufacturer = "Samsung",
-                version = "10.0",
-                platform = "Android",
-                idiom = "Watch",
-                Flash = "Flash",
-                Sound = "Sound",
-                Vibration = "Vibration",
-                Distance = _Distance,
-                Measurement = "ft"
-            });
-            RegisteredDevices.Add(new RegisteredDevice
-            {
-                Id = "1",
-                Description = "Jonh Doe's Watch is connected",
-                Text = "Moto Watch",
-                deviceType = "Wear",
-                device = "LRS 365".ToUpper(),
-                deviceName = "LRS",
-                manufacturer = "Motorola",
-                version = "7.0",
-                platform = "Android",
-                idiom = "Watch",
-                Flash = "Flash",
-                Sound = "Sound",
-                Vibration = "Vibration",                
-                Distance = _Distance,
-                Measurement = "ft"
-            });
-
-            //foreach (var device in RegisteredDevices)
-            //{
-            //    Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
-            //    {
-            //        //Do Handshake
-            //        if (this_device.ReceivedHandShake("HandShake"))
-            //        {
-
-            //            //Initiate Trip to connected Device By ID
-            //            //Track & Save time
-            //            //device.Distance = this_device()
-            //            await GetCount();
-            //            await SaveCurrentCountAsync();
-            //            device.Distance = Distance;
-
-
-
-            //        }
-            //        else
-            //        {
-            //            //device disconnected??????send notification?
-            //        }
-            //    });
-            //}
-            //ExecuteLoadItemsCommand();
-        }
-        public async Task SaveCurrentCountAsync()
-        {
-            await UtilityHelper.SaveToPhoneAsync("stampcounter", Distance);
-        }
-        public async Task<bool> GetCount()
-        {
-            return await Task.Run(async () =>
-            {
-                for (var i = 0; i < 10000; i++)
-                {
-                    await Task.Delay(1000);
-                    Distance = i.ToString();
-                }
-                return true;
-            });
-        }
         public string Distance
         {
             get => _Distance;
@@ -133,18 +36,113 @@ namespace Phone.ViewModels
                 _Distance = value;
                 NotifyPropertyChange(nameof(Distance));
             }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChange(string propertyName)
+        }   
+        public ConnectedDevicesVM()
         {
-            try
+            unregisteredCMD = new Command(UnRegisterDevice);
+            RegisteredDevices = new ObservableCollection<RegisteredDevice>();
+            UnRegisteredDevices = new ObservableCollection<RegisteredDevice>();
+            dServ = new DeviceService();     
+            dServ.SubscribeToUnregisteredDevicesDiscovered += OnDeviceDiscovery;
+            mockDb = new MockService();
+        }
+
+        void UnRegisterDevice()
+        {
+            Task.Run(async () => {
+                await UtilityHelper.SaveToPhoneAsync("Ticwatch E P59N", "");
+            });            
+        }
+
+        internal void loadUnregisteredDevices()
+        {           
+            dServ.InitiateDiscovery();         
+        }
+        /// <summary>
+        /// This Method will Load Devices based on sample data from the MockService. It also execute the main logic. 
+        /// Todo We need to find the best location for the MainLogic. I think we should branch out to a new class where we can continue working refining the main logic.
+        /// </summary>
+        internal void loadRegisteredDevicesAsync()
+        {
+             Task.Run(async()=>
+             {
+                await mockDb.MockLoadRegistedDevices(RegisteredDevices, Distance,1);
+                MainLogic();
+            });
+        }
+        /// <summary>
+        /// This Method  is subscribe to a device discovery methong on Device Service. The method is called SubscribeToUnregisteredDevicesDiscovered
+        /// </summary>
+        /// <param name="nodes"></param>
+        private void OnDeviceDiscovery(List<INode> nodes)
+        {                
+            InsertToDeviceCollections(nodes);
+        }   
+        /// <summary>
+        /// Connected Devices will be inserted to a device collection. There are two collections: Registered and UnRegistered.
+        /// </summary>
+        /// <param name="nodes"></param>
+        private void InsertToDeviceCollections(List<INode> nodes)
+        {
+            foreach (INode node in nodes)
             {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
-            catch (Exception e)
-            {
-                throw;
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(AddToRegOrUnRegDevicesColletion(node));
             }
         }
+        /// <summary>
+        /// This code runs on the main thread
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        private Action AddToRegOrUnRegDevicesColletion(INode node)
+        {
+            return () =>
+            {
+                if (!UtilityHelper.doesItExit(node.DisplayName))
+                {
+                    UnRegisteredDevices.Add(CreateConnDevice(node));
+                }
+                else
+                {
+                    RegisteredDevices.Add(CreateConnDevice(node));
+                }
+            };
+        }
+
+        private static RegisteredDevice CreateConnDevice(INode node)
+        {
+            return new RegisteredDevice
+            {
+                Id = "1",
+                Description = "Smatt Sung's Phone is connected",
+                Text = "OnePlus",
+                deviceType = "Phone",
+                device = node.DisplayName.ToUpper(),
+                deviceName = node.DisplayName,
+                manufacturer = "OnePlus",
+                version = "5.0",
+                platform = "Android",
+                idiom = "Phone",
+                Flash = "Flash",
+                Sound = "Sound",
+                Buzz = false,
+                Distance = "34",
+                Measurement = "ft",
+                ImageSource = "https://images-na.ssl-images-amazon.com/images/I/51RGtl9zoCL._SL1000_.jpg"
+            };
+        }
+
+        void MainLogic()
+        {
+            Models.Device ThisPhone = new Models.Device();
+            foreach (RegisteredDevice watch in RegisteredDevices)
+            {
+                ThisPhone.MainLogic(watch);
+            }
+        }
+        public async Task SaveCurrentCountAsync()
+        {
+            await UtilityHelper.SaveToPhoneAsync("stampcounter", Distance);
+        }       
     }
 }

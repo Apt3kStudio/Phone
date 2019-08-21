@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Phone"
+    "\\Phone",
+    "\\SpideySenseWatch"
   ],
-  "SelectedNode": "\\APK",
+  "SelectedNode": "\\SpideySenseWatch\\SpideySenseWatch.csproj",
   "PreviewInSolutionExplorer": false
 }

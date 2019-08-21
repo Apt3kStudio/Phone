@@ -8,7 +8,7 @@ namespace Phone.Models
     {
         MovingAway = 1,
         NotMoving = 2,
-        MovingCloser=3
+        MovingCloser = 3
     }
-    
+
 }

@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Card.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\EnumPicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\FilterData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MonkeyDataTemplateSelector.cs" />
@@ -27,7 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SearchTermDataTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomVisual.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\TasksExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\IndexParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Helpers\IndexParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ImageResourceExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Account.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ApplicationSetting.cs" />
@@ -37,15 +38,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\EventModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Monkey.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\PairedDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ProximityStatus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\RegisteredDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\IUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Message.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ReceiveFromPhone.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Registration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\settingM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UnRegisteredDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserLoginSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UtilityHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DeviceService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\FCMService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\MockService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\WebPortalApiServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\BottomBarPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\BottomBarPageExtensions.cs" />
