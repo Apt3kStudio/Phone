@@ -27,7 +27,7 @@ namespace Phone.Views
             InitializeComponent();
             cd= new  ConnectedDevicesVM();
             cd.loadUnregisteredDevices();
-            cd.loadRegisteredDevicesAsync(false,3);
+            cd.loadRegisteredDevicesAsync(false,3).FireAndForget();
             regDeviceModel = cd.RegisteredDevices.FirstOrDefault();
             //cd.SelectedUnRegDevic = cd.UnRegisteredDevices.FirstOrDefault();
             BindingContext = cd;
@@ -140,7 +140,7 @@ namespace Phone.Views
             RegisteredDevice reg = (RegisteredDevice)UnRegCollView.SelectedItem;
             Task.Run(() => 
             { 
-                cd.AddDeviceAsync(reg);
+                cd.AddDeviceAsync(reg).FireAndForget();
             });
         }
         void ForgetDeviceClicked(object sender, EventArgs e)
@@ -148,20 +148,20 @@ namespace Phone.Views
             if (RegisteredCollView.SelectedItem == null)
                 return;
             RegisteredDevice reg = (RegisteredDevice)RegisteredCollView.SelectedItem;
-            cd.ForgetDeviceAsync(reg);
+            cd.ForgetDeviceAsync(reg).FireAndForget();
         }
         void OnRegCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string previous = (e.PreviousSelection.FirstOrDefault() as RegisteredDevice)?.deviceName;
             string current = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice)?.deviceName;
-            cd.loadRegisteredDevicesAsync();
+            cd.loadRegisteredDevicesAsync().FireAndForget();
             
             RegisteredDevice CurrnRegDev = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice);
             lcldeviceName.Text = CurrnRegDev.deviceName;
             lclmanufacturer.Text = CurrnRegDev.manufacturer;
             lclplatform.Text = CurrnRegDev.platform;
             lclidiom.Text = CurrnRegDev.idiom;
-            UnRegisteredImage.Source = CurrnRegDev.ImageSource;
+            lclRegisteredDeviceImage.Source = CurrnRegDev.ImageSource;
 
         }
         void OnUnRegCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -171,11 +171,11 @@ namespace Phone.Views
             RegisteredDevice CurrnUnRegDev = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice);
 
             RegisteredDevice CurrnRegDev = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice);
-            //lcldeviceName.Text = CurrnRegDev.deviceName;
-            //lclmanufacturer.Text = CurrnRegDev.manufacturer;
-            //lclplatform.Text = CurrnRegDev.platform;
-            //lclidiom.Text = CurrnRegDev.idiom;
-            //UnRegisteredImage.Source = CurrnRegDev.ImageSource;
+            lclAddDeviceName.Text = CurrnRegDev.deviceName;
+           
+            lclAddPlatform.Text = CurrnRegDev.platform;
+
+            lclAddRegisteredDeviceImage.Source = CurrnRegDev.ImageSource;
         }
 
     }

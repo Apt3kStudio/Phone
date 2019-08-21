@@ -112,7 +112,7 @@
                             <Grid Grid.Column="1">
                                 <StackLayout>
                                     <Image
-                                        x:Name="UnRegisteredImage"
+                                        x:Name="lclRegisteredDeviceImage"
                                         AbsoluteLayout.LayoutBounds="0,0,1,1"
                                         AbsoluteLayout.LayoutFlags="All"
                                         Aspect="AspectFit"
@@ -163,33 +163,35 @@
                         <StackLayout Margin="0,5">
 
                             <Entry
+                                x:Name="lclAddDeviceNickName"
                                 BackgroundColor="Transparent"
                                 FontSize="Small"
-                                HeightRequest="50"
+                                HeightRequest="40"
                                 Placeholder="NickName"
                                 TextColor="White"
                                 Visual="Material" />
                             <Entry
+                                x:Name="lclAddDeviceGreetings"
                                 BackgroundColor="Transparent"
                                 FontSize="Small"
-                                HeightRequest="50"
+                                HeightRequest="40"
                                 Placeholder="Greetings"
                                 TextColor="White"
                                 Visual="Material" />
                             <Label
+                                x:Name="lclAddDeviceName"
                                 Style="{StaticResource SelectedDeviceBase}"
-                                Text="LRS 365"
                                 Visual="Material" />
                             <Label
+                                x:Name="lclAddPlatform"
                                 Style="{StaticResource SelectedDeviceBase}"
-                                Text="Moto Watch 7.0"
                                 Visual="Material" />
                         </StackLayout>
                     </Grid>
                     <Grid Grid.Row="1" Grid.Column="1">
                         <StackLayout>
                             <Image
-                                x:Name="RegbackgroundImage"
+                                x:Name="lclAddRegisteredDeviceImage"
                                 AbsoluteLayout.LayoutBounds="0,0,1,1"
                                 AbsoluteLayout.LayoutFlags="All"
                                 Aspect="AspectFit"

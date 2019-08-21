@@ -110,7 +110,6 @@ namespace Phone.ViewModels
             });
             
         }
-
         internal void loadUnregisteredDevices()
         {           
             dServ.InitiateDiscovery();         
@@ -124,29 +123,14 @@ namespace Phone.ViewModels
              await Task.Run(async()=>
              {
                 await mockDb.MockLoadRegistedDevices(RegisteredDevices,UnRegisteredDevices, Distance, NumberOfMockDevices);
+                
                  if (ExecuteMainLogic)
                  {
+                     dServ.InitiateDiscovery();
                      MainLogic();
                  }
                  
             });
-        }
-        /// <summary>
-        /// This Method  is subscribe to a device discovery methong on Device Service. The method is called SubscribeToUnregisteredDevicesDiscovered
-        /// </summary>
-        /// <param name="nodes"></param>
-        /// 
-        public void RefreshDevicesColls(string action)
-        {
-            
-            foreach (RegisteredDevice item1 in (action=="Add")? RegisteredDevices: UnRegisteredDevices)
-            {
-                item1.isDeleted = true;
-                
-            }
-
-            loadUnregisteredDevices();
-            loadRegisteredDevicesAsync(false,3);
         }
         private void OnDeviceDiscovery(List<INode> nodes)
         {                
