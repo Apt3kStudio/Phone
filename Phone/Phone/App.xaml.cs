@@ -32,7 +32,7 @@ namespace Phone
             InitializeComponent();
             UtilityHelper.SaveToPhoneAsync("DeviceCount", "0").FireAndForget();
             //FCMService.InitializeComponents();    
-           MainPage = new Account(_context).IsUseregistered(true);
+           MainPage = new Account(_context).IsUseregistered(false);
            
         }        
     }

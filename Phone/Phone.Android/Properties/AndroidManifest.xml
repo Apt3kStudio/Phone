@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="012" android:versionName="1.0" package="com.Apt3k.SpideySenseMobileWear" android:installLocation="internalOnly">
 	<uses-sdk android:minSdkVersion="26" android:targetSdkVersion="29" />
-	<application android:label="Phone.Android" android:name="android.support.multidex.MultiDexApplication">  
+	<application android:label="Phone.Android" android:name="android.support.multidex.MultiDexApplication" android:networkSecurityConfig="@xml/network_security_config">  
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     <activity android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity" />
 	</application>

@@ -100,7 +100,7 @@
     </FlyoutItem>
 
     <FlyoutItem
-        Title="Add Device"
+        Title="Device Management"
         FlyoutDisplayOptions="AsSingleItem"
         Icon="{x:Static fontawesome:FontAwesomeIcons.PlusCircle}">
         <Tab Title="AddDevice" Icon="/YourNamespace;component/Resources/sound.png">

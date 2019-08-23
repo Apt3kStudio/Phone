@@ -19,28 +19,22 @@ namespace Phone.ViewModels
 
     public class ConnectedDevicesVM : BaseVM
     {
+        public ConnectedDevicesVM()
+        {
+
+            RegisteredDevices = new ObservableCollection<RegisteredDevice>();
+            UnRegisteredDevices = new ObservableCollection<RegisteredDevice>();
+
+            dServ = new DeviceService();
+            dServ.SubscribeToUnregisteredDevicesDiscovered += OnDeviceDiscovery;
+            mockDb = new MockService();
+        }
         public ObservableCollection<RegisteredDevice> RegisteredDevices { set; get; }
         public ObservableCollection<RegisteredDevice> UnRegisteredDevices { set; get; }
        
-        
         private DeviceService dServ;
         private MockService mockDb;
         private bool isMock { get; set; }
-
-        public RegisteredDevice SelectedUnRegDevic
-        {
-            get
-            {
-                return SelectedUnRegDevic;
-            }
-            set
-            {
-                if (SelectedUnRegDevic != value)
-                {
-                    SelectedUnRegDevic = value;
-                }
-            }
-        }
 
         string _Distance = "";
         public string Distance
@@ -54,15 +48,29 @@ namespace Phone.ViewModels
                 NotifyPropertyChange(nameof(Distance));
             }
         }   
-        public ConnectedDevicesVM()
+        
+        void MainLogic()
         {
-            
-            RegisteredDevices = new ObservableCollection<RegisteredDevice>();
-            UnRegisteredDevices = new ObservableCollection<RegisteredDevice>();
-           
-            dServ = new DeviceService();     
-            dServ.SubscribeToUnregisteredDevicesDiscovered += OnDeviceDiscovery;
-            mockDb = new MockService();
+            Models.Device ThisPhone = new Models.Device();
+            foreach (RegisteredDevice watch in RegisteredDevices)
+            {
+                ThisPhone.MainLogic(watch);
+            }
+        }
+        private void OnDeviceDiscovery(List<INode> nodes)
+        {
+            InsertToDeviceCollections(nodes);
+        }
+        /// <summary>
+        /// Connected Devices will be inserted to a device collection. There are two collections: Registered and UnRegistered.
+        /// </summary>
+        /// <param name="nodes"></param>
+        private void InsertToDeviceCollections(List<INode> nodes)
+        {
+            foreach (INode node in nodes)
+            {
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(AddToRegOrUnRegDevicesColletion(node));
+            }
         }
         /// <summary>
         /// Todo: This method is suppose to 
@@ -132,21 +140,7 @@ namespace Phone.ViewModels
                  
             });
         }
-        private void OnDeviceDiscovery(List<INode> nodes)
-        {                
-            InsertToDeviceCollections(nodes);
-        }   
-        /// <summary>
-        /// Connected Devices will be inserted to a device collection. There are two collections: Registered and UnRegistered.
-        /// </summary>
-        /// <param name="nodes"></param>
-        private void InsertToDeviceCollections(List<INode> nodes)
-        {
-            foreach (INode node in nodes)
-            {
-                Xamarin.Forms.Device.BeginInvokeOnMainThread(AddToRegOrUnRegDevicesColletion(node));
-            }
-        }
+        
         /// <summary>
         /// This code runs on the main thread
         /// </summary>
@@ -190,14 +184,7 @@ namespace Phone.ViewModels
             };
         }
 
-        void MainLogic()
-        {
-            Models.Device ThisPhone = new Models.Device();
-            foreach (RegisteredDevice watch in RegisteredDevices)
-            {
-                ThisPhone.MainLogic(watch);
-            }
-        }
+        
         public async Task SaveCurrentCountAsync()
         {
             await UtilityHelper.SaveToPhoneAsync("stampcounter", Distance);

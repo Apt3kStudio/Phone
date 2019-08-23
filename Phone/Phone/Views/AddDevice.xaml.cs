@@ -98,10 +98,7 @@ namespace Phone.Views
         }
 
 
-        private async void SelectedDevice_Tap(object sender, EventArgs e)
-        {
-            if (!(sender is View view)) return;
-        }
+       
         private void BackgroundGradient_PaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e)
         {
             SKImageInfo info = e.Info;

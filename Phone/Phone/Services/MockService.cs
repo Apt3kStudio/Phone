@@ -95,7 +95,7 @@ namespace Phone.Services
                                     Buzz = false,
                                     Distance = Distance,
                                     Measurement = "ft",
-                                    ImageSource = "https://apt3k.azurewebsites.net/images/FossilWomens.png"
+                                    ImageSource = "https://apt3k.azurewebsites.net/images/applewatch.png"
                                 });
                             });
                         }
@@ -120,8 +120,8 @@ namespace Phone.Services
                                     Buzz = false,
                                     Distance = Distance,
                                     Measurement = "ft",
-                                    ImageSource = "https://apt3k.azurewebsites.net/images/FossilWomens.png"
-                                });
+                                    ImageSource = "https://apt3k.azurewebsites.net/images/applewatch.png"
+                                    });
                                 });
                         }
                             break;
