@@ -23,7 +23,7 @@ namespace Phone.Services
         {
 #if DEBUG
            
-WebApiBaseURL = "https://10.0.75.1:45456";
+WebApiBaseURL = "https://192.168.1.168:5001";
 #else
 WebApiBaseURL = "https://apt3k.azurewebsites.net"; // Prod
 #endif
@@ -55,15 +55,15 @@ WebApiBaseURL = "https://apt3k.azurewebsites.net"; // Prod
                 var response = await client.PostAsync(WebApiBaseURL + "/api/auth/Login", httpContent);
                 if (response.IsSuccessStatusCode)
                 {
-                    ReceiveFromAPI rfp = new ReceiveFromAPI();
-                    ReceiveFromAPI result = ParseResult(response, rfp);
+                    ReceiveFromAPI apiResult = new ReceiveFromAPI();
+                    apiResult = ParseResult(response, apiResult);                    
                     await Task.Run(() =>
                     {
-                        rfp.SaveJwtTokenAsync();
+                        apiResult.SaveJwtTokenAsync();
                     });
                     await Task.Run(async () =>
                     {
-                        bool isAmatch = rfp.ValidateFCMToken();
+                        bool isAmatch = apiResult.ValidateFCMToken();
                         if (!isAmatch)
                         {
                             await SendFCMTokenAsync();

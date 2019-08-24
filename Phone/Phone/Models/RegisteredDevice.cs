@@ -124,11 +124,13 @@ namespace Phone.Models
             return retVAL;
         }
 
-        public void RandomDelay()
+        public void StartMainLogic()
         {
-            Random random = new Random();
-            int mseconds = random.Next(3, 11) * 1000;
-            System.Threading.Thread.Sleep(mseconds);
+            ConnectionService bluetoothConnection = new ConnectionService();
+            bluetoothConnection.StartTrip("message");
+            //Random random = new Random();
+            //int mseconds = random.Next(3, 11) * 1000;
+            //System.Threading.Thread.Sleep(mseconds);
         }
     }
 }

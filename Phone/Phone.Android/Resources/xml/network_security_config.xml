@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
   <domain-config cleartextTrafficPermitted="true">
-    <domain includeSubdomains="true">https://10.0.75.1:45456</domain>
-    <!-- Debug port -->
-    <domain includeSubdomains="true">xamarin.com</domain>
+    <domain includeSubdomains="true">https://192.168.1.168:5001/</domain>
   </domain-config>
 </network-security-config>

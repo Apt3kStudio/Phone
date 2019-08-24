@@ -67,7 +67,7 @@ namespace Phone.Services
                                     Sound = "Sound",
                                     Buzz = false,
                                     Distance = Distance,
-                                    Measurement = "ft",
+                                    Measurement = "ms",
                                     ImageSource = "https://apt3k.azurewebsites.net/images/SmartwatchBatman.png"
                                 });
                             });

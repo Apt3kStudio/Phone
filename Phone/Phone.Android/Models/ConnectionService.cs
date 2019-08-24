@@ -76,6 +76,22 @@ namespace Phone.Droid
                 client.Disconnect();
             });
         }
+        public void StartTrip(string message)
+        {
+            if (!client.IsConnected)
+                client.Connect();
+            Task.Run(() =>
+            {
+                foreach (var node in Nodes())
+                {
+                    var bytes = System.Text.Encoding.Default.GetBytes(message);
+                    var result1 = WearableClass.GetMessageClient(context).SendMessage(node.Id, path, bytes);
+                    var success = result1.JavaCast<IMessageApiSendMessageResult>().Status.IsSuccess ? "Ok." : "Failed!";
+                    Log.Info("my_log", "Communicator: Sending message " + message + "... " + success);
+                }
+                client.Disconnect();
+            });
+        }
         IList<INode> Nodes()
         {
             var result = WearableClass.NodeApi.GetConnectedNodes(client);           
