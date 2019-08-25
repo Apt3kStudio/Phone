@@ -49,10 +49,10 @@ namespace Phone.Models
             DataMap datamap = new DataMap();
             datamap.PutString("timeStamp", msec.ToString());
         }
-        public TimeSpan Trip(RegisteredDevice watch)
+        public async Task<TimeSpan> TripAsync(RegisteredDevice watch)
         {
             Stopwatch stopWatch = System.Diagnostics.Stopwatch.StartNew();
-            watch.StartMainLogicAsync(); //Todo Send a message to the watch. Make sure to wait for the trip to complete
+            await watch.StartMainLogicAsync(); //Todo Send a message to the watch. Make sure to wait for the trip to complete
             stopWatch.Stop();
             TimeSpan timeCaptured = stopWatch.Elapsed;
             return timeCaptured;
@@ -118,7 +118,7 @@ namespace Phone.Models
                     {
                         while (i < 12000)
                         {
-                            CurrentElapsedTime = Trip(watch);
+                            CurrentElapsedTime = await TripAsync(watch);
 
                             var previousTimeStamp = await UtilityHelper.RetrieveFromPhone("PreviousTimeStamp");
                             double millisecs =  CurrentElapsedTime.TotalMilliseconds;

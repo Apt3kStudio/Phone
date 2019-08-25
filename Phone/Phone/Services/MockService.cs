@@ -28,7 +28,7 @@ namespace Phone.Services
                             {
                                 UnRegisteredDevices.Add(new RegisteredDevice
                                 {
-                                    Id = NumberOfDevices.ToString(),
+                                    nodeId = NumberOfDevices.ToString(),
                                     Description = "Smatt Sung's Phone is connected",
                                     Text = "OnePlus",
                                     deviceType = "Phone",
@@ -53,7 +53,7 @@ namespace Phone.Services
                             {
                                 RegisteredDevices.Add(new RegisteredDevice
                                 {
-                                    Id = NumberOfDevices.ToString(),
+                                    nodeId = NumberOfDevices.ToString(),
                                     Description = "Smatt Sung's Phone is connected",
                                     Text = "OnePlus",
                                     deviceType = "Phone",
@@ -80,7 +80,7 @@ namespace Phone.Services
                             {
                                 UnRegisteredDevices.Add(new RegisteredDevice
                                 {
-                                    Id = "1",
+                                    nodeId = "1",
                                     Description = "Micheal Smith's watch is Connected",
                                     Text = "Samsung Watch",
                                     deviceType = "Wear",
@@ -105,7 +105,7 @@ namespace Phone.Services
                                 {
                                     RegisteredDevices.Add(new RegisteredDevice
                                 {
-                                    Id = "1",
+                                    nodeId = "1",
                                     Description = "Micheal Smith's watch is Connected",
                                     Text = "Samsung Watch",
                                     deviceType = "Wear",
@@ -132,7 +132,7 @@ namespace Phone.Services
                             {
                                 UnRegisteredDevices.Add(new RegisteredDevice
                                 {
-                                    Id = "1",
+                                    nodeId = "1",
                                     Description = "Jonh Doe's Watch is connected",
                                     Text = "Moto Watch",
                                     deviceType = "Wear",
@@ -157,7 +157,7 @@ namespace Phone.Services
                                 {
                                     RegisteredDevices.Add(new RegisteredDevice
                                 {
-                                    Id = "1",
+                                    nodeId = "1",
                                     Description = "Jonh Doe's Watch is connected",
                                     Text = "Moto Watch",
                                     deviceType = "Wear",

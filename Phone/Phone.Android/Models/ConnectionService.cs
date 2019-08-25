@@ -64,9 +64,9 @@ namespace Phone.Droid
         public void SendMessage(string message)
         {           if(!client.IsConnected)
                     client.Connect();       
-            Task.Run(() => 
+            Task.Run(async() => 
             {         
-                foreach (var node in Nodes())
+                foreach (var node in await Nodes())
                 {                  
                     var bytes = System.Text.Encoding.Default.GetBytes(message);
                     var result1 = WearableClass.GetMessageClient(context).SendMessage(node.Id, path, bytes);                 
@@ -76,20 +76,42 @@ namespace Phone.Droid
                 client.Disconnect();
             });
         }
-        public async Task StartTripAsync(string message)
-        {  
-                foreach (var node in Nodes())
-                {
-                    var bytes = System.Text.Encoding.Default.GetBytes(message);
-                    var TripResult = await WearableClass.GetMessageClient(context).SendMessageAsync(node.Id, path, bytes);
-                                          
-                    Log.Info("MainLogic", "Trip Starts Now" + DateTime.Now.ToLocalTime() + "... " );
-                }               
-        }
-        IList<INode> Nodes()
+       
+        public async Task StartTripAsync(string message, string nodeId, bool useOldApi = false)
         {
-            var result = WearableClass.NodeApi.GetConnectedNodes(client);           
-            return result.JavaCast<INodeApiGetConnectedNodesResult>().Nodes;
+            if (useOldApi)
+            {
+                var nodes = Nodes();
+                StartTrip("", nodeId);
+            }
+            else
+            {
+                var bytes = System.Text.Encoding.Default.GetBytes(message);
+                var TripResult = await WearableClass.GetMessageClient(context).SendMessageAsync(nodeId, path, bytes);
+
+                Log.Info("MainLogic", "Trip Starts Now" + DateTime.Now.ToLocalTime() + "... ");
+            }
+        }
+        public void StartTrip(string message, string nodeId)
+        {
+            if (!client.IsConnected)
+                client.Connect();
+            Task.Run(() =>
+            {
+                var bytes = System.Text.Encoding.Default.GetBytes(message);
+                var result1 = WearableClass.GetMessageClient(context).SendMessage(nodeId, path, bytes);
+                var success = result1.JavaCast<IMessageApiSendMessageResult>().Status.IsSuccess ? "Ok." : "Failed!";
+                Log.Info("my_log", "Communicator: Sending message " + message + "... " + success);
+
+                client.Disconnect();
+            });
+        }
+        async Task<IList<INode>> Nodes()
+        {
+            //deprecated code.. var result = WearableClass.NodeApi.GetConnectedNodes(client);           
+
+            var nodes = await WearableClass.GetNodeClient(context).GetConnectedNodesAsync();
+            return nodes;
         }
         public void SendData(DataMap dataMap)
         {

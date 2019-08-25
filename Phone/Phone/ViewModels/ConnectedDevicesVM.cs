@@ -189,7 +189,7 @@ namespace Phone.ViewModels
         {
             return new RegisteredDevice
             {
-                Id = "1",
+                nodeId = node.Id,
                 Description = "Smatt Sung's Phone is connected",
                 Text = "OnePlus",
                 deviceType = "Phone",

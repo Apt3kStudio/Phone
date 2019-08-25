@@ -10,8 +10,7 @@ namespace Phone.Models
 {
     public class RegisteredDevice : INotifyPropertyChanged
     {
-        public string Id { get; set; }
-
+        public string nodeId { get; set; }
         public string Text { get; set; }
         public string Description { get; set; }
         public string Event { get; set; }
@@ -128,7 +127,8 @@ namespace Phone.Models
         {
 
             ConnectionService bluetoothConnection = new ConnectionService();
-            await bluetoothConnection.StartTripAsync("LetGetATimeStamp");
+            
+            await bluetoothConnection.StartTripAsync("LetGetATimeStamp",nodeId,true);
             if (enableTestLogic)
             {
                 Random random = new Random();
