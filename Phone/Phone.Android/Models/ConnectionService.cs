@@ -76,21 +76,15 @@ namespace Phone.Droid
                 client.Disconnect();
             });
         }
-        public void StartTrip(string message)
-        {
-            if (!client.IsConnected)
-                client.Connect();
-            Task.Run(() =>
-            {
+        public async Task StartTripAsync(string message)
+        {  
                 foreach (var node in Nodes())
                 {
                     var bytes = System.Text.Encoding.Default.GetBytes(message);
-                    var result1 = WearableClass.GetMessageClient(context).SendMessage(node.Id, path, bytes);
-                    var success = result1.JavaCast<IMessageApiSendMessageResult>().Status.IsSuccess ? "Ok." : "Failed!";
-                    Log.Info("my_log", "Communicator: Sending message " + message + "... " + success);
-                }
-                client.Disconnect();
-            });
+                    var TripResult = await WearableClass.GetMessageClient(context).SendMessageAsync(node.Id, path, bytes);
+                                          
+                    Log.Info("MainLogic", "Trip Starts Now" + DateTime.Now.ToLocalTime() + "... " );
+                }               
         }
         IList<INode> Nodes()
         {
@@ -153,7 +147,7 @@ namespace Phone.Droid
         }
         public void DeviceDiscovery()
         {
-            Task.Run(async () => 
+            Task.Run(async() => 
             {
                 var result2 = await WearableClass
                                         .GetCapabilityClient(context)

@@ -19,6 +19,16 @@ namespace Phone.ViewModels
 
     public class ConnectedDevicesVM : BaseVM
     {
+        public ConnectedDevicesVM(bool mainlogic)
+        {
+            EnableMainLogic = mainlogic;
+            RegisteredDevices = new ObservableCollection<RegisteredDevice>();
+            UnRegisteredDevices = new ObservableCollection<RegisteredDevice>();
+
+            dServ = new DeviceService();
+            dServ.SubscribeToUnregisteredDevicesDiscovered += OnDeviceDiscovery;
+            mockDb = new MockService();
+        }
         public ConnectedDevicesVM()
         {
 
@@ -29,6 +39,7 @@ namespace Phone.ViewModels
             dServ.SubscribeToUnregisteredDevicesDiscovered += OnDeviceDiscovery;
             mockDb = new MockService();
         }
+        public bool EnableMainLogic = false;
         public ObservableCollection<RegisteredDevice> RegisteredDevices { set; get; }
         public ObservableCollection<RegisteredDevice> UnRegisteredDevices { set; get; }
        
@@ -47,29 +58,47 @@ namespace Phone.ViewModels
                 _Distance = value;
                 NotifyPropertyChange(nameof(Distance));
             }
-        }   
-        
+        }           
         void MainLogic()
         {
-            Models.Device ThisPhone = new Models.Device();
-            foreach (RegisteredDevice watch in RegisteredDevices)
-            {
-                ThisPhone.MainLogic(watch);
+            if (EnableMainLogic)
+            { 
+                Models.Device ThisPhone = new Models.Device();
+                foreach (RegisteredDevice watch in RegisteredDevices)
+                {
+                    ThisPhone.MainLogic(watch);
+                }
             }
         }
         private void OnDeviceDiscovery(List<INode> nodes)
         {
-            InsertToDeviceCollections(nodes);
+            Task.Run(async() =>
+            { 
+                await InsertToDeviceCollectionsAsync(nodes);
+                MainLogic();
+                });
         }
         /// <summary>
         /// Connected Devices will be inserted to a device collection. There are two collections: Registered and UnRegistered.
         /// </summary>
         /// <param name="nodes"></param>
-        private void InsertToDeviceCollections(List<INode> nodes)
+        private async Task InsertToDeviceCollectionsAsync(List<INode> nodes)
         {
             foreach (INode node in nodes)
             {
-                Xamarin.Forms.Device.BeginInvokeOnMainThread(AddToRegOrUnRegDevicesColletion(node));
+                //Xamarin.Forms.Device.BeginInvokeOnMainThread(AddToRegOrUnRegDevicesColletion(node));
+
+                await Xamarin.Forms.Device.InvokeOnMainThreadAsync(() =>
+                {
+                    if (!UtilityHelper.doesItExit(node.DisplayName))
+                    {
+                        UnRegisteredDevices.Add(CreateConnDevice(node));
+                    }
+                    else
+                    {
+                        RegisteredDevices.Add(CreateConnDevice(node));
+                    }
+                });
             }
         }
         /// <summary>
@@ -126,19 +155,14 @@ namespace Phone.ViewModels
         /// This Method will Load Devices based on sample data from the MockService. It also execute the main logic. 
         /// Todo We need to find the best location for the MainLogic. I think we should branch out to a new class where we can continue working refining the main logic.
         /// </summary>
-        internal async Task loadRegisteredDevicesAsync(bool ExecuteMainLogic = false, int NumberOfMockDevices=0)
+        internal async Task loadRegisteredDevicesAsync(bool ExecuteMainLogic = false, int NumberOfMockDevices=0, bool loadTestData = false)
         {
              await Task.Run(async()=>
              {
-                await mockDb.MockLoadRegistedDevices(RegisteredDevices,UnRegisteredDevices, Distance, NumberOfMockDevices);
-                
-                 if (ExecuteMainLogic)
-                 {
-                     dServ.InitiateDiscovery();
-                     MainLogic();
-                 }
-                 
-            });
+                dServ.InitiateDiscovery();
+                 if (loadTestData)
+                     await mockDb.MockLoadRegistedDevices(RegisteredDevices, UnRegisteredDevices, Distance, NumberOfMockDevices);
+             });
         }
         
         /// <summary>

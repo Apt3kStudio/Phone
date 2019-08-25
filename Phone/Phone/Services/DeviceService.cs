@@ -27,9 +27,9 @@ namespace Phone.Services
             cServ.GetNodeSubscriber += ActionReceiveConnectedNodes;
         }
         private void ActionReceiveConnectedNodes(List<INode> nodes)
- {
+        {
             WebPortalApiServices wapi = new WebPortalApiServices();
-            Task.Run(()=>wapi.GetRegisteredDevices());
+            //Task.Run(()=>wapi.GetRegisteredDevices());
             SubscribeToUnregisteredDevicesDiscovered(nodes);
         }
         public event Action<List<INode>> SubscribeToUnregisteredDevicesDiscovered= delegate { };

@@ -124,13 +124,17 @@ namespace Phone.Models
             return retVAL;
         }
 
-        public void StartMainLogic()
+        public async Task StartMainLogicAsync(bool enableTestLogic = false)
         {
+
             ConnectionService bluetoothConnection = new ConnectionService();
-            bluetoothConnection.StartTrip("message");
-            //Random random = new Random();
-            //int mseconds = random.Next(3, 11) * 1000;
-            //System.Threading.Thread.Sleep(mseconds);
+            await bluetoothConnection.StartTripAsync("LetGetATimeStamp");
+            if (enableTestLogic)
+            {
+                Random random = new Random();
+                int mseconds = random.Next(3, 11) * 1000;
+                System.Threading.Thread.Sleep(mseconds);
+            }
         }
     }
 }

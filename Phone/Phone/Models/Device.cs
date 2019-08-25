@@ -52,7 +52,7 @@ namespace Phone.Models
         public TimeSpan Trip(RegisteredDevice watch)
         {
             Stopwatch stopWatch = System.Diagnostics.Stopwatch.StartNew();
-            watch.StartMainLogic(); //Todo Send a message to the watch. Make sure to wait for the trip to complete
+            watch.StartMainLogicAsync(); //Todo Send a message to the watch. Make sure to wait for the trip to complete
             stopWatch.Stop();
             TimeSpan timeCaptured = stopWatch.Elapsed;
             return timeCaptured;
