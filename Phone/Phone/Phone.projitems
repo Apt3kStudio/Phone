@@ -95,6 +95,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Settings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TestPages\GoogleMap.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Login.xaml">
@@ -181,6 +184,9 @@
     <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\ShellTest.xaml.cs">
       <DependentUpon>ShellTest.xaml</DependentUpon>
     </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\TestPages\GoogleMap.xaml.cs">
+      <DependentUpon>GoogleMap.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)AppShell.xaml">
@@ -219,6 +225,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Layout\VerticalListDataTemplateSelectorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TestPages\GoogleMap.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

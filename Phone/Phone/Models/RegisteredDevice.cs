@@ -128,7 +128,7 @@ namespace Phone.Models
 
             ConnectionService bluetoothConnection = new ConnectionService();
             
-            await bluetoothConnection.StartTripAsync("LetGetATimeStamp",nodeId,true);
+            await bluetoothConnection.StartTripAsync("LetGetATimeStamp",nodeId,false);
             if (enableTestLogic)
             {
                 Random random = new Random();

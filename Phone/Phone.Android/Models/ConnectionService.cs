@@ -81,35 +81,24 @@ namespace Phone.Droid
         {
             if (useOldApi)
             {
-                var nodes = Nodes();
+                var nodes = await Nodes();
                 StartTrip("", nodeId);
             }
-            else
+            else if(Nodes().Result.Any(c=>c.Id == nodeId))
             {
                 var bytes = System.Text.Encoding.Default.GetBytes(message);
-                var TripResult = await WearableClass.GetMessageClient(context).SendMessageAsync(nodeId, path, bytes);
-
-                Log.Info("MainLogic", "Trip Starts Now" + DateTime.Now.ToLocalTime() + "... ");
+                var TripResult = await WearableClass.GetMessageClient(context).SendMessageAsync(nodeId, path, bytes);                
+                Thread.Sleep(500);
             }
         }
         public void StartTrip(string message, string nodeId)
         {
-            if (!client.IsConnected)
-                client.Connect();
-            Task.Run(() =>
-            {
-                var bytes = System.Text.Encoding.Default.GetBytes(message);
-                var result1 = WearableClass.GetMessageClient(context).SendMessage(nodeId, path, bytes);
-                var success = result1.JavaCast<IMessageApiSendMessageResult>().Status.IsSuccess ? "Ok." : "Failed!";
-                Log.Info("my_log", "Communicator: Sending message " + message + "... " + success);
-
-                client.Disconnect();
-            });
+            var bytes = System.Text.Encoding.Default.GetBytes(message);
+            var result1 = WearableClass.GetMessageClient(context).SendMessage(nodeId, path, bytes);                  
         }
         async Task<IList<INode>> Nodes()
         {
-            //deprecated code.. var result = WearableClass.NodeApi.GetConnectedNodes(client);           
-
+            //deprecated code.. var result = WearableClass.NodeApi.GetConnectedNodes(client);  
             var nodes = await WearableClass.GetNodeClient(context).GetConnectedNodesAsync();
             return nodes;
         }
