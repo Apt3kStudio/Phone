@@ -125,15 +125,16 @@ namespace Phone.Models
 
         public async Task StartMainLogicAsync(bool enableTestLogic = false)
         {
-
-            ConnectionService bluetoothConnection = new ConnectionService();
-            
-            await bluetoothConnection.StartTripAsync("LetGetATimeStamp",nodeId,false);
             if (enableTestLogic)
             {
                 Random random = new Random();
                 int mseconds = random.Next(3, 11) * 1000;
                 System.Threading.Thread.Sleep(mseconds);
+            }
+            else
+            {
+                ConnectionService bluetoothConnection = new ConnectionService();
+                await bluetoothConnection.StartTripAsync("LetGetATimeStamp", nodeId, false);
             }
         }
     }
