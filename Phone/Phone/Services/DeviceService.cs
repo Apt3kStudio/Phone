@@ -28,6 +28,8 @@ namespace Phone.Services
         }
         private void ActionReceiveConnectedNodes(List<INode> nodes)
         {
+            WebPortalApiServices wapi = new WebPortalApiServices();
+            //Task.Run(()=>wapi.GetRegisteredDevices());
             SubscribeToUnregisteredDevicesDiscovered(nodes);
         }
         public event Action<List<INode>> SubscribeToUnregisteredDevicesDiscovered= delegate { };

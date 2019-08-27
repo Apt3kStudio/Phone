@@ -14,7 +14,7 @@
 	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
 	<uses-permission android:name="android.permission.USE_CREDENTIALS" />
 	<uses-permission android:name="android.permission.VIBRATE" />
-	<service android:name=".MyWearableListenerService">
+	<service android:name=".MyWearableListenerService" android:enabled="true" android:exported="true">
 		<intent-filter>
 			<!-- listeners receive events that match the action and data filters -->
 			<action android:name="com.google.android.c2dm.intent.RECEIVE" />

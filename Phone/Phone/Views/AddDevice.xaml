@@ -337,9 +337,6 @@
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions />
                                 <Grid>
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="SelectedDevice_Tap" />
-                                    </Grid.GestureRecognizers>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto" />
                                     </Grid.RowDefinitions>

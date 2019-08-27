@@ -28,7 +28,7 @@ namespace Phone.Services
                             {
                                 UnRegisteredDevices.Add(new RegisteredDevice
                                 {
-                                    Id = NumberOfDevices.ToString(),
+                                    nodeId = NumberOfDevices.ToString(),
                                     Description = "Smatt Sung's Phone is connected",
                                     Text = "OnePlus",
                                     deviceType = "Phone",
@@ -53,7 +53,7 @@ namespace Phone.Services
                             {
                                 RegisteredDevices.Add(new RegisteredDevice
                                 {
-                                    Id = NumberOfDevices.ToString(),
+                                    nodeId = NumberOfDevices.ToString(),
                                     Description = "Smatt Sung's Phone is connected",
                                     Text = "OnePlus",
                                     deviceType = "Phone",
@@ -67,7 +67,7 @@ namespace Phone.Services
                                     Sound = "Sound",
                                     Buzz = false,
                                     Distance = Distance,
-                                    Measurement = "ft",
+                                    Measurement = "ms",
                                     ImageSource = "https://apt3k.azurewebsites.net/images/SmartwatchBatman.png"
                                 });
                             });
@@ -80,7 +80,7 @@ namespace Phone.Services
                             {
                                 UnRegisteredDevices.Add(new RegisteredDevice
                                 {
-                                    Id = "1",
+                                    nodeId = "1",
                                     Description = "Micheal Smith's watch is Connected",
                                     Text = "Samsung Watch",
                                     deviceType = "Wear",
@@ -95,7 +95,7 @@ namespace Phone.Services
                                     Buzz = false,
                                     Distance = Distance,
                                     Measurement = "ft",
-                                    ImageSource = "https://apt3k.azurewebsites.net/images/FossilWomens.png"
+                                    ImageSource = "https://apt3k.azurewebsites.net/images/applewatch.png"
                                 });
                             });
                         }
@@ -105,7 +105,7 @@ namespace Phone.Services
                                 {
                                     RegisteredDevices.Add(new RegisteredDevice
                                 {
-                                    Id = "1",
+                                    nodeId = "1",
                                     Description = "Micheal Smith's watch is Connected",
                                     Text = "Samsung Watch",
                                     deviceType = "Wear",
@@ -120,8 +120,8 @@ namespace Phone.Services
                                     Buzz = false,
                                     Distance = Distance,
                                     Measurement = "ft",
-                                    ImageSource = "https://apt3k.azurewebsites.net/images/FossilWomens.png"
-                                });
+                                    ImageSource = "https://apt3k.azurewebsites.net/images/applewatch.png"
+                                    });
                                 });
                         }
                             break;
@@ -132,7 +132,7 @@ namespace Phone.Services
                             {
                                 UnRegisteredDevices.Add(new RegisteredDevice
                                 {
-                                    Id = "1",
+                                    nodeId = "1",
                                     Description = "Jonh Doe's Watch is connected",
                                     Text = "Moto Watch",
                                     deviceType = "Wear",
@@ -157,7 +157,7 @@ namespace Phone.Services
                                 {
                                     RegisteredDevices.Add(new RegisteredDevice
                                 {
-                                    Id = "1",
+                                    nodeId = "1",
                                     Description = "Jonh Doe's Watch is connected",
                                     Text = "Moto Watch",
                                     deviceType = "Wear",

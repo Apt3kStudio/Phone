@@ -10,8 +10,7 @@ namespace Phone.Models
 {
     public class RegisteredDevice : INotifyPropertyChanged
     {
-        public string Id { get; set; }
-
+        public string nodeId { get; set; }
         public string Text { get; set; }
         public string Description { get; set; }
         public string Event { get; set; }
@@ -124,11 +123,18 @@ namespace Phone.Models
             return retVAL;
         }
 
-        public void RandomDelay()
+        public async Task StartMainLogicAsync(bool enableTestLogic = false)
         {
-            Random random = new Random();
-            int mseconds = random.Next(3, 11) * 1000;
-            System.Threading.Thread.Sleep(mseconds);
+
+            ConnectionService bluetoothConnection = new ConnectionService();
+            
+            await bluetoothConnection.StartTripAsync("LetGetATimeStamp",nodeId,false);
+            if (enableTestLogic)
+            {
+                Random random = new Random();
+                int mseconds = random.Next(3, 11) * 1000;
+                System.Threading.Thread.Sleep(mseconds);
+            }
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Phone.Views
             InitializeComponent();
             canvasView = new SKCanvasView(Android.App.Application.Context);
             canvasView.PaintSurface += OnCanvasViewPaintSurface;
-            cd = new ConnectedDevicesVM();
+            cd = new ConnectedDevicesVM(true);
          
             BindingContext = cd;
         }
@@ -53,7 +53,7 @@ namespace Phone.Views
             await Xamarin.Forms.Device.InvokeOnMainThreadAsync(async() =>
             {
                 cd.RegisteredDevices.Clear();
-               await cd.loadRegisteredDevicesAsync(true, 3);
+               await cd.loadRegisteredDevicesAsync(true, 0);
             });
 
             canvasView.ClearAnimation();

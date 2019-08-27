@@ -10,23 +10,24 @@ using System.IdentityModel.Tokens.Jwt;
 using Xamarin.Essentials;
 using System.IO;
 using Xamarin.Forms;
+using System.Net.Http.Headers;
+
 namespace Phone.Services
 {
     class WebPortalApiServices
     {
 
-        private static string WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net/";
+        private static string WebApiBaseURL = "https://apt3kwebportal.azurewebsites.net";
 
         public WebPortalApiServices()
         {
 #if DEBUG
-            //WebApiBaseURL = "http://192.168.1.168:45455/";
-            WebApiBaseURL = "https://192.168.1.168:45456/";
+           
+WebApiBaseURL = "https://192.168.1.168:5001";
 #else
-                
-                WebApiBaseURL = "https://apt3k-development.azurewebsites.net/admin/Dashboard";                
+WebApiBaseURL = "https://apt3k.azurewebsites.net"; // Prod
 #endif
-            //WebApiBaseURL = "https://apt3k.azurewebsites.net/"; // Prod
+            
         }
         internal async Task<Message> SigningIn(string email, string password)
         {
@@ -51,20 +52,18 @@ namespace Phone.Services
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             try
             {
-                var response = await client.PostAsync(WebApiBaseURL + "api/auth/Login", httpContent);
+                var response = await client.PostAsync(WebApiBaseURL + "/api/auth/Login", httpContent);
                 if (response.IsSuccessStatusCode)
                 {
-                    Stream receiveStream = response.Content.ReadAsStreamAsync().Result;
-                    StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
-                    string theContent = readStream.ReadToEnd();
-                    ReceiveFromAPI rfp = JsonConvert.DeserializeObject<ReceiveFromAPI>(theContent);
+                    ReceiveFromAPI apiResult = new ReceiveFromAPI();
+                    apiResult = ParseResult(response, apiResult);                    
                     await Task.Run(() =>
                     {
-                        rfp.SaveJwtTokenAsync();
+                        apiResult.SaveJwtTokenAsync();
                     });
                     await Task.Run(async () =>
                     {
-                        bool isAmatch = rfp.ValidateFCMToken();
+                        bool isAmatch = apiResult.ValidateFCMToken();
                         if (!isAmatch)
                         {
                             await SendFCMTokenAsync();
@@ -82,6 +81,16 @@ namespace Phone.Services
 
 
         }
+
+        private static T ParseResult<T>(HttpResponseMessage response, T model)
+        {
+            Stream receiveStream = response.Content.ReadAsStreamAsync().Result;
+            StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
+            string theContent = readStream.ReadToEnd();
+            model  = JsonConvert.DeserializeObject<T>(theContent);
+            return model;
+        }
+
         internal async Task<Message> RegisterAsync(string email, string password, string confirmPassword)
         {
             if (!UtilityHelper.IsValidEmail(email))
@@ -106,7 +115,7 @@ namespace Phone.Services
             {
 
 
-                var response = await client.PostAsync(WebApiBaseURL + "api/auth/registration", httpContent);
+                var response = await client.PostAsync(WebApiBaseURL + "/api/auth/registration", httpContent);
 
                 return new Message("Registration", email + " is registered!", response.IsSuccessStatusCode);
             }
@@ -135,13 +144,51 @@ namespace Phone.Services
 
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-            var response = await client.PostAsync(WebApiBaseURL + "api/auth/ChangeFCMToken", httpContent);
+            var response = await client.PostAsync(WebApiBaseURL + "/api/auth/ChangeFCMToken", httpContent);
 
 
 
             return response.IsSuccessStatusCode;
         }
+        internal async Task<bool> GetRegisteredDevices()
+        {
+            try
+            {
+                var client = new HttpClient();
+                Models.Device device = new Models.Device();
+                var id = new { id = "1" };
 
+                var json = JsonConvert.SerializeObject(id);
+
+                var response = await client.GetAsync(WebApiBaseURL + "/api/Values");
+
+                HttpContent httpContent = new StringContent("");
+                httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("text/plain");
+               // var response = await client.PostAsync($"{WebApiBaseURL}/api/auth/token", httpContent);
+
+
+
+                Stream receiveStream = response.Content.ReadAsStreamAsync().Result;
+                StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
+                var theContent = readStream.ReadToEnd();
+                var jresult = JsonConvert.DeserializeObject<string>(theContent);
+
+                string BearerToken = "";
+                //BearerToken = ParseResult(Reponse, BearerToken);
+
+               
+
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", BearerToken);
+              //  var response = await client.GetAsync(WebApiBaseURL + "api/Values/");
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception EX)
+            {
+                return false;
+             
+            }
+
+        }
     }
 }
 

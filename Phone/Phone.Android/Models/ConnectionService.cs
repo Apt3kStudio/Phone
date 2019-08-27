@@ -64,9 +64,9 @@ namespace Phone.Droid
         public void SendMessage(string message)
         {           if(!client.IsConnected)
                     client.Connect();       
-            Task.Run(() => 
+            Task.Run(async() => 
             {         
-                foreach (var node in Nodes())
+                foreach (var node in await Nodes())
                 {                  
                     var bytes = System.Text.Encoding.Default.GetBytes(message);
                     var result1 = WearableClass.GetMessageClient(context).SendMessage(node.Id, path, bytes);                 
@@ -76,10 +76,31 @@ namespace Phone.Droid
                 client.Disconnect();
             });
         }
-        IList<INode> Nodes()
+       
+        public async Task StartTripAsync(string message, string nodeId, bool useOldApi = false)
         {
-            var result = WearableClass.NodeApi.GetConnectedNodes(client);           
-            return result.JavaCast<INodeApiGetConnectedNodesResult>().Nodes;
+            if (useOldApi)
+            {
+                var nodes = await Nodes();
+                StartTrip("", nodeId);
+            }
+            else if(Nodes().Result.Any(c=>c.Id == nodeId))
+            {
+                var bytes = System.Text.Encoding.Default.GetBytes(message);
+                var TripResult = await WearableClass.GetMessageClient(context).SendMessageAsync(nodeId, path, bytes);                
+                Thread.Sleep(500);
+            }
+        }
+        public void StartTrip(string message, string nodeId)
+        {
+            var bytes = System.Text.Encoding.Default.GetBytes(message);
+            var result1 = WearableClass.GetMessageClient(context).SendMessage(nodeId, path, bytes);                  
+        }
+        async Task<IList<INode>> Nodes()
+        {
+            //deprecated code.. var result = WearableClass.NodeApi.GetConnectedNodes(client);  
+            var nodes = await WearableClass.GetNodeClient(context).GetConnectedNodesAsync();
+            return nodes;
         }
         public void SendData(DataMap dataMap)
         {
@@ -137,7 +158,7 @@ namespace Phone.Droid
         }
         public void DeviceDiscovery()
         {
-            Task.Run(async () => 
+            Task.Run(async() => 
             {
                 var result2 = await WearableClass
                                         .GetCapabilityClient(context)

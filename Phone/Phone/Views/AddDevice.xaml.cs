@@ -25,9 +25,10 @@ namespace Phone.Views
         public AddDevice()
         {
             InitializeComponent();
-            cd= new  ConnectedDevicesVM();
+            cd= new  ConnectedDevicesVM(false);
+           
             cd.loadUnregisteredDevices();
-            cd.loadRegisteredDevicesAsync(false,3).FireAndForget();
+            cd.loadRegisteredDevicesAsync(false,0).FireAndForget();
             regDeviceModel = cd.RegisteredDevices.FirstOrDefault();
             //cd.SelectedUnRegDevic = cd.UnRegisteredDevices.FirstOrDefault();
             BindingContext = cd;
@@ -35,9 +36,9 @@ namespace Phone.Views
         }
         protected override void OnAppearing()
         {
-            base.OnAppearing();          
-            
-         
+            base.OnAppearing();
+            this.emptyRegisteredForm();
+            this.emptyUnRegisteredForm();
         }
         private void LoginPage_SizeChanged(object sender, EventArgs e)
         {
@@ -50,9 +51,9 @@ namespace Phone.Views
             if (!(sender is View view)) return;
             var index = Grid.GetColumn(view);
 
-           
-            // var nextIndex = index == 0 ? 1 : 0;
-            
+            this.emptyRegisteredForm();
+            this.emptyUnRegisteredForm();            
+
             SelectorButon.TranslateTo(index * view.Width, 0, AnimationDuration, Easing.CubicInOut).FireAndForget();
             await SelectorButtonLabel.FadeTo(0, AnimationDuration / 2);
             SelectorButtonLabel.Text = index == 1 ? "New" : "Existing";
@@ -98,10 +99,7 @@ namespace Phone.Views
         }
 
 
-        private async void SelectedDevice_Tap(object sender, EventArgs e)
-        {
-            if (!(sender is View view)) return;
-        }
+       
         private void BackgroundGradient_PaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e)
         {
             SKImageInfo info = e.Info;
@@ -171,12 +169,25 @@ namespace Phone.Views
             RegisteredDevice CurrnUnRegDev = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice);
 
             RegisteredDevice CurrnRegDev = (e.CurrentSelection.FirstOrDefault() as RegisteredDevice);
-            lclAddDeviceName.Text = CurrnRegDev.deviceName;
-           
+            lclAddDeviceName.Text = CurrnRegDev.deviceName;           
             lclAddPlatform.Text = CurrnRegDev.platform;
-
             lclAddRegisteredDeviceImage.Source = CurrnRegDev.ImageSource;
         }
-
+        void emptyRegisteredForm()
+        {
+            RegisteredCollView.SelectedItem = new RegisteredDevice();
+            lcldeviceName.Text = "";
+            lclmanufacturer.Text = "";
+            lclplatform.Text = "";
+            lclidiom.Text = "";
+            lclRegisteredDeviceImage.Source = "";
+        }
+        void emptyUnRegisteredForm()
+        {
+            UnRegCollView.SelectedItem = new RegisteredDevice();
+            lclAddDeviceName.Text = "";
+            lclAddPlatform.Text = "";
+            lclAddRegisteredDeviceImage.Source = "";
+        }
     }
 }

@@ -41,14 +41,14 @@ namespace SpideySenseWatch.Services
         }             
         public void Pause()
         {
-            if (client.IsConnected)
-            {
-                client.Disconnect();
-            }
-            WearableClass.GetDataClient(_context).RemoveListener(this);
-            WearableClass.GetMessageClient(_context).RemoveListener(this);
-            WearableClass.GetCapabilityClient(_context).RemoveListener(this, capabilityName);
-            WearableClass.GetCapabilityClient(_context).RemoveListener(this);
+            //if (client.IsConnected)
+            //{
+            //    client.Disconnect();
+            //}
+            //WearableClass.GetDataClient(_context).RemoveListener(this);
+            //WearableClass.GetMessageClient(_context).RemoveListener(this);
+            //WearableClass.GetCapabilityClient(_context).RemoveListener(this, capabilityName);
+            //WearableClass.GetCapabilityClient(_context).RemoveListener(this);
 
         }
         public void SendMessage(string message)

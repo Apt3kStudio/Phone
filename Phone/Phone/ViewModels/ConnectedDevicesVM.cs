@@ -19,28 +19,33 @@ namespace Phone.ViewModels
 
     public class ConnectedDevicesVM : BaseVM
     {
+        public ConnectedDevicesVM(bool mainlogic)
+        {
+            EnableMainLogic = mainlogic;
+            RegisteredDevices = new ObservableCollection<RegisteredDevice>();
+            UnRegisteredDevices = new ObservableCollection<RegisteredDevice>();
+
+            dServ = new DeviceService();
+            dServ.SubscribeToUnregisteredDevicesDiscovered += OnDeviceDiscovery;
+            mockDb = new MockService();
+        }
+        public ConnectedDevicesVM()
+        {
+
+            RegisteredDevices = new ObservableCollection<RegisteredDevice>();
+            UnRegisteredDevices = new ObservableCollection<RegisteredDevice>();
+
+            dServ = new DeviceService();
+            dServ.SubscribeToUnregisteredDevicesDiscovered += OnDeviceDiscovery;
+            mockDb = new MockService();
+        }
+        public bool EnableMainLogic = false;
         public ObservableCollection<RegisteredDevice> RegisteredDevices { set; get; }
         public ObservableCollection<RegisteredDevice> UnRegisteredDevices { set; get; }
        
-        
         private DeviceService dServ;
         private MockService mockDb;
         private bool isMock { get; set; }
-
-        public RegisteredDevice SelectedUnRegDevic
-        {
-            get
-            {
-                return SelectedUnRegDevic;
-            }
-            set
-            {
-                if (SelectedUnRegDevic != value)
-                {
-                    SelectedUnRegDevic = value;
-                }
-            }
-        }
 
         string _Distance = "";
         public string Distance
@@ -53,16 +58,48 @@ namespace Phone.ViewModels
                 _Distance = value;
                 NotifyPropertyChange(nameof(Distance));
             }
-        }   
-        public ConnectedDevicesVM()
+        }           
+        void MainLogic()
         {
-            
-            RegisteredDevices = new ObservableCollection<RegisteredDevice>();
-            UnRegisteredDevices = new ObservableCollection<RegisteredDevice>();
-           
-            dServ = new DeviceService();     
-            dServ.SubscribeToUnregisteredDevicesDiscovered += OnDeviceDiscovery;
-            mockDb = new MockService();
+            if (EnableMainLogic)
+            { 
+                Models.Device ThisPhone = new Models.Device();
+                foreach (RegisteredDevice watch in RegisteredDevices)
+                {
+                    ThisPhone.MainLogic(watch);
+                }
+            }
+        }
+        private void OnDeviceDiscovery(List<INode> nodes)
+        {
+            Task.Run(async() =>
+            { 
+                await InsertToDeviceCollectionsAsync(nodes);
+                MainLogic();
+                });
+        }
+        /// <summary>
+        /// Connected Devices will be inserted to a device collection. There are two collections: Registered and UnRegistered.
+        /// </summary>
+        /// <param name="nodes"></param>
+        private async Task InsertToDeviceCollectionsAsync(List<INode> nodes)
+        {
+            foreach (INode node in nodes)
+            {
+                //Xamarin.Forms.Device.BeginInvokeOnMainThread(AddToRegOrUnRegDevicesColletion(node));
+
+                await Xamarin.Forms.Device.InvokeOnMainThreadAsync(() =>
+                {
+                    if (!UtilityHelper.doesItExit(node.DisplayName))
+                    {
+                        UnRegisteredDevices.Add(CreateConnDevice(node));
+                    }
+                    else
+                    {
+                        RegisteredDevices.Add(CreateConnDevice(node));
+                    }
+                });
+            }
         }
         /// <summary>
         /// Todo: This method is suppose to 
@@ -118,35 +155,16 @@ namespace Phone.ViewModels
         /// This Method will Load Devices based on sample data from the MockService. It also execute the main logic. 
         /// Todo We need to find the best location for the MainLogic. I think we should branch out to a new class where we can continue working refining the main logic.
         /// </summary>
-        internal async Task loadRegisteredDevicesAsync(bool ExecuteMainLogic = false, int NumberOfMockDevices=0)
+        internal async Task loadRegisteredDevicesAsync(bool ExecuteMainLogic = false, int NumberOfMockDevices=0, bool loadTestData = false)
         {
              await Task.Run(async()=>
              {
-                await mockDb.MockLoadRegistedDevices(RegisteredDevices,UnRegisteredDevices, Distance, NumberOfMockDevices);
-                
-                 if (ExecuteMainLogic)
-                 {
-                     dServ.InitiateDiscovery();
-                     MainLogic();
-                 }
-                 
-            });
+                dServ.InitiateDiscovery();
+                 if (loadTestData)
+                     await mockDb.MockLoadRegistedDevices(RegisteredDevices, UnRegisteredDevices, Distance, NumberOfMockDevices);
+             });
         }
-        private void OnDeviceDiscovery(List<INode> nodes)
-        {                
-            InsertToDeviceCollections(nodes);
-        }   
-        /// <summary>
-        /// Connected Devices will be inserted to a device collection. There are two collections: Registered and UnRegistered.
-        /// </summary>
-        /// <param name="nodes"></param>
-        private void InsertToDeviceCollections(List<INode> nodes)
-        {
-            foreach (INode node in nodes)
-            {
-                Xamarin.Forms.Device.BeginInvokeOnMainThread(AddToRegOrUnRegDevicesColletion(node));
-            }
-        }
+        
         /// <summary>
         /// This code runs on the main thread
         /// </summary>
@@ -171,7 +189,7 @@ namespace Phone.ViewModels
         {
             return new RegisteredDevice
             {
-                Id = "1",
+                nodeId = node.Id,
                 Description = "Smatt Sung's Phone is connected",
                 Text = "OnePlus",
                 deviceType = "Phone",
@@ -190,14 +208,7 @@ namespace Phone.ViewModels
             };
         }
 
-        void MainLogic()
-        {
-            Models.Device ThisPhone = new Models.Device();
-            foreach (RegisteredDevice watch in RegisteredDevices)
-            {
-                ThisPhone.MainLogic(watch);
-            }
-        }
+        
         public async Task SaveCurrentCountAsync()
         {
             await UtilityHelper.SaveToPhoneAsync("stampcounter", Distance);
