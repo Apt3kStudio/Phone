@@ -3,7 +3,6 @@
     x:Class="Phone.AppShell"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:TestPages="clr-namespace:Phone.Views.TestPages"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:fontawesome="clr-namespace:Phone.Utility"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -112,8 +111,8 @@
         Title="Google Maps"
         FlyoutDisplayOptions="AsSingleItem"
         Icon="{x:Static fontawesome:FontAwesomeIcons.Map}">
-        <Tab Title="Display Google Maps" Icon="">
-            <ShellContent ContentTemplate="{DataTemplate TestPages:GoogleMap}" />
+        <Tab Title="Display Google Maps" Icon="/YourNamespace;component/Resources/sound.png">
+            <ShellContent ContentTemplate="{DataTemplate views:ViewMap}" />
         </Tab>
     </FlyoutItem>
     <FlyoutItem
@@ -139,7 +138,7 @@
         </Tab>
     </FlyoutItem>
 
-    <Shell.MenuItemTemplate>
+    <!--<Shell.MenuItemTemplate>
         <DataTemplate>
             <StackLayout
                 Padding="10,10"
@@ -163,9 +162,9 @@
                     VerticalOptions="Center" />
             </StackLayout>
         </DataTemplate>
-    </Shell.MenuItemTemplate>
+    </Shell.MenuItemTemplate>-->
     <!--  error is normal  -->
-    <MenuItem Command="{Binding LogOutCommand}" Text="Logout" />
+    <!--<MenuItem Command="{Binding LogOutCommand}" Text="Logout" />-->
 
 
 </Shell>
