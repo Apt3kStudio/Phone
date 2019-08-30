@@ -22,9 +22,9 @@ namespace Phone.Models
         public string ProfileImage { get; set; }
         public Context _context { get; set; }
 
-        public Page IsUseregistered(bool isEnabaled)
+        public Page Authenticate(bool BypassLogin)
         {
-            bool isUserRegistered = (isEnabaled == true) ? isEnabaled : AuthVM.IsUseregisteredAsync().Result;
+            bool isUserRegistered = (BypassLogin == true) ? BypassLogin : AuthVM.IsUseregisteredAsync().Result;
             if (isUserRegistered)
             {
                 return new AppShell();

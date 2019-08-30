@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="004" android:versionName="1.0" package="com.Apt3k.SpideySenseMobileWear" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="26" android:targetSdkVersion="29" />
+	<uses-sdk android:minSdkVersion="25" android:targetSdkVersion="29" />
 	<uses-feature android:name="android.hardware.type.watch" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
 	<application android:allowBackup="true" android:icon="@drawable/Spide_Icon_WhiteRed" android:label="@string/app_name" android:supportsRtl="true" android:theme="@android:style/Theme.DeviceDefault" android:hardwareAccelerated="false" android:largeHeap="true">
