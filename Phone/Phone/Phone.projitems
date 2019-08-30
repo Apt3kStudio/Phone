@@ -95,7 +95,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Settings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\TestPages\GoogleMap.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ViewMap.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -175,6 +175,9 @@
     <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\MainShell.xaml.cs">
       <DependentUpon>MainShell.xaml</DependentUpon>
     </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Maps.xaml.cs">
+      <DependentUpon>Maps.xaml</DependentUpon>
+    </Compile>
     <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\Page1.xaml.cs">
       <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>
@@ -186,6 +189,12 @@
     </Compile>
     <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\TestPages\GoogleMap.xaml.cs">
       <DependentUpon>GoogleMap.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\TestPages\map.xaml.cs">
+      <DependentUpon>map.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\Users\Diosc\Documents\Repos\APT3KStudio\Phone\Phone\Views\ViewMap.xaml.cs">
+      <DependentUpon>ViewMap.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -229,7 +238,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TestPages\GoogleMap.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ViewMap.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

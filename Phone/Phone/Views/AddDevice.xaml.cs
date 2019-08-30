@@ -28,7 +28,7 @@ namespace Phone.Views
             cd= new  ConnectedDevicesVM(false);
            
             cd.loadUnregisteredDevices();
-            cd.loadRegisteredDevicesAsync(false,0).FireAndForget();
+            cd.loadRegisteredDevicesAsync(false,3,true).FireAndForget();
             regDeviceModel = cd.RegisteredDevices.FirstOrDefault();
             //cd.SelectedUnRegDevic = cd.UnRegisteredDevices.FirstOrDefault();
             BindingContext = cd;
